@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "C:\\Users\\marco\\Documents\\SextoSemestre\\Base de Datos II\\ProyectoBDII\\ProyectoDBII\\ProyectoBaseDatosII\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{C518D096-44A4-4F1F-8D6A-5E02C7B00680}|DAL\\DAL.csproj|c:\\users\\marco\\documents\\sextosemestre\\base de datos ii\\proyectobdii\\proyectodbii\\proyectobasedatosii\\dal\\conexion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C518D096-44A4-4F1F-8D6A-5E02C7B00680}|DAL\\DAL.csproj|solutionrelative:dal\\conexion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{9CC9B0DA-03EA-4515-BADC-E801E5CDB5C0}|UI\\UI.csproj|c:\\users\\marco\\documents\\sextosemestre\\base de datos ii\\proyectobdii\\proyectodbii\\proyectobasedatosii\\ui\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{9CC9B0DA-03EA-4515-BADC-E801E5CDB5C0}|UI\\UI.csproj|solutionrelative:ui\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
@@ -26,12 +30,25 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "BLL",
+              "DocumentIndex": 0,
+              "Title": "Conexion.cs",
+              "DocumentMoniker": "C:\\Users\\marco\\Documents\\SextoSemestre\\Base de Datos II\\ProyectoBDII\\ProyectoDBII\\ProyectoBaseDatosII\\DAL\\Conexion.cs",
+              "RelativeDocumentMoniker": "DAL\\Conexion.cs",
+              "ToolTip": "C:\\Users\\marco\\Documents\\SextoSemestre\\Base de Datos II\\ProyectoBDII\\ProyectoDBII\\ProyectoBaseDatosII\\DAL\\Conexion.cs",
+              "RelativeToolTip": "DAL\\Conexion.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABEAAAA7AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-30T02:18:54.495Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "BLL.csproj",
               "DocumentMoniker": "C:\\Users\\marco\\Documents\\SextoSemestre\\Base de Datos II\\ProyectoBDII\\ProyectoDBII\\ProyectoBaseDatosII\\BLL\\BLL.csproj",
               "RelativeDocumentMoniker": "BLL\\BLL.csproj",
               "ToolTip": "C:\\Users\\marco\\Documents\\SextoSemestre\\Base de Datos II\\ProyectoBDII\\ProyectoDBII\\ProyectoBaseDatosII\\BLL\\BLL.csproj",
@@ -43,7 +60,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "Form1.cs [Dise\u00F1o]",
               "DocumentMoniker": "C:\\Users\\marco\\Documents\\SextoSemestre\\Base de Datos II\\ProyectoBDII\\ProyectoDBII\\ProyectoBaseDatosII\\UI\\Form1.cs",
               "RelativeDocumentMoniker": "UI\\Form1.cs",
@@ -55,7 +72,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "Class1.cs",
               "DocumentMoniker": "C:\\Users\\marco\\Documents\\SextoSemestre\\Base de Datos II\\ProyectoBDII\\ProyectoDBII\\ProyectoBaseDatosII\\BLL\\Class1.cs",
               "RelativeDocumentMoniker": "BLL\\Class1.cs",
@@ -68,7 +85,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "Class1.cs",
               "DocumentMoniker": "C:\\Users\\marco\\Documents\\SextoSemestre\\Base de Datos II\\ProyectoBDII\\ProyectoDBII\\ProyectoBaseDatosII\\DAL\\Class1.cs",
               "RelativeDocumentMoniker": "DAL\\Class1.cs",
