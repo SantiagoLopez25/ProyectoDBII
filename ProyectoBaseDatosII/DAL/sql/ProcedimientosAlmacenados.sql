@@ -1,4 +1,4 @@
--- Creación de procedimientos almacenados
+-- Creaciï¿½n de procedimientos almacenados
 
 USE VentaMuebles
 GO
@@ -15,7 +15,7 @@ AS
 SELECT * FROM Marca ORDER BY id_Marca ASC
 GO
 
--- Procedimiento para listar Categorías
+-- Procedimiento para listar Categorï¿½as
 CREATE PROC ListarCategoria
 AS
 SELECT * FROM Categoria ORDER BY id_Categoria ASC
@@ -103,7 +103,7 @@ AS BEGIN
 END;
 GO
 
--- Procedimiento para actualizar una Categoría
+-- Procedimiento para actualizar una Categorï¿½a
 Create PROC ActualizarCategoria
 @id_Categoria int,
 @Categoria varchar (25),
@@ -132,3 +132,40 @@ AS BEGIN
 	WHERE id_Empleado = @id_Empleado
 END;
 GO
+
+-- Procedimiento almacenado que permite crear un usuario, actualizarlo y deshabilitarlo
+
+GO
+/****** Object:  StoredProcedure [dbo].[f_crearUsuario]    Script Date: 4/09/2024 07:43:10 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE procedure [dbo].[p_usuarios]
+(
+    @usuario varchar(100), @contrasennia varchar(100), @rol int, @empleado int, @idUsuario int, @opcion int  
+)
+
+AS
+BEGIN
+
+	declare @encriptado as varbinary(max)
+
+	if @opcion = 1
+		begin
+			
+			set @encriptado = hashbytes('SHA2_512', convert(nvarchar(4000), @contrasennia))
+			insert into usuario values ( @usuario,  @encriptado, 1, @rol, @empleado)
+		end
+	else if @opcion = 2
+		begin
+			set @encriptado = hashbytes('SHA2_512', convert(nvarchar(4000), @contrasennia))
+			update  usuario set Usuario	= @usuario, Usuario.Password =   @encriptado, Estado =  1, id_Rol =  @rol, id_Empleado = @empleado where id_Usuario = @idUsuario
+		end
+	else if @opcion = 3
+		begin
+			update usuario set Estado = 0
+		end
+
+		select *from Usuario
+END
