@@ -15,7 +15,7 @@ namespace DAL
 
         public IDbConnection Cadena()
         {
-            return new SqlConnection("Data Source=localhost; Initial Catalog=Inventario; Persist Security Info=True; Encrypt=false; User ID=sa;Password=database");
+            return new SqlConnection("Data Source=localhost; Initial Catalog=ProyectoDB2; Persist Security Info=True; Encrypt=false; Trusted_Connection=True;");
         }
     }
 }

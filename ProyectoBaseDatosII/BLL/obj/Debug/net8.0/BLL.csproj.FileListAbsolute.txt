@@ -14,3 +14,19 @@ D:\VI SEMESTRE\BD 2\Proyecto BD FINAL\Proyecto Muebles-Grafico\ProyectoDBII\Proy
 D:\VI SEMESTRE\BD 2\Proyecto BD FINAL\Proyecto Muebles-Grafico\ProyectoDBII\ProyectoBaseDatosII\BLL\obj\Debug\net8.0\refint\BLL.dll
 D:\VI SEMESTRE\BD 2\Proyecto BD FINAL\Proyecto Muebles-Grafico\ProyectoDBII\ProyectoBaseDatosII\BLL\obj\Debug\net8.0\BLL.pdb
 D:\VI SEMESTRE\BD 2\Proyecto BD FINAL\Proyecto Muebles-Grafico\ProyectoDBII\ProyectoBaseDatosII\BLL\obj\Debug\net8.0\ref\BLL.dll
+C:\Users\marco\Documents\SextoSemestre\Base de Datos II\ProyectoBDII\ProyectoDBII\ProyectoBaseDatosII\BLL\bin\Debug\net8.0\BLL.deps.json
+C:\Users\marco\Documents\SextoSemestre\Base de Datos II\ProyectoBDII\ProyectoDBII\ProyectoBaseDatosII\BLL\bin\Debug\net8.0\BLL.dll
+C:\Users\marco\Documents\SextoSemestre\Base de Datos II\ProyectoBDII\ProyectoDBII\ProyectoBaseDatosII\BLL\bin\Debug\net8.0\BLL.pdb
+C:\Users\marco\Documents\SextoSemestre\Base de Datos II\ProyectoBDII\ProyectoDBII\ProyectoBaseDatosII\BLL\bin\Debug\net8.0\DAL.dll
+C:\Users\marco\Documents\SextoSemestre\Base de Datos II\ProyectoBDII\ProyectoDBII\ProyectoBaseDatosII\BLL\bin\Debug\net8.0\DAL.pdb
+C:\Users\marco\Documents\SextoSemestre\Base de Datos II\ProyectoBDII\ProyectoDBII\ProyectoBaseDatosII\BLL\obj\Debug\net8.0\BLL.csproj.AssemblyReference.cache
+C:\Users\marco\Documents\SextoSemestre\Base de Datos II\ProyectoBDII\ProyectoDBII\ProyectoBaseDatosII\BLL\obj\Debug\net8.0\BLL.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\marco\Documents\SextoSemestre\Base de Datos II\ProyectoBDII\ProyectoDBII\ProyectoBaseDatosII\BLL\obj\Debug\net8.0\BLL.AssemblyInfoInputs.cache
+C:\Users\marco\Documents\SextoSemestre\Base de Datos II\ProyectoBDII\ProyectoDBII\ProyectoBaseDatosII\BLL\obj\Debug\net8.0\BLL.AssemblyInfo.cs
+C:\Users\marco\Documents\SextoSemestre\Base de Datos II\ProyectoBDII\ProyectoDBII\ProyectoBaseDatosII\BLL\obj\Debug\net8.0\BLL.csproj.CoreCompileInputs.cache
+C:\Users\marco\Documents\SextoSemestre\Base de Datos II\ProyectoBDII\ProyectoDBII\ProyectoBaseDatosII\BLL\obj\Debug\net8.0\BLL.sourcelink.json
+C:\Users\marco\Documents\SextoSemestre\Base de Datos II\ProyectoBDII\ProyectoDBII\ProyectoBaseDatosII\BLL\obj\Debug\net8.0\BLL.csproj.Up2Date
+C:\Users\marco\Documents\SextoSemestre\Base de Datos II\ProyectoBDII\ProyectoDBII\ProyectoBaseDatosII\BLL\obj\Debug\net8.0\BLL.dll
+C:\Users\marco\Documents\SextoSemestre\Base de Datos II\ProyectoBDII\ProyectoDBII\ProyectoBaseDatosII\BLL\obj\Debug\net8.0\refint\BLL.dll
+C:\Users\marco\Documents\SextoSemestre\Base de Datos II\ProyectoBDII\ProyectoDBII\ProyectoBaseDatosII\BLL\obj\Debug\net8.0\BLL.pdb
+C:\Users\marco\Documents\SextoSemestre\Base de Datos II\ProyectoBDII\ProyectoDBII\ProyectoBaseDatosII\BLL\obj\Debug\net8.0\ref\BLL.dll
