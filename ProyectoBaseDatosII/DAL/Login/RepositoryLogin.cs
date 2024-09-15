@@ -10,11 +10,16 @@ namespace DAL.Login
 {
     public class RepositoryLogin : IRepositoryLogin
     {
-        private readonly IDbConnection _conexion = new Conexion().Cadena();
+        
+        private readonly Conexion _conexion;
+        public RepositoryLogin()
+        {
+            _conexion = new Conexion();
+        }
 
         public string InicioDeSesion(string user, string password)
         {
-            using (var connection = new Conexion().Cadena())
+            using (var connection = _conexion.GetConnection())
             {
                 connection.Open();
                 string sql = "select dbo.f_login(@usuario, @contrasennia)";

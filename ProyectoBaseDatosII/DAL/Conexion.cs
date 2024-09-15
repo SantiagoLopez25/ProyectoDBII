@@ -11,11 +11,25 @@ namespace DAL
     public class Conexion
     {
 
-        private IDbConnection conexion;
+        
 
-        public IDbConnection Cadena()
+        private readonly string connectionString;
+        static string server = "localhost"; //No cambiar
+        static string database = "ProyectoDB2";
+        static string user = "sa";
+        static string password = "1234";
+
+
+        public Conexion()
         {
-            return new SqlConnection("Data Source=localhost; Initial Catalog=ProyectoDB2; Persist Security Info=True; Encrypt=false; Trusted_Connection=True;");
+           connectionString = "Server = " + server + "; Database = " + database +"; User Id = " + user + "; Password = " + password + "; Encrypt = True; TrustServerCertificate = True; ";
         }
+
+        public SqlConnection GetConnection()
+        {
+            return new SqlConnection(connectionString);
+        }
+
+       
     }
 }

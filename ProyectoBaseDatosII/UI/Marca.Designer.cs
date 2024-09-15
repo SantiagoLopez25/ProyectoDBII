@@ -31,20 +31,16 @@
             txtMarca = new TextBox();
             label1 = new Label();
             panelCreate = new Panel();
-            btnEliminarMarca = new Button();
-            panelEditar = new Panel();
+            label2 = new Label();
+            txtEditar = new TextBox();
             dataGridView1 = new DataGridView();
+            lblId = new Label();
+            lblEstado = new Label();
+            btnEliminarMarca = new Button();
             btnEditarMarca = new Button();
             btnCrearMarca = new Button();
-            btnGuardar = new Button();
-            panelEliminar = new Panel();
-            dataGridView2 = new DataGridView();
-            btnGuardarEditado = new Button();
             panelCreate.SuspendLayout();
-            panelEditar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
-            panelEliminar.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView2).BeginInit();
             SuspendLayout();
             // 
             // txtMarca
@@ -54,6 +50,7 @@
             txtMarca.Name = "txtMarca";
             txtMarca.Size = new Size(214, 24);
             txtMarca.TabIndex = 0;
+            txtMarca.Click += txtMarca_Click;
             // 
             // label1
             // 
@@ -62,17 +59,20 @@
             label1.FlatStyle = FlatStyle.Flat;
             label1.Font = new Font("Microsoft Sans Serif", 9F);
             label1.ForeColor = Color.Gainsboro;
-            label1.Location = new Point(70, 35);
+            label1.Location = new Point(86, 35);
             label1.Name = "label1";
-            label1.Size = new Size(50, 18);
+            label1.Size = new Size(54, 18);
             label1.TabIndex = 1;
-            label1.Text = "Marca";
+            label1.Text = "Marca:";
             // 
             // panelCreate
             // 
             panelCreate.BackColor = Color.FromArgb(32, 30, 45);
-            panelCreate.Controls.Add(panelEditar);
-            panelCreate.Controls.Add(panelEliminar);
+            panelCreate.Controls.Add(label2);
+            panelCreate.Controls.Add(txtEditar);
+            panelCreate.Controls.Add(dataGridView1);
+            panelCreate.Controls.Add(lblId);
+            panelCreate.Controls.Add(lblEstado);
             panelCreate.Controls.Add(btnEliminarMarca);
             panelCreate.Controls.Add(btnEditarMarca);
             panelCreate.Controls.Add(btnCrearMarca);
@@ -84,6 +84,65 @@
             panelCreate.Name = "panelCreate";
             panelCreate.Size = new Size(920, 463);
             panelCreate.TabIndex = 2;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.BackColor = Color.FromArgb(32, 30, 45);
+            label2.FlatStyle = FlatStyle.Flat;
+            label2.Font = new Font("Microsoft Sans Serif", 9F);
+            label2.ForeColor = Color.Gainsboro;
+            label2.Location = new Point(90, 88);
+            label2.Name = "label2";
+            label2.Size = new Size(50, 18);
+            label2.TabIndex = 9;
+            label2.Text = "Editar:";
+            // 
+            // txtEditar
+            // 
+            txtEditar.Font = new Font("Microsoft Sans Serif", 9F);
+            txtEditar.Location = new Point(164, 85);
+            txtEditar.Name = "txtEditar";
+            txtEditar.Size = new Size(214, 24);
+            txtEditar.TabIndex = 8;
+            // 
+            // dataGridView1
+            // 
+            dataGridView1.AllowUserToAddRows = false;
+            dataGridView1.AllowUserToDeleteRows = false;
+            dataGridView1.BorderStyle = BorderStyle.None;
+            dataGridView1.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dataGridView1.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dataGridView1.ColumnHeadersHeight = 29;
+            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            dataGridView1.EnableHeadersVisualStyles = false;
+            dataGridView1.Location = new Point(164, 137);
+            dataGridView1.Margin = new Padding(12, 10, 12, 10);
+            dataGridView1.Name = "dataGridView1";
+            dataGridView1.ReadOnly = true;
+            dataGridView1.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
+            dataGridView1.RowHeadersWidth = 51;
+            dataGridView1.Size = new Size(532, 287);
+            dataGridView1.TabIndex = 3;
+            dataGridView1.CellClick += dataGridView1_CellClick;
+            // 
+            // lblId
+            // 
+            lblId.AutoSize = true;
+            lblId.Location = new Point(817, 127);
+            lblId.Name = "lblId";
+            lblId.Size = new Size(53, 20);
+            lblId.TabIndex = 6;
+            lblId.Text = "label2";
+            // 
+            // lblEstado
+            // 
+            lblEstado.AutoSize = true;
+            lblEstado.Location = new Point(817, 85);
+            lblEstado.Name = "lblEstado";
+            lblEstado.Size = new Size(18, 20);
+            lblEstado.TabIndex = 7;
+            lblEstado.Text = "1";
             // 
             // btnEliminarMarca
             // 
@@ -97,29 +156,6 @@
             btnEliminarMarca.Text = "Eliminar";
             btnEliminarMarca.UseVisualStyleBackColor = false;
             btnEliminarMarca.Click += btnEliminarMarca_Click;
-            // 
-            // panelEditar
-            // 
-            panelEditar.Controls.Add(btnGuardarEditado);
-            panelEditar.Controls.Add(dataGridView1);
-            panelEditar.Location = new Point(59, 108);
-            panelEditar.Margin = new Padding(0);
-            panelEditar.Name = "panelEditar";
-            panelEditar.Size = new Size(474, 307);
-            panelEditar.TabIndex = 3;
-            // 
-            // dataGridView1
-            // 
-            dataGridView1.AllowUserToAddRows = false;
-            dataGridView1.AllowUserToDeleteRows = false;
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(12, 10);
-            dataGridView1.Margin = new Padding(12, 10, 12, 10);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.ReadOnly = true;
-            dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.Size = new Size(262, 287);
-            dataGridView1.TabIndex = 3;
             // 
             // btnEditarMarca
             // 
@@ -147,53 +183,6 @@
             btnCrearMarca.UseVisualStyleBackColor = false;
             btnCrearMarca.Click += btnCrearMarca_Click;
             // 
-            // btnGuardar
-            // 
-            btnGuardar.BackColor = Color.FromArgb(32, 30, 45);
-            btnGuardar.FlatStyle = FlatStyle.Flat;
-            btnGuardar.ForeColor = Color.Gainsboro;
-            btnGuardar.Location = new Point(289, 116);
-            btnGuardar.Name = "btnGuardar";
-            btnGuardar.Size = new Size(118, 29);
-            btnGuardar.TabIndex = 5;
-            btnGuardar.Text = "Guardar";
-            btnGuardar.UseVisualStyleBackColor = false;
-            // 
-            // panelEliminar
-            // 
-            panelEliminar.Controls.Add(dataGridView2);
-            panelEliminar.Controls.Add(btnGuardar);
-            panelEliminar.Location = new Point(70, 108);
-            panelEliminar.Margin = new Padding(0);
-            panelEliminar.Name = "panelEliminar";
-            panelEliminar.Size = new Size(474, 307);
-            panelEliminar.TabIndex = 4;
-            // 
-            // dataGridView2
-            // 
-            dataGridView2.AllowUserToAddRows = false;
-            dataGridView2.AllowUserToDeleteRows = false;
-            dataGridView2.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView2.Location = new Point(12, 10);
-            dataGridView2.Margin = new Padding(12, 10, 12, 10);
-            dataGridView2.Name = "dataGridView2";
-            dataGridView2.ReadOnly = true;
-            dataGridView2.RowHeadersWidth = 51;
-            dataGridView2.Size = new Size(262, 287);
-            dataGridView2.TabIndex = 3;
-            // 
-            // btnGuardarEditado
-            // 
-            btnGuardarEditado.BackColor = Color.FromArgb(32, 30, 45);
-            btnGuardarEditado.FlatStyle = FlatStyle.Flat;
-            btnGuardarEditado.ForeColor = Color.Gainsboro;
-            btnGuardarEditado.Location = new Point(315, 135);
-            btnGuardarEditado.Name = "btnGuardarEditado";
-            btnGuardarEditado.Size = new Size(118, 29);
-            btnGuardarEditado.TabIndex = 5;
-            btnGuardarEditado.Text = "Guardar";
-            btnGuardarEditado.UseVisualStyleBackColor = false;
-            // 
             // Marca
             // 
             AutoScaleDimensions = new SizeF(10F, 20F);
@@ -206,10 +195,7 @@
             Load += Marca_Load;
             panelCreate.ResumeLayout(false);
             panelCreate.PerformLayout();
-            panelEditar.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
-            panelEliminar.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)dataGridView2).EndInit();
             ResumeLayout(false);
         }
 
@@ -219,13 +205,12 @@
         private Label label1;
         private Panel panelCreate;
         private Button btnCrearMarca;
-        private Panel panelEditar;
-        private DataGridView dataGridView1;
         private Button btnEditarMarca;
         private Button btnEliminarMarca;
-        private Panel panelEliminar;
-        private DataGridView dataGridView2;
-        private Button btnGuardar;
-        private Button btnGuardarEditado;
+        private Label lblId;
+        private Label lblEstado;
+        private Label label2;
+        private TextBox txtEditar;
+        private DataGridView dataGridView1;
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace UI
 {
-    partial class Form1
+    partial class Administrador
     {
         /// <summary>
         ///  Required designer variable.
@@ -83,7 +83,7 @@
             panelMueblesSubMenu.Dock = DockStyle.Top;
             panelMueblesSubMenu.Location = new Point(0, 555);
             panelMueblesSubMenu.Name = "panelMueblesSubMenu";
-            panelMueblesSubMenu.Size = new Size(229, 171);
+            panelMueblesSubMenu.Size = new Size(224, 171);
             panelMueblesSubMenu.TabIndex = 6;
             // 
             // btnModelo
@@ -95,7 +95,7 @@
             btnModelo.Location = new Point(0, 120);
             btnModelo.Name = "btnModelo";
             btnModelo.Padding = new Padding(35, 0, 0, 0);
-            btnModelo.Size = new Size(229, 40);
+            btnModelo.Size = new Size(224, 40);
             btnModelo.TabIndex = 3;
             btnModelo.Text = "Modelo";
             btnModelo.TextAlign = ContentAlignment.MiddleLeft;
@@ -111,7 +111,7 @@
             btnCategoría.Location = new Point(0, 80);
             btnCategoría.Name = "btnCategoría";
             btnCategoría.Padding = new Padding(35, 0, 0, 0);
-            btnCategoría.Size = new Size(229, 40);
+            btnCategoría.Size = new Size(224, 40);
             btnCategoría.TabIndex = 2;
             btnCategoría.Text = "Categoría";
             btnCategoría.TextAlign = ContentAlignment.MiddleLeft;
@@ -127,7 +127,7 @@
             btnMarca.Location = new Point(0, 40);
             btnMarca.Name = "btnMarca";
             btnMarca.Padding = new Padding(35, 0, 0, 0);
-            btnMarca.Size = new Size(229, 40);
+            btnMarca.Size = new Size(224, 40);
             btnMarca.TabIndex = 1;
             btnMarca.Text = "Marcas";
             btnMarca.TextAlign = ContentAlignment.MiddleLeft;
@@ -143,7 +143,7 @@
             btnMuebles.Location = new Point(0, 0);
             btnMuebles.Name = "btnMuebles";
             btnMuebles.Padding = new Padding(35, 0, 0, 0);
-            btnMuebles.Size = new Size(229, 40);
+            btnMuebles.Size = new Size(224, 40);
             btnMuebles.TabIndex = 0;
             btnMuebles.Text = "Muebles";
             btnMuebles.TextAlign = ContentAlignment.MiddleLeft;
@@ -159,7 +159,7 @@
             btnMueblesDesplegable.Location = new Point(0, 510);
             btnMueblesDesplegable.Name = "btnMueblesDesplegable";
             btnMueblesDesplegable.Padding = new Padding(10, 0, 0, 0);
-            btnMueblesDesplegable.Size = new Size(229, 45);
+            btnMueblesDesplegable.Size = new Size(224, 45);
             btnMueblesDesplegable.TabIndex = 5;
             btnMueblesDesplegable.Text = "Muebles";
             btnMueblesDesplegable.TextAlign = ContentAlignment.MiddleLeft;
@@ -175,7 +175,7 @@
             panelPedidosProveedorSubMenu.Dock = DockStyle.Top;
             panelPedidosProveedorSubMenu.Location = new Point(0, 376);
             panelPedidosProveedorSubMenu.Name = "panelPedidosProveedorSubMenu";
-            panelPedidosProveedorSubMenu.Size = new Size(229, 134);
+            panelPedidosProveedorSubMenu.Size = new Size(224, 134);
             panelPedidosProveedorSubMenu.TabIndex = 4;
             // 
             // btnEstadoPedido
@@ -187,7 +187,7 @@
             btnEstadoPedido.Location = new Point(0, 80);
             btnEstadoPedido.Name = "btnEstadoPedido";
             btnEstadoPedido.Padding = new Padding(35, 0, 0, 0);
-            btnEstadoPedido.Size = new Size(229, 40);
+            btnEstadoPedido.Size = new Size(224, 40);
             btnEstadoPedido.TabIndex = 2;
             btnEstadoPedido.Text = "Estado Pedido";
             btnEstadoPedido.TextAlign = ContentAlignment.MiddleLeft;
@@ -203,7 +203,7 @@
             btnProveedores.Location = new Point(0, 40);
             btnProveedores.Name = "btnProveedores";
             btnProveedores.Padding = new Padding(35, 0, 0, 0);
-            btnProveedores.Size = new Size(229, 40);
+            btnProveedores.Size = new Size(224, 40);
             btnProveedores.TabIndex = 1;
             btnProveedores.Text = "Proveedores";
             btnProveedores.TextAlign = ContentAlignment.MiddleLeft;
@@ -219,7 +219,7 @@
             btnPedidosProveedor.Location = new Point(0, 0);
             btnPedidosProveedor.Name = "btnPedidosProveedor";
             btnPedidosProveedor.Padding = new Padding(35, 0, 0, 0);
-            btnPedidosProveedor.Size = new Size(229, 40);
+            btnPedidosProveedor.Size = new Size(224, 40);
             btnPedidosProveedor.TabIndex = 0;
             btnPedidosProveedor.Text = "Pedidos";
             btnPedidosProveedor.TextAlign = ContentAlignment.MiddleLeft;
@@ -235,7 +235,7 @@
             button1.Location = new Point(0, 331);
             button1.Name = "button1";
             button1.Padding = new Padding(10, 0, 0, 0);
-            button1.Size = new Size(229, 45);
+            button1.Size = new Size(224, 45);
             button1.TabIndex = 3;
             button1.Text = "Pedidos Proveedor";
             button1.TextAlign = ContentAlignment.MiddleLeft;
@@ -252,7 +252,7 @@
             panelVentasSubMenu.Dock = DockStyle.Top;
             panelVentasSubMenu.Location = new Point(0, 157);
             panelVentasSubMenu.Name = "panelVentasSubMenu";
-            panelVentasSubMenu.Size = new Size(229, 174);
+            panelVentasSubMenu.Size = new Size(224, 174);
             panelVentasSubMenu.TabIndex = 2;
             // 
             // btnFacturas
@@ -264,7 +264,7 @@
             btnFacturas.Location = new Point(0, 120);
             btnFacturas.Name = "btnFacturas";
             btnFacturas.Padding = new Padding(35, 0, 0, 0);
-            btnFacturas.Size = new Size(229, 40);
+            btnFacturas.Size = new Size(224, 40);
             btnFacturas.TabIndex = 3;
             btnFacturas.Text = "Facturas";
             btnFacturas.TextAlign = ContentAlignment.MiddleLeft;
@@ -280,7 +280,7 @@
             btnClientes.Location = new Point(0, 80);
             btnClientes.Name = "btnClientes";
             btnClientes.Padding = new Padding(35, 0, 0, 0);
-            btnClientes.Size = new Size(229, 40);
+            btnClientes.Size = new Size(224, 40);
             btnClientes.TabIndex = 2;
             btnClientes.Text = "Clientes";
             btnClientes.TextAlign = ContentAlignment.MiddleLeft;
@@ -296,7 +296,7 @@
             btnEntregas.Location = new Point(0, 40);
             btnEntregas.Name = "btnEntregas";
             btnEntregas.Padding = new Padding(35, 0, 0, 0);
-            btnEntregas.Size = new Size(229, 40);
+            btnEntregas.Size = new Size(224, 40);
             btnEntregas.TabIndex = 1;
             btnEntregas.Text = "Entregas";
             btnEntregas.TextAlign = ContentAlignment.MiddleLeft;
@@ -312,7 +312,7 @@
             btnVentas.Location = new Point(0, 0);
             btnVentas.Name = "btnVentas";
             btnVentas.Padding = new Padding(35, 0, 0, 0);
-            btnVentas.Size = new Size(229, 40);
+            btnVentas.Size = new Size(224, 40);
             btnVentas.TabIndex = 0;
             btnVentas.Text = "Venta";
             btnVentas.TextAlign = ContentAlignment.MiddleLeft;
@@ -328,7 +328,7 @@
             btnVentasDesplegable.Location = new Point(0, 112);
             btnVentasDesplegable.Name = "btnVentasDesplegable";
             btnVentasDesplegable.Padding = new Padding(10, 0, 0, 0);
-            btnVentasDesplegable.Size = new Size(229, 45);
+            btnVentasDesplegable.Size = new Size(224, 45);
             btnVentasDesplegable.TabIndex = 1;
             btnVentasDesplegable.Text = "Ventas";
             btnVentasDesplegable.TextAlign = ContentAlignment.MiddleLeft;
@@ -340,7 +340,7 @@
             panelLogo.Dock = DockStyle.Top;
             panelLogo.Location = new Point(0, 0);
             panelLogo.Name = "panelLogo";
-            panelLogo.Size = new Size(229, 112);
+            panelLogo.Size = new Size(224, 112);
             panelLogo.TabIndex = 0;
             // 
             // panelPlayer
@@ -361,9 +361,9 @@
             panelChildForm.Size = new Size(938, 510);
             panelChildForm.TabIndex = 2;
             // 
-            // Form1
+            // Administrador
             // 
-            AutoScaleDimensions = new SizeF(10F, 20F);
+            AutoScaleDimensions = new SizeF(12F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1188, 592);
             Controls.Add(panelChildForm);
@@ -371,8 +371,8 @@
             Controls.Add(panelSideMenu);
             Font = new Font("Microsoft Sans Serif", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
             Margin = new Padding(4, 3, 4, 3);
-            Name = "Form1";
-            Text = "Form1";
+            Name = "Administrador";
+            Text = "Administrador";
             panelSideMenu.ResumeLayout(false);
             panelMueblesSubMenu.ResumeLayout(false);
             panelPedidosProveedorSubMenu.ResumeLayout(false);
