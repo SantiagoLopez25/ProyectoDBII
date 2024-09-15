@@ -34,7 +34,7 @@ namespace UI
             btnEliminarMarca.Enabled = true;
             ListarMarcas();
         }
-
+        //Para
         private void btnEliminarMarca_Click(object sender, EventArgs e)
         {
             if (dataGridView1.SelectedRows.Count > 0)

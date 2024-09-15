@@ -18,6 +18,7 @@ namespace DAL.Mueble
             _conexion = new Conexion();
         }
 
+        //Para 
         public DataTable ListarMarcas()
         {
             DataTable tablaMarcas = new DataTable();

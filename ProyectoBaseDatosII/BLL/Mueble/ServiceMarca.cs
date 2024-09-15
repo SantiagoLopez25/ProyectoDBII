@@ -17,7 +17,7 @@ namespace BLL.Mueble
         {
             _marcaDAL = new RepositoryMarca();
         }
-
+        //Para
         public DataTable ListarMarcas()
         {
             return _marcaDAL.ListarMarcas();

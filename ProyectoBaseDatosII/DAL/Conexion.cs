@@ -19,6 +19,7 @@ namespace DAL
         static string server = "COMPUSAQS\\SQLEXPRESS";
         static string user = "sa";
         static string password = "database";
+        //Para
         public Conexion ()
         {
             connectionString = "Server = "+server +"; Database = VentaMuebles; User Id = "+user+"; Password = "+password+"; Encrypt = True; TrustServerCertificate = True; ";
