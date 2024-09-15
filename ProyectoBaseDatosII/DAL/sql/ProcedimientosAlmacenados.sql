@@ -12,7 +12,9 @@ GO
 -- Procedimiento para listar Marcas
 CREATE PROC ListarMarca
 AS
-SELECT * FROM Marca ORDER BY id_Marca ASC
+SELECT * FROM Marca 
+WHERE Estado = 1
+ORDER BY id_Marca ASC
 GO
 
 -- Procedimiento para listar Categorías
@@ -65,7 +67,7 @@ CREATE PROC InsertarEmpleado
 @Correo varchar (100),
 @Estado bit
 AS
-INSERT INTO Proveedor 
+INSERT INTO Empleado 
 VALUES (@Nombre, @Telefono, @Correo, @Estado)
 GO
 
@@ -98,7 +100,7 @@ Create PROC ActualizarMarca
 AS BEGIN
 	UPDATE Marca SET
 	marca=@Marca,
-	Estado=@Estado,
+	Estado=@Estado
 	WHERE id_Marca = @id_Marca
 END;
 GO
@@ -111,7 +113,7 @@ Create PROC ActualizarCategoria
 AS BEGIN
 	UPDATE Categoria SET
 	categoria=@Categoria,
-	Estado=@Estado,
+	Estado=@Estado
 	WHERE id_Categoria = @id_Categoria
 END;
 GO
@@ -128,7 +130,17 @@ AS BEGIN
 	Nombre=@Nombre,
 	Telefono=@Telefono,
 	Correo=@Correo,
-	Estado=@Estado,
+	Estado=@Estado
 	WHERE id_Empleado = @id_Empleado
+END;
+GO
+
+CREATE PROC EliminarMarca
+@id_Marca int
+AS BEGIN
+    -- Cambiar el estado a 0 (falso) para ocultar la marca
+    UPDATE Marca 
+    SET Estado = 0
+    WHERE id_Marca = @id_Marca
 END;
 GO
