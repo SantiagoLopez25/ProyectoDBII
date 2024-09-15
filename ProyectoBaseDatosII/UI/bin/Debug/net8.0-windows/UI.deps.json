@@ -360,7 +360,10 @@
           "DAL": "1.0.0"
         },
         "runtime": {
-          "BLL.dll": {}
+          "BLL.dll": {
+            "assemblyVersion": "1.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       },
       "DAL/1.0.0": {
@@ -369,7 +372,10 @@
           "Microsoft.Data.SqlClient": "5.2.2"
         },
         "runtime": {
-          "DAL.dll": {}
+          "DAL.dll": {
+            "assemblyVersion": "1.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       }
     }

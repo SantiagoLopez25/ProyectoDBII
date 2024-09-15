@@ -2,9 +2,9 @@ using System.Security.Cryptography;
 
 namespace UI
 {
-    public partial class Form1 : Form
+    public partial class Administrador : Form
     {
-        public Form1()
+        public Administrador()
         {
             InitializeComponent();
             customizeDesign();
