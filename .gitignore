@@ -97,5 +97,7 @@ ehthumbs.db
 # Archivos temporales
 tmp/
 
+# Archivo para conexión a BD
+DAL/Conexion.cs
 
 /ProyectoBaseDatosII/.vs/ProyectoBaseDatosII/FileContentIndex/55cf4416-dc92-4cbe-85f6-ebf8be0f1ef2.vsidx
