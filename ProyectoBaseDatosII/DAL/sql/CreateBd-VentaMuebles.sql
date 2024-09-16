@@ -1,4 +1,4 @@
-﻿IF NOT EXISTS (SELECT * FROM sys.databases WHERE name='VentaMuebles')
+IF NOT EXISTS (SELECT * FROM sys.databases WHERE name='VentaMuebles')
 CREATE DATABASE VentaMuebles
 GO
 
@@ -129,8 +129,11 @@ IF OBJECT_ID('dbo.ActualizarEmpleado') IS NOT NULL
 BEGIN
 	DROP PROC ActualizarEmpleado;
 END;
-
-
+IF OBJECT_ID('dbo.EliminarMarca') IS NOT NULL
+BEGIN
+	DROP PROC EliminarMarca;
+END;
+GO
 										/******  CREATE TABLES  ******/
 CREATE TABLE    Categoria (
 	 id_Categoria INTEGER PRIMARY KEY IDENTITY(1,1),
@@ -141,291 +144,173 @@ GO
 
 
 /****** Object:  Table    Cliente     Script Date: 1/09/2024 20:09:38 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE    Cliente (
-	 id_Cliente   int  IDENTITY(1,1) NOT NULL,
-	 Nombre_Cliente   varchar (200) NOT NULL,
-	 DireccionFacturacion   varchar (30) NOT NULL,
-	 Telefono   varchar (10) NOT NULL,
-	 Correo   varchar (50) NOT NULL,
-	 Estado   bit  NOT NULL,
-	 Descuentos   bit  NULL,
-	 NIT   varchar (8) NULL,
- CONSTRAINT  PK_Cliente  PRIMARY KEY CLUSTERED 
-(
-	 id_Cliente  ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON  PRIMARY 
-) ON  PRIMARY 
-GO
-/****** Object:  Table    DetalleFactura     Script Date: 1/09/2024 20:09:38 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE    DetalleFactura (
-	 id_DetalleFactura   int  IDENTITY(1,1) NOT NULL,
-	 cantidadMuebles   int  NOT NULL,
-	 id_mueble   int  NULL,
-	 id_Factura   int  NULL,
-	 id_Serie   varchar (25) NULL,
- CONSTRAINT  PK_DetalleFactura  PRIMARY KEY CLUSTERED 
-(
-	 id_DetalleFactura  ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON  PRIMARY 
-) ON  PRIMARY 
-GO
-/****** Object:  Table    DetallePedido     Script Date: 1/09/2024 20:09:38 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE    DetallePedido (
-	 id_DetallePedido   int  IDENTITY(1,1) NOT NULL,
-	 CantidadProducto   int  NOT NULL,
-	 id_Pedido   int  NULL,
-	 id_mueble   int  NULL,
- CONSTRAINT  PK_DetallePedido  PRIMARY KEY CLUSTERED 
-(
-	 id_DetallePedido  ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON  PRIMARY 
-) ON  PRIMARY 
-GO
-/****** Object:  Table    DireccionEntrega     Script Date: 1/09/2024 20:09:38 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE    DireccionEntrega (
-	 id_DirecciónEntrega   int  IDENTITY(1,1) NOT NULL,
-	 Direccion   varchar (150) NOT NULL,
-	 id_Cliente   int  NULL,
- CONSTRAINT  PK_DireccionEntrega  PRIMARY KEY CLUSTERED 
-(
-	 id_DirecciónEntrega  ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON  PRIMARY 
-) ON  PRIMARY 
-GO
-
-CREATE TABLE    Empleado (
-	 id_Empleado INTEGER PRIMARY KEY IDENTITY(1,1),
-	 Nombre   varchar (150) NOT NULL,
-	 Telefono   varchar (8) NOT NULL,
-	 Correo   varchar (100) NOT NULL,
-	 Estado   bit  NOT NULL,
-);
-GO
-
-/****** Object:  Table    Entrega     Script Date: 1/09/2024 20:09:38 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE    Entrega (
-	 id_Entrega   int  IDENTITY(1,1) NOT NULL,
-	 DescripcionEntrega   varchar (200) NOT NULL,
-	 TelefonoReferencia   varchar (8) NOT NULL,
-	 Estado   bit  NOT NULL,
-	 id_EstadoPedido   int  NULL,
-	 id_DirecciónEntrega   int  NULL,
- CONSTRAINT  PK_Entrega  PRIMARY KEY CLUSTERED 
-(
-	 id_Entrega  ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON  PRIMARY 
-) ON  PRIMARY 
-GO
-/****** Object:  Table    EstadoPedido_Entrega     Script Date: 1/09/2024 20:09:38 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE    EstadoPedido_Entrega (
-	 id_EstadoPedido   int  IDENTITY(1,1) NOT NULL,
-	 Nombre_EstadoPedido   varchar (25) NOT NULL,
-	 Estado   bit  NOT NULL,
- CONSTRAINT  PK_EstadoPedido_Entrega  PRIMARY KEY CLUSTERED 
-(
-	 id_EstadoPedido  ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON  PRIMARY 
-) ON  PRIMARY 
-GO
-/****** Object:  Table    EstadoPedido_Proveedor     Script Date: 1/09/2024 20:09:38 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE    EstadoPedido_Proveedor (
-	 id_EstadoPedido   int  IDENTITY(1,1) NOT NULL,
-	 Nombre_EstadoPedido   varchar (30) NOT NULL,
-	 Estado   bit  NOT NULL,
- CONSTRAINT  PK_EstadoPedido_Proveedor  PRIMARY KEY CLUSTERED 
-(
-	 id_EstadoPedido  ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON  PRIMARY 
-) ON  PRIMARY 
-GO
-/****** Object:  Table    Factura     Script Date: 1/09/2024 20:09:38 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE    Factura (
-	 id_Factura   int  IDENTITY(1,1) NOT NULL,
-	 id_Serie   varchar (25) NOT NULL,
-	 fechaFactura   datetime  NOT NULL,
-	 montoTotal   decimal (10, 2) NOT NULL,
-	 Estado   bit  NOT NULL,
-	 id_Cliente   int  NULL,
-	 id_Usuario   int  NULL,
-	 id_TipoPago   int  NULL,
-	 id_Domicilio   int  NULL,
- CONSTRAINT  PK_Factura  PRIMARY KEY CLUSTERED 
-(
-	 id_Factura  ASC,
-	 id_Serie  ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON  PRIMARY 
-) ON  PRIMARY 
-GO
-
-
-CREATE TABLE    Marca (
-	 id_Marca INTEGER PRIMARY KEY IDENTITY(1,1),
-	 marca   varchar (50) NOT NULL,
-	 Estado   bit  NOT NULL,
-);
-GO
-
-CREATE TABLE    Modelo (
-	 id_Modelo INTEGER PRIMARY KEY IDENTITY(1,1),
-	 modelo   varchar (50) NOT NULL,
-	 Estado   bit  NOT NULL,
-	 id_Marca   int  NULL,
-	 id_Categoria   int  NULL,
+CREATE TABLE Cliente (
+	 id_Cliente INTEGER PRIMARY KEY IDENTITY(1,1),
+	 Nombre_Cliente varchar(200) NOT NULL,
+	 DireccionFacturacion varchar(30) NOT NULL,
+	 Telefono varchar(10) NOT NULL,
+	 Correo varchar(50) NOT NULL,
+	 Estado bit NOT NULL,
+	 Descuentos bit NULL,
+	 NIT varchar(8) NULL
 ); 
 GO
 
-/****** Object:  Table    Muebles     Script Date: 1/09/2024 20:09:38 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE    Muebles (
-	 id_mueble   int  IDENTITY(1,1) NOT NULL,
-	 Descripcion   varchar (175) NOT NULL,
-	 PrecioVenta   float  NOT NULL,
-	 Descuento   decimal (3, 2) NOT NULL,
-	 ExistenciaMinima   int  NOT NULL,
-	 TiempoGarantia   int  NOT NULL,
-	 Estado   bit  NOT NULL,
-	 id_Modelo   int  NULL,
- CONSTRAINT  PK_Muebles  PRIMARY KEY CLUSTERED 
-(
-	 id_mueble  ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON  PRIMARY 
-) ON  PRIMARY 
-GO
-/****** Object:  Table    Pedido     Script Date: 1/09/2024 20:09:38 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE    Pedido (
-	 id_Pedido   int  IDENTITY(1,1) NOT NULL,
-	 Descripcion   varchar (200) NOT NULL,
-	 FechaPedido   date  NOT NULL,
-	 FechaRecibido   date  NULL,
-	 CantidadPedido   int  NULL,
-	 CantidadRecibido   int  NULL,
-	 TotalPagar   decimal (10, 2) NOT NULL,
-	 Estado   bit  NOT NULL,
-	 id_EstadoPedido   int  NULL,
-	 id_TipoPago   int  NULL,
-	 id_Proveedor   int  NULL,
- CONSTRAINT  PK_Pedido  PRIMARY KEY CLUSTERED 
-(
-	 id_Pedido  ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON  PRIMARY 
-) ON  PRIMARY 
-GO
-/****** Object:  Table    Proveedor     Script Date: 1/09/2024 20:09:38 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE Proveedor(
-	id_Proveedor int IDENTITY(1,1) NOT NULL,
-	proveedor varchar(75) NOT NULL,
-	Direccion varchar(75) NOT NULL,
-	Telefono varchar(15) NOT NULL,
-	TelefonoExtra varchar(15) NULL,
-	Correo varchar(35) NOT NULL,
-	Estado bit NOT NULL,
- CONSTRAINT  PK_Proveedor  PRIMARY KEY CLUSTERED 
-(
-	 id_Proveedor  ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON  PRIMARY 
-) ON  PRIMARY 
+CREATE TABLE DetalleFactura (
+	 id_DetalleFactura INTEGER PRIMARY KEY IDENTITY(1,1),
+	 cantidadMuebles int NOT NULL,
+	 id_mueble int NULL,
+	 id_Factura int NULL,
+	 id_Serie varchar(25) NULL
+); 
 GO
 
-
-CREATE TABLE    Rol (
-	id_Rol INTEGER PRIMARY KEY IDENTITY(1,1),
-	nombre_Rol   varchar (20) NOT NULL,
-	Estado  bit  NOT NULL,
-);
+CREATE TABLE DetallePedido (
+	 id_DetallePedido INTEGER PRIMARY KEY IDENTITY(1,1),
+	 CantidadProducto int NOT NULL,
+	 id_Pedido int NULL,
+	 id_mueble int NULL
+); 
 GO
 
+CREATE TABLE DireccionEntrega (
+	 id_DirecciónEntrega INTEGER PRIMARY KEY IDENTITY(1,1),
+	 Direccion varchar(150) NOT NULL,
+	 id_Cliente int NULL
+); 
+GO
 
-/****** Object:  Table    SerieFactura     Script Date: 1/09/2024 20:09:38 ******/
-SET ANSI_NULLS ON
+CREATE TABLE Empleado (
+	 id_Empleado INTEGER PRIMARY KEY IDENTITY(1,1),
+	 Nombre varchar(150) NOT NULL,
+	 Telefono varchar(8) NOT NULL,
+	 Correo varchar(100) NOT NULL,
+	 Estado bit NOT NULL
+); 
 GO
-SET QUOTED_IDENTIFIER ON
+
+CREATE TABLE Entrega (
+	 id_Entrega INTEGER PRIMARY KEY IDENTITY(1,1),
+	 DescripcionEntrega varchar(200) NOT NULL,
+	 TelefonoReferencia varchar(8) NOT NULL,
+	 Estado bit NOT NULL,
+	 id_EstadoPedido int NULL,
+	 id_DirecciónEntrega int NULL
+); 
 GO
-CREATE TABLE    SerieFactura (
-	 id_Serie   varchar (25) NOT NULL,
-	 fechaInicio   smalldatetime  NOT NULL,
-	 Estado   bit  NOT NULL,
- CONSTRAINT  PK_SerieFactura  PRIMARY KEY CLUSTERED 
-(
-	 id_Serie  ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON  PRIMARY 
-) ON  PRIMARY 
+
+CREATE TABLE EstadoPedido_Entrega (
+	 id_EstadoPedido INTEGER PRIMARY KEY IDENTITY(1,1),
+	 Nombre_EstadoPedido varchar(25) NOT NULL,
+	 Estado bit NOT NULL
+); 
 GO
-/****** Object:  Table    Stock     Script Date: 1/09/2024 20:09:38 ******/
-SET ANSI_NULLS ON
+
+CREATE TABLE EstadoPedido_Proveedor (
+	 id_EstadoPedido INTEGER PRIMARY KEY IDENTITY(1,1),
+	 Nombre_EstadoPedido varchar(30) NOT NULL,
+	 Estado bit NOT NULL
+); 
 GO
-SET QUOTED_IDENTIFIER ON
+
+CREATE TABLE Factura (
+	 id_Factura INTEGER PRIMARY KEY IDENTITY(1,1),
+	 id_Serie varchar(25) NOT NULL,
+	 fechaFactura datetime NOT NULL,
+	 montoTotal decimal(10, 2) NOT NULL,
+	 Estado bit NOT NULL,
+	 id_Cliente int NULL,
+	 id_Usuario int NULL,
+	 id_TipoPago int NULL,
+	 id_Domicilio int NULL
+); 
 GO
-CREATE TABLE    Stock (
-	 id_Stock   int  IDENTITY(1,1) NOT NULL,
-	 CantidadInicial   int  NOT NULL,
-	 CantidadStock   int  NOT NULL,
-	 FechaIngreso   date  NOT NULL,
-	 Estado   bit  NOT NULL,
-	 id_mueble   int  NULL,
- CONSTRAINT  PK_Stock  PRIMARY KEY CLUSTERED 
-(
-	 id_Stock  ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON  PRIMARY 
-) ON  PRIMARY 
+
+CREATE TABLE Marca (
+	 id_Marca INTEGER PRIMARY KEY IDENTITY(1,1),
+	 marca varchar(50) NOT NULL,
+	 Estado bit NOT NULL
+); 
 GO
-/****** Object:  Table    TipoPago     Script Date: 1/09/2024 20:09:38 ******/
-SET ANSI_NULLS ON
+
+CREATE TABLE Modelo (
+	 id_Modelo INTEGER PRIMARY KEY IDENTITY(1,1),
+	 modelo varchar(50) NOT NULL,
+	 Estado bit NOT NULL,
+	 id_Marca int NULL,
+	 id_Categoria int NULL
+); 
 GO
-SET QUOTED_IDENTIFIER ON
+
+CREATE TABLE Muebles (
+	 id_mueble INTEGER PRIMARY KEY IDENTITY(1,1),
+	 Descripcion varchar(175) NOT NULL,
+	 PrecioVenta float NOT NULL,
+	 Descuento decimal(3, 2) NOT NULL,
+	 ExistenciaMinima int NOT NULL,
+	 TiempoGarantia int NOT NULL,
+	 Estado bit NOT NULL,
+	 id_Modelo int NULL
+); 
 GO
-CREATE TABLE    TipoPago (
-	 id_TipoPago   int  IDENTITY(1,1) NOT NULL,
-	 Nombre_TipoPago   varchar (20) NOT NULL,
-	 Estado   bit  NOT NULL,
- CONSTRAINT  PK_TipoPago  PRIMARY KEY CLUSTERED 
-(
-	 id_TipoPago  ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON  PRIMARY 
-) ON  PRIMARY 
+
+CREATE TABLE Pedido (
+	 id_Pedido INTEGER PRIMARY KEY IDENTITY(1,1),
+	 Descripcion varchar(200) NOT NULL,
+	 FechaPedido date NOT NULL,
+	 FechaRecibido date NULL,
+	 CantidadPedido int NULL,
+	 CantidadRecibido int NULL,
+	 TotalPagar decimal(10, 2) NOT NULL,
+	 Estado bit NOT NULL,
+	 id_EstadoPedido int NULL,
+	 id_TipoPago int NULL,
+	 id_Proveedor int NULL
+); 
 GO
+
+CREATE TABLE Proveedor (
+	 id_Proveedor INTEGER PRIMARY KEY IDENTITY(1,1),
+	 proveedor varchar(75) NOT NULL,
+	 Direccion varchar(75) NOT NULL,
+	 Telefono varchar(15) NOT NULL,
+	 TelefonoExtra varchar(15) NULL,
+	 Correo varchar(35) NOT NULL,
+	 Estado bit NOT NULL
+); 
+GO
+
+CREATE TABLE Rol (
+	 id_Rol INTEGER PRIMARY KEY IDENTITY(1,1),
+	 nombre_Rol varchar(20) NOT NULL,
+	 Estado bit NOT NULL
+); 
+GO
+
+CREATE TABLE SerieFactura (
+	 id_Serie varchar(25) PRIMARY KEY,
+	 fechaInicio smalldatetime NOT NULL,
+	 Estado bit NOT NULL
+); 
+GO
+
+CREATE TABLE Stock (
+	 id_Stock INTEGER PRIMARY KEY IDENTITY(1,1),
+	 CantidadInicial int NOT NULL,
+	 CantidadStock int NOT NULL,
+	 FechaIngreso date NOT NULL,
+	 Estado bit NOT NULL,
+	 id_mueble int NULL
+); 
+GO
+
+CREATE TABLE TipoPago (
+	 id_TipoPago INTEGER PRIMARY KEY IDENTITY(1,1),
+	 Nombre_TipoPago varchar(20) NOT NULL,
+	 Estado bit NOT NULL
+); 
+GO
+
 
 
 CREATE TABLE    Usuario (
@@ -500,8 +385,10 @@ REFERENCES    Muebles  ( id_mueble )
 GO
 ALTER TABLE    DetalleFactura  CHECK CONSTRAINT  Relationship11 
 GO
-ALTER TABLE    DetalleFactura   WITH CHECK ADD  CONSTRAINT  Relationship12  FOREIGN KEY( id_Factura ,  id_Serie )
-REFERENCES    Factura  ( id_Factura ,  id_Serie )
+ALTER TABLE DetalleFactura 
+WITH CHECK ADD CONSTRAINT Relationship12 
+FOREIGN KEY (id_Factura) 
+REFERENCES Factura(id_Factura);
 GO
 ALTER TABLE    DetalleFactura  CHECK CONSTRAINT  Relationship12 
 GO
@@ -600,9 +487,3 @@ REFERENCES    Empleado  ( id_Empleado )
 GO
 ALTER TABLE    Usuario  CHECK CONSTRAINT  Relationship15 
 GO
-/****** Object:  StoredProcedure    f_crearUsuario     Script Date: 1/09/2024 20:09:38 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-
