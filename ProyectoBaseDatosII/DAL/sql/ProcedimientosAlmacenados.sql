@@ -185,3 +185,18 @@ BEGIN
 
 		select *from Usuario
 END
+
+
+--Procedimiento para listar usuarios
+
+CREATE PROC ListarUsuarios
+AS BEGIN
+   select id_Usuario, nombre, usuario, nombre_rol 
+   from usuario inner join rol 
+   on Usuario.id_Rol = rol.id_Rol 
+   inner join Empleado 
+   on Empleado.id_Empleado = Usuario.id_Empleado
+END;
+
+GO
+

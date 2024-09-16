@@ -349,7 +349,7 @@
             panelPlayer.Dock = DockStyle.Bottom;
             panelPlayer.Location = new Point(250, 510);
             panelPlayer.Name = "panelPlayer";
-            panelPlayer.Size = new Size(938, 82);
+            panelPlayer.Size = new Size(1132, 82);
             panelPlayer.TabIndex = 1;
             // 
             // panelChildForm
@@ -358,14 +358,14 @@
             panelChildForm.Dock = DockStyle.Fill;
             panelChildForm.Location = new Point(250, 0);
             panelChildForm.Name = "panelChildForm";
-            panelChildForm.Size = new Size(938, 510);
+            panelChildForm.Size = new Size(1132, 510);
             panelChildForm.TabIndex = 2;
             // 
             // Administrador
             // 
             AutoScaleDimensions = new SizeF(12F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1188, 592);
+            ClientSize = new Size(1382, 592);
             Controls.Add(panelChildForm);
             Controls.Add(panelPlayer);
             Controls.Add(panelSideMenu);

@@ -39,25 +39,33 @@
             // 
             // dataGridView1
             // 
+            dataGridView1.AllowUserToAddRows = false;
+            dataGridView1.AllowUserToDeleteRows = false;
+            dataGridView1.BorderStyle = BorderStyle.None;
+            dataGridView1.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dataGridView1.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(62, 93);
+            dataGridView1.Location = new Point(43, 93);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 62;
-            dataGridView1.Size = new Size(675, 331);
+            dataGridView1.Size = new Size(663, 331);
             dataGridView1.TabIndex = 0;
             dataGridView1.CellClick += dataGridView1_CellClick;
             // 
             // comboBox1
             // 
+            comboBox1.ForeColor = Color.Black;
             comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(783, 93);
+            comboBox1.Location = new Point(764, 93);
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new Size(182, 33);
             comboBox1.TabIndex = 1;
             // 
             // button1
             // 
-            button1.Location = new Point(814, 390);
+            button1.FlatStyle = FlatStyle.Flat;
+            button1.ForeColor = Color.Gainsboro;
+            button1.Location = new Point(795, 390);
             button1.Name = "button1";
             button1.Size = new Size(151, 34);
             button1.TabIndex = 2;
@@ -68,7 +76,8 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(62, 30);
+            label1.ForeColor = Color.Gainsboro;
+            label1.Location = new Point(43, 30);
             label1.Name = "label1";
             label1.Size = new Size(80, 25);
             label1.TabIndex = 3;
@@ -77,7 +86,8 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(783, 30);
+            label2.ForeColor = Color.Gainsboro;
+            label2.Location = new Point(764, 30);
             label2.Name = "label2";
             label2.Size = new Size(54, 25);
             label2.TabIndex = 4;
@@ -86,7 +96,8 @@
             // labelUsuario
             // 
             labelUsuario.AutoSize = true;
-            labelUsuario.Location = new Point(783, 200);
+            labelUsuario.ForeColor = Color.Gainsboro;
+            labelUsuario.Location = new Point(764, 200);
             labelUsuario.Name = "labelUsuario";
             labelUsuario.Size = new Size(97, 25);
             labelUsuario.TabIndex = 5;
@@ -96,7 +107,8 @@
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1031, 450);
+            BackColor = Color.FromArgb(32, 30, 45);
+            ClientSize = new Size(983, 450);
             Controls.Add(labelUsuario);
             Controls.Add(label2);
             Controls.Add(label1);
