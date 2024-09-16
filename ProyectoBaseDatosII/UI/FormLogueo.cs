@@ -11,10 +11,10 @@ using BLL.Login;
 
 namespace UI
 {
-    public partial class FormLogueo : Form
+    public partial class Login : Form
     {
         private LoginService loginService;
-        public FormLogueo()
+        public Login()
         {
             InitializeComponent();
             loginService = new LoginService();
@@ -24,8 +24,35 @@ namespace UI
         {
             string user = textBoxUsuario.Text;
             string password = textBoxPassword.Text;
-            string respueseta = loginService.inicioSesion(user, password);
-            MessageBox.Show(respueseta);
+
+            if (user == "")
+            {
+                MessageBox.Show("El usuario es requerido");
+            }
+            else if (password == "")
+            {
+                MessageBox.Show("La contraseña es requerida");
+            }
+
+            else
+            {
+                
+                string respuesta = loginService.inicioSesion(user, password);
+                if (respuesta == "Administrador")
+                {
+                    Administrador admin = new Administrador();
+                    admin.Show();
+                    this.Hide();
+                }
+
+                else if (respuesta == "0")
+                {
+                    MessageBox.Show("Credenciales incorrectas");
+                }
+               
+            }
+
+           
 
         }
     }

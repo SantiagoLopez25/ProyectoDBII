@@ -108,7 +108,6 @@ C:\Users\marco\Documents\SextoSemestre\Base de Datos II\ProyectoBDII\ProyectoDBI
 C:\Users\marco\Documents\SextoSemestre\Base de Datos II\ProyectoBDII\ProyectoDBII\ProyectoBaseDatosII\UI\bin\Debug\net8.0-windows\BLL.pdb
 C:\Users\marco\Documents\SextoSemestre\Base de Datos II\ProyectoBDII\ProyectoDBII\ProyectoBaseDatosII\UI\bin\Debug\net8.0-windows\DAL.pdb
 C:\Users\marco\Documents\SextoSemestre\Base de Datos II\ProyectoBDII\ProyectoDBII\ProyectoBaseDatosII\UI\obj\Debug\net8.0-windows\UI.csproj.AssemblyReference.cache
-C:\Users\marco\Documents\SextoSemestre\Base de Datos II\ProyectoBDII\ProyectoDBII\ProyectoBaseDatosII\UI\obj\Debug\net8.0-windows\UI.FormLogueo.resources
 C:\Users\marco\Documents\SextoSemestre\Base de Datos II\ProyectoBDII\ProyectoDBII\ProyectoBaseDatosII\UI\obj\Debug\net8.0-windows\UI.FormPermisos.resources
 C:\Users\marco\Documents\SextoSemestre\Base de Datos II\ProyectoBDII\ProyectoDBII\ProyectoBaseDatosII\UI\obj\Debug\net8.0-windows\UI.Marca.resources
 C:\Users\marco\Documents\SextoSemestre\Base de Datos II\ProyectoBDII\ProyectoDBII\ProyectoBaseDatosII\UI\obj\Debug\net8.0-windows\UI.csproj.GenerateResource.cache
@@ -124,3 +123,5 @@ C:\Users\marco\Documents\SextoSemestre\Base de Datos II\ProyectoBDII\ProyectoDBI
 C:\Users\marco\Documents\SextoSemestre\Base de Datos II\ProyectoBDII\ProyectoDBII\ProyectoBaseDatosII\UI\obj\Debug\net8.0-windows\UI.genruntimeconfig.cache
 C:\Users\marco\Documents\SextoSemestre\Base de Datos II\ProyectoBDII\ProyectoDBII\ProyectoBaseDatosII\UI\obj\Debug\net8.0-windows\ref\UI.dll
 C:\Users\marco\Documents\SextoSemestre\Base de Datos II\ProyectoBDII\ProyectoDBII\ProyectoBaseDatosII\UI\obj\Debug\net8.0-windows\UI.Administrador.resources
+C:\Users\marco\Documents\SextoSemestre\Base de Datos II\ProyectoBDII\ProyectoDBII\ProyectoBaseDatosII\UI\obj\Debug\net8.0-windows\UI.Login.resources
+C:\Users\marco\Documents\SextoSemestre\Base de Datos II\ProyectoBDII\ProyectoDBII\ProyectoBaseDatosII\UI\obj\Debug\net8.0-windows\UI.Properties.Resources.resources

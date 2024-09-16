@@ -1,4 +1,5 @@
 ﻿using Dapper;
+using Microsoft.Data.SqlClient;
 using System.Collections.Generic;
 using System.Data;
 
@@ -13,13 +14,23 @@ namespace DAL.Permisos
             _conexion = new Conexion();
         }
 
-        public IEnumerable<dynamic> ListarUsuarios()
+        public DataTable ListarUsuarios()
         {
-            using (var conection = _conexion.GetConnection())
+            DataTable resultado = new DataTable();
+            using (var connection = _conexion.GetConnection())
             {
-                conection.Open();
-                var resultado = conection.Query<dynamic>("select id_Usuario, nombre, usuario, nombre_rol from usuario inner join rol on Usuario.id_Rol = rol.id_Rol inner join Empleado on Empleado.id_Empleado = Usuario.id_Empleado");
-                return resultado;
+                connection.Open();
+
+                using (var command = new SqlCommand("ListarUsuarios", connection))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+
+                    using (var reader = command.ExecuteReader())
+                    {
+                        resultado.Load(reader);
+                        return resultado;
+                    }
+                }
             }
         }
 
