@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\marco\\Documents\\SextoSemestre\\Base de Datos II\\ProyectoBDII\\ProyectoDBII\\ProyectoBaseDatosII\\UI\\UI.csproj": {}
+    "D:\\VI SEMESTRE\\BD 2\\Proyecto BD FINAL\\Proyecto Muebles-Grafico\\ProyectoDBII\\ProyectoBaseDatosII\\UI\\UI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\marco\\Documents\\SextoSemestre\\Base de Datos II\\ProyectoBDII\\ProyectoDBII\\ProyectoBaseDatosII\\BLL\\BLL.csproj": {
+    "D:\\VI SEMESTRE\\BD 2\\Proyecto BD FINAL\\Proyecto Muebles-Grafico\\ProyectoDBII\\ProyectoBaseDatosII\\BLL\\BLL.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\marco\\Documents\\SextoSemestre\\Base de Datos II\\ProyectoBDII\\ProyectoDBII\\ProyectoBaseDatosII\\BLL\\BLL.csproj",
+        "projectUniqueName": "D:\\VI SEMESTRE\\BD 2\\Proyecto BD FINAL\\Proyecto Muebles-Grafico\\ProyectoDBII\\ProyectoBaseDatosII\\BLL\\BLL.csproj",
         "projectName": "BLL",
-        "projectPath": "C:\\Users\\marco\\Documents\\SextoSemestre\\Base de Datos II\\ProyectoBDII\\ProyectoDBII\\ProyectoBaseDatosII\\BLL\\BLL.csproj",
-        "packagesPath": "C:\\Users\\marco\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\marco\\Documents\\SextoSemestre\\Base de Datos II\\ProyectoBDII\\ProyectoDBII\\ProyectoBaseDatosII\\BLL\\obj\\",
+        "projectPath": "D:\\VI SEMESTRE\\BD 2\\Proyecto BD FINAL\\Proyecto Muebles-Grafico\\ProyectoDBII\\ProyectoBaseDatosII\\BLL\\BLL.csproj",
+        "packagesPath": "C:\\Users\\SamuelQ\\.nuget\\packages\\",
+        "outputPath": "D:\\VI SEMESTRE\\BD 2\\Proyecto BD FINAL\\Proyecto Muebles-Grafico\\ProyectoDBII\\ProyectoBaseDatosII\\BLL\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\marco\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\SamuelQ\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -26,15 +26,14 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\marco\\Documents\\SextoSemestre\\Base de Datos II\\ProyectoBDII\\ProyectoDBII\\ProyectoBaseDatosII\\DAL\\DAL.csproj": {
-                "projectPath": "C:\\Users\\marco\\Documents\\SextoSemestre\\Base de Datos II\\ProyectoBDII\\ProyectoDBII\\ProyectoBaseDatosII\\DAL\\DAL.csproj"
+              "D:\\VI SEMESTRE\\BD 2\\Proyecto BD FINAL\\Proyecto Muebles-Grafico\\ProyectoDBII\\ProyectoBaseDatosII\\DAL\\DAL.csproj": {
+                "projectPath": "D:\\VI SEMESTRE\\BD 2\\Proyecto BD FINAL\\Proyecto Muebles-Grafico\\ProyectoDBII\\ProyectoBaseDatosII\\DAL\\DAL.csproj"
               }
             }
           }
@@ -43,11 +42,6 @@
           "warnAsError": [
             "NU1605"
           ]
-        },
-        "restoreAuditProperties": {
-          "enableAudit": "true",
-          "auditLevel": "low",
-          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -69,24 +63,24 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.400/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\marco\\Documents\\SextoSemestre\\Base de Datos II\\ProyectoBDII\\ProyectoDBII\\ProyectoBaseDatosII\\DAL\\DAL.csproj": {
+    "D:\\VI SEMESTRE\\BD 2\\Proyecto BD FINAL\\Proyecto Muebles-Grafico\\ProyectoDBII\\ProyectoBaseDatosII\\DAL\\DAL.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\marco\\Documents\\SextoSemestre\\Base de Datos II\\ProyectoBDII\\ProyectoDBII\\ProyectoBaseDatosII\\DAL\\DAL.csproj",
+        "projectUniqueName": "D:\\VI SEMESTRE\\BD 2\\Proyecto BD FINAL\\Proyecto Muebles-Grafico\\ProyectoDBII\\ProyectoBaseDatosII\\DAL\\DAL.csproj",
         "projectName": "DAL",
-        "projectPath": "C:\\Users\\marco\\Documents\\SextoSemestre\\Base de Datos II\\ProyectoBDII\\ProyectoDBII\\ProyectoBaseDatosII\\DAL\\DAL.csproj",
-        "packagesPath": "C:\\Users\\marco\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\marco\\Documents\\SextoSemestre\\Base de Datos II\\ProyectoBDII\\ProyectoDBII\\ProyectoBaseDatosII\\DAL\\obj\\",
+        "projectPath": "D:\\VI SEMESTRE\\BD 2\\Proyecto BD FINAL\\Proyecto Muebles-Grafico\\ProyectoDBII\\ProyectoBaseDatosII\\DAL\\DAL.csproj",
+        "packagesPath": "C:\\Users\\SamuelQ\\.nuget\\packages\\",
+        "outputPath": "D:\\VI SEMESTRE\\BD 2\\Proyecto BD FINAL\\Proyecto Muebles-Grafico\\ProyectoDBII\\ProyectoBaseDatosII\\DAL\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\marco\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\SamuelQ\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -95,7 +89,6 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -108,11 +101,6 @@
           "warnAsError": [
             "NU1605"
           ]
-        },
-        "restoreAuditProperties": {
-          "enableAudit": "true",
-          "auditLevel": "low",
-          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -144,24 +132,24 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.400/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\marco\\Documents\\SextoSemestre\\Base de Datos II\\ProyectoBDII\\ProyectoDBII\\ProyectoBaseDatosII\\UI\\UI.csproj": {
+    "D:\\VI SEMESTRE\\BD 2\\Proyecto BD FINAL\\Proyecto Muebles-Grafico\\ProyectoDBII\\ProyectoBaseDatosII\\UI\\UI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\marco\\Documents\\SextoSemestre\\Base de Datos II\\ProyectoBDII\\ProyectoDBII\\ProyectoBaseDatosII\\UI\\UI.csproj",
+        "projectUniqueName": "D:\\VI SEMESTRE\\BD 2\\Proyecto BD FINAL\\Proyecto Muebles-Grafico\\ProyectoDBII\\ProyectoBaseDatosII\\UI\\UI.csproj",
         "projectName": "UI",
-        "projectPath": "C:\\Users\\marco\\Documents\\SextoSemestre\\Base de Datos II\\ProyectoBDII\\ProyectoDBII\\ProyectoBaseDatosII\\UI\\UI.csproj",
-        "packagesPath": "C:\\Users\\marco\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\marco\\Documents\\SextoSemestre\\Base de Datos II\\ProyectoBDII\\ProyectoDBII\\ProyectoBaseDatosII\\UI\\obj\\",
+        "projectPath": "D:\\VI SEMESTRE\\BD 2\\Proyecto BD FINAL\\Proyecto Muebles-Grafico\\ProyectoDBII\\ProyectoBaseDatosII\\UI\\UI.csproj",
+        "packagesPath": "C:\\Users\\SamuelQ\\.nuget\\packages\\",
+        "outputPath": "D:\\VI SEMESTRE\\BD 2\\Proyecto BD FINAL\\Proyecto Muebles-Grafico\\ProyectoDBII\\ProyectoBaseDatosII\\UI\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\marco\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\SamuelQ\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -170,15 +158,14 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net8.0-windows7.0": {
             "targetAlias": "net8.0-windows",
             "projectReferences": {
-              "C:\\Users\\marco\\Documents\\SextoSemestre\\Base de Datos II\\ProyectoBDII\\ProyectoDBII\\ProyectoBaseDatosII\\BLL\\BLL.csproj": {
-                "projectPath": "C:\\Users\\marco\\Documents\\SextoSemestre\\Base de Datos II\\ProyectoBDII\\ProyectoDBII\\ProyectoBaseDatosII\\BLL\\BLL.csproj"
+              "D:\\VI SEMESTRE\\BD 2\\Proyecto BD FINAL\\Proyecto Muebles-Grafico\\ProyectoDBII\\ProyectoBaseDatosII\\BLL\\BLL.csproj": {
+                "projectPath": "D:\\VI SEMESTRE\\BD 2\\Proyecto BD FINAL\\Proyecto Muebles-Grafico\\ProyectoDBII\\ProyectoBaseDatosII\\BLL\\BLL.csproj"
               }
             }
           }
@@ -187,11 +174,6 @@
           "warnAsError": [
             "NU1605"
           ]
-        },
-        "restoreAuditProperties": {
-          "enableAudit": "true",
-          "auditLevel": "low",
-          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -222,7 +204,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.400/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
