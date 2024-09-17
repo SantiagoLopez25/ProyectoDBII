@@ -13,6 +13,8 @@ Program.cs
 [Bb]in/
 [Oo]bj/
 
+
+
 # Paquetes NuGet descargados
 *.nupkg
 **/packages/

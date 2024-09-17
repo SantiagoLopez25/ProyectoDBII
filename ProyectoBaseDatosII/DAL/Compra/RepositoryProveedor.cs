@@ -13,7 +13,6 @@ namespace DAL.Compra
 
         //Declarar conexión a la BD
         private readonly Conexion _conexion;
-
         public RepositoryProveedor()
         {
             _conexion = new Conexion();

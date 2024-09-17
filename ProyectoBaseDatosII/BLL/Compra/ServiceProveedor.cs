@@ -13,7 +13,6 @@ namespace BLL.Compra
 
         //Declaración para utilizar la clase que se comunica con la BD (RepositoryProveedor)
         private readonly RepositoryProveedor _proveedorDAL;
-
         public ServiceProveedor()
         {
             _proveedorDAL = new RepositoryProveedor();
