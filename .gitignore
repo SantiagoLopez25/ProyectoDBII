@@ -106,3 +106,11 @@ tmp/
 /ProyectoBaseDatosII/DAL/Conexion.cs
 
 /ProyectoBaseDatosII/.vs/ProyectoBaseDatosII/FileContentIndex/55cf4416-dc92-4cbe-85f6-ebf8be0f1ef2.vsidx
+/ProyectoBaseDatosII/BLL/obj/Debug/net8.0/BLL.AssemblyInfo.cs
+/ProyectoBaseDatosII/DAL/obj/Debug/net8.0/DAL.AssemblyInfo.cs
+/ProyectoBaseDatosII/DAL/obj/Debug/net8.0/DAL.AssemblyInfoInputs.cache
+/ProyectoBaseDatosII/BLL/obj/Debug/net8.0/BLL.AssemblyInfoInputs.cache
+/ProyectoBaseDatosII/BLL/obj/Debug/net8.0/BLL.csproj.AssemblyReference.cache
+/ProyectoBaseDatosII/UI/obj/Debug/net8.0-windows/UI.AssemblyInfo.cs
+/ProyectoBaseDatosII/UI/obj/Debug/net8.0-windows/UI.AssemblyInfoInputs.cache
+/ProyectoBaseDatosII/UI/obj/Debug/net8.0-windows/UI.csproj.AssemblyReference.cache
