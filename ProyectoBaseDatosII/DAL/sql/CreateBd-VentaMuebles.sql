@@ -221,7 +221,6 @@ CREATE TABLE Factura (
 	 Estado bit NOT NULL,
 	 id_Cliente int NULL,
 	 id_Usuario int NULL,
-	 id_TipoPago int NULL,
 	 id_Domicilio int NULL
 ); 
 GO
@@ -323,6 +322,19 @@ CREATE TABLE    Usuario (
 	 FOREIGN KEY (id_Rol) REFERENCES Rol(id_Rol),
 	 FOREIGN KEY (id_Empleado) REFERENCES Empleado(id_Empleado),
 ); 
+GO
+
+CREATE TABLE Pago (
+    id_Pago INTEGER PRIMARY KEY IDENTITY(1,1),
+    porcentaje DECIMAL(3,1) NOT NULL,
+    cantidad DECIMAL(18,2) NOT NULL,
+    id_TipoPago INT NOT NULL,
+    id_Factura INT NOT NULL,
+    id_Serie VARCHAR(25) NOT NULL,
+    FOREIGN KEY (id_TipoPago) REFERENCES TipoPago(id_TipoPago),
+    FOREIGN KEY (id_Factura) REFERENCES Factura(id_Factura),
+    FOREIGN KEY (id_Serie) REFERENCES SerieFactura(id_Serie)
+);
 GO
 
 
@@ -431,11 +443,6 @@ ALTER TABLE    Factura   WITH CHECK ADD  CONSTRAINT  Relationship18  FOREIGN KEY
 REFERENCES    SerieFactura  ( id_Serie )
 GO
 ALTER TABLE    Factura  CHECK CONSTRAINT  Relationship18 
-GO
-ALTER TABLE    Factura   WITH CHECK ADD  CONSTRAINT  Relationship19  FOREIGN KEY( id_TipoPago )
-REFERENCES    TipoPago  ( id_TipoPago )
-GO
-ALTER TABLE    Factura  CHECK CONSTRAINT  Relationship19 
 GO
 ALTER TABLE    Factura   WITH CHECK ADD  CONSTRAINT  Relationship22  FOREIGN KEY( id_Domicilio )
 REFERENCES    Entrega  ( id_Entrega )
