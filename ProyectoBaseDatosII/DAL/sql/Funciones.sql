@@ -1,8 +1,3 @@
-
--- Utilizar la Base de datos VentaMuebles
-USE VentaMuebles
-GO
-
 -- Función para incicio de sesión
 Create function [dbo].[f_login]
 (

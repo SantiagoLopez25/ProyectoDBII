@@ -6,9 +6,7 @@ GO
 -- Procedimiento para listar tipos de Proveedores
 CREATE PROC ListarProveedor
 AS
-SELECT * FROM Proveedor
-WHERE Estado = 1
-ORDER BY id_Proveedor ASC
+SELECT * FROM Proveedor ORDER BY id_Proveedor ASC
 GO
 
 --PRocedimiento para listar marcas
@@ -22,17 +20,13 @@ GO
 -- Procedimiento para listar Categor�as
 CREATE PROC ListarCategoria
 AS
-SELECT * FROM Categoria 
-WHERE Estado = 1
-ORDER BY id_Categoria ASC
+SELECT * FROM Categoria ORDER BY id_Categoria ASC
 GO
 
 -- Procedimiento para listar Empleado
 CREATE PROC ListarEmpleado
 AS
-SELECT * FROM Empleado 
-WHERE Estado = 1
-ORDER BY id_Empleado ASC
+SELECT * FROM Empleado ORDER BY id_Empleado ASC
 GO
 
 -- Procedimiento para registrar nuevo Proveedor
@@ -119,7 +113,7 @@ Create PROC ActualizarCategoria
 AS BEGIN
 	UPDATE Categoria SET
 	categoria=@Categoria,
-	Estado=@Estado
+	Estado=@Estado,
 	WHERE id_Categoria = @id_Categoria
 END;
 GO
@@ -155,17 +149,6 @@ END;
 
 GO
 
---Procedimiento para eliminar proveedores
-CREATE PROC EliminarProveedor
-@id_Proveedor int
-AS BEGIN
-    -- Cambiar el estado a 0 (falso) para ocultar el proveedor
-    UPDATE Proveedor 
-    SET Estado = 0
-    WHERE id_Proveedor = @id_Proveedor
-END;
-
-GO
 -- Procedimiento almacenado que permite crear un usuario, actualizarlo y deshabilitarlo
 
 GO
@@ -202,9 +185,9 @@ BEGIN
 
 		select *from Usuario
 END
-GO
 
--- Procedimiento para listar usuarios
+
+--Procedimiento para listar usuarios
 
 CREATE PROC ListarUsuarios
 AS BEGIN
