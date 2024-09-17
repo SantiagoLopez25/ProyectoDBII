@@ -48,7 +48,6 @@ D:\VI SEMESTRE\BD 2\Proyecto BD FINAL\Proyecto Muebles-Grafico\ProyectoDBII\Proy
 D:\VI SEMESTRE\BD 2\Proyecto BD FINAL\Proyecto Muebles-Grafico\ProyectoDBII\ProyectoBaseDatosII\UI\bin\Debug\net8.0-windows\BLL.pdb
 D:\VI SEMESTRE\BD 2\Proyecto BD FINAL\Proyecto Muebles-Grafico\ProyectoDBII\ProyectoBaseDatosII\UI\bin\Debug\net8.0-windows\DAL.pdb
 D:\VI SEMESTRE\BD 2\Proyecto BD FINAL\Proyecto Muebles-Grafico\ProyectoDBII\ProyectoBaseDatosII\UI\obj\Debug\net8.0-windows\UI.csproj.AssemblyReference.cache
-D:\VI SEMESTRE\BD 2\Proyecto BD FINAL\Proyecto Muebles-Grafico\ProyectoDBII\ProyectoBaseDatosII\UI\obj\Debug\net8.0-windows\UI.Form1.resources
 D:\VI SEMESTRE\BD 2\Proyecto BD FINAL\Proyecto Muebles-Grafico\ProyectoDBII\ProyectoBaseDatosII\UI\obj\Debug\net8.0-windows\UI.csproj.GenerateResource.cache
 D:\VI SEMESTRE\BD 2\Proyecto BD FINAL\Proyecto Muebles-Grafico\ProyectoDBII\ProyectoBaseDatosII\UI\obj\Debug\net8.0-windows\UI.GeneratedMSBuildEditorConfig.editorconfig
 D:\VI SEMESTRE\BD 2\Proyecto BD FINAL\Proyecto Muebles-Grafico\ProyectoDBII\ProyectoBaseDatosII\UI\obj\Debug\net8.0-windows\UI.AssemblyInfoInputs.cache
@@ -125,3 +124,8 @@ C:\Users\marco\Documents\SextoSemestre\Base de Datos II\ProyectoBDII\ProyectoDBI
 C:\Users\marco\Documents\SextoSemestre\Base de Datos II\ProyectoBDII\ProyectoDBII\ProyectoBaseDatosII\UI\obj\Debug\net8.0-windows\UI.Administrador.resources
 C:\Users\marco\Documents\SextoSemestre\Base de Datos II\ProyectoBDII\ProyectoDBII\ProyectoBaseDatosII\UI\obj\Debug\net8.0-windows\UI.Login.resources
 C:\Users\marco\Documents\SextoSemestre\Base de Datos II\ProyectoBDII\ProyectoDBII\ProyectoBaseDatosII\UI\obj\Debug\net8.0-windows\UI.Properties.Resources.resources
+D:\VI SEMESTRE\BD 2\Proyecto BD FINAL\Proyecto Muebles-Grafico\ProyectoDBII\ProyectoBaseDatosII\UI\obj\Debug\net8.0-windows\UI.Administrador.resources
+D:\VI SEMESTRE\BD 2\Proyecto BD FINAL\Proyecto Muebles-Grafico\ProyectoDBII\ProyectoBaseDatosII\UI\obj\Debug\net8.0-windows\UI.Login.resources
+D:\VI SEMESTRE\BD 2\Proyecto BD FINAL\Proyecto Muebles-Grafico\ProyectoDBII\ProyectoBaseDatosII\UI\obj\Debug\net8.0-windows\UI.FormPermisos.resources
+D:\VI SEMESTRE\BD 2\Proyecto BD FINAL\Proyecto Muebles-Grafico\ProyectoDBII\ProyectoBaseDatosII\UI\obj\Debug\net8.0-windows\UI.Properties.Resources.resources
+D:\VI SEMESTRE\BD 2\Proyecto BD FINAL\Proyecto Muebles-Grafico\ProyectoDBII\ProyectoBaseDatosII\UI\obj\Debug\net8.0-windows\UI.Proveedor.resources
