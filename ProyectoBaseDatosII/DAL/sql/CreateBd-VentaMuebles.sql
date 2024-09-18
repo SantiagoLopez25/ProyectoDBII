@@ -139,7 +139,6 @@ BEGIN
 END;
 GO
 
-
 										/******  CREATE TABLES  ******/
 CREATE TABLE    Categoria (
 	 id_Categoria INTEGER PRIMARY KEY IDENTITY(1,1),

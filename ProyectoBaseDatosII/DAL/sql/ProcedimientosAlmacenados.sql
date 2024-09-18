@@ -163,8 +163,8 @@ AS BEGIN
     SET Estado = 0
     WHERE id_Proveedor = @id_Proveedor
 END;
-
 GO
+
 -- Procedimiento almacenado que permite crear un usuario, actualizarlo y deshabilitarlo
 
 /****** Object:  StoredProcedure [dbo].[f_crearUsuario]    Script Date: 4/09/2024 07:43:10 ******/

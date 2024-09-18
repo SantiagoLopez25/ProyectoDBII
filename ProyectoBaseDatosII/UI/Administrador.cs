@@ -90,7 +90,6 @@ namespace UI
 
         private void btnProveedores_Click(object sender, EventArgs e)
         {
-
             //ABRIR FORM DE PROVEEDORES
             openChildForm(new Proveedor());
             hideSubMenu();

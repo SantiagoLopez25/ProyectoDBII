@@ -10,6 +10,7 @@ namespace BLL.Compra
     public interface IServiceProveedor
     {
 
+
         //CREACIÓN DE PROCESOS QUE SE UTILIZARÁN CON RESPECTO A PROVEEDORES
         DataTable ListarProveedor();
         void AgregarProveedor(string proveedor, string direccion, string telefono, string telefonoExtra, string correo, bool estado);

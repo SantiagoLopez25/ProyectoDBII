@@ -237,7 +237,7 @@
             // lblId
             // 
             lblId.AutoSize = true;
-            lblId.Location = new Point(789, 76);
+            lblId.Location = new Point(807, 76);
             lblId.Name = "lblId";
             lblId.Size = new Size(53, 20);
             lblId.TabIndex = 6;
