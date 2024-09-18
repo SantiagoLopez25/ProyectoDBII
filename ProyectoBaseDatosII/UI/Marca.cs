@@ -39,11 +39,11 @@ namespace UI
         {
             if (dataGridView1.SelectedRows.Count > 0)
             {
-                if (MessageBox.Show("¿Estás seguro de que deseas eliminar el tipo de salón?", "Warning",
+                if (MessageBox.Show("¿Estás seguro de que deseas eliminar la marca?", "Warning",
                 MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
                 {
                     _serviceMarca.EliminarMarca(Convert.ToInt32(dataGridView1.CurrentRow.Cells[0].Value));
-                    MessageBox.Show("Se ha eliminado correctamente el tipo de salón");
+                    MessageBox.Show("Se ha eliminado correctamente la marca");
                     ListarMarcas();
                     ClearData();
                 }
