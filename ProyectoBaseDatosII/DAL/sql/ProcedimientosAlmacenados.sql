@@ -203,7 +203,6 @@ END
 GO
 
 -- Procedimiento para listar usuarios
-
 CREATE PROC ListarUsuarios
 AS BEGIN
    select id_Usuario, nombre, usuario, nombre_rol 
