@@ -142,7 +142,6 @@ END;
 GO
 
 --Procedimiento para eliminar marcas
-GO
 
 CREATE PROC EliminarMarca
 @id_Marca int
@@ -168,7 +167,6 @@ END;
 GO
 -- Procedimiento almacenado que permite crear un usuario, actualizarlo y deshabilitarlo
 
-GO
 /****** Object:  StoredProcedure [dbo].[f_crearUsuario]    Script Date: 4/09/2024 07:43:10 ******/
 SET ANSI_NULLS ON
 GO
