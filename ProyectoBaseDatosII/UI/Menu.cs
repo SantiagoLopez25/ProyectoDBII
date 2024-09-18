@@ -2,12 +2,53 @@ using System.Security.Cryptography;
 
 namespace UI
 {
-    public partial class Administrador : Form
+    public partial class Menu : Form
     {
-        public Administrador()
+        private string privilegio;
+
+        public Menu()
         {
+
             InitializeComponent();
             customizeDesign();
+        }
+
+        public void setPrivileges(string privilegio, string usuario)
+        {
+            labelUsuario.Text = usuario + " - " + privilegio;
+            this.privilegio = privilegio;
+            this.Text = privilegio;
+
+            if (privilegio == "Administrador")
+            {
+
+            }
+            else if (privilegio == "Bodeguero")
+            {
+                btnVentasDesplegable.Visible = false;
+                buttonPermisos.Visible = false;
+                button1.Visible = false;
+
+
+            }
+            else if (privilegio == "Vendedor")
+            {
+                buttonPermisos.Visible = false;
+                buttonReportes.Visible = false;
+                button1.Visible = false;
+
+
+            }
+
+            else if (privilegio == "Gerente")
+            {
+                buttonPermisos.Visible = false;
+                btnMueblesDesplegable.Visible = false;
+                btnVentasDesplegable.Visible = false;
+
+            }
+
+
         }
 
         private void panelSideMenu_Paint(object sender, PaintEventArgs e)
@@ -19,6 +60,8 @@ namespace UI
             panelMueblesSubMenu.Visible = false;
             panelVentasSubMenu.Visible = false;
             panelPedidosProveedorSubMenu.Visible = false;
+            panelGestion.Visible = false;
+            panelReportes.Visible = false;
         }
         private void hideSubMenu()
         {
@@ -34,6 +77,11 @@ namespace UI
             {
                 panelPedidosProveedorSubMenu.Visible = false;
             }
+            if (panelGestion.Visible == true)
+            {
+                panelGestion.Visible = false;
+            }
+
         }
         private void showSubMenu(Panel subMenu)
         {
@@ -56,6 +104,7 @@ namespace UI
         private void btnVentas_Click(object sender, EventArgs e)
         {
             //ABRIR CRU DE VENTAS
+            this.Text = "Venta";
             hideSubMenu();
         }
 
@@ -75,7 +124,7 @@ namespace UI
         {
             //ABRIR FORM DE FACTURAS
         }
-#endregion
+        #endregion
         #region Pedidos Proveedores
         private void button1_Click(object sender, EventArgs e)
         {
@@ -99,7 +148,7 @@ namespace UI
             //ABRIR FORM DE ESTADO DE PEDIDO 
             hideSubMenu();
         }
-#endregion 
+        #endregion
         #region Muebles
         private void btnMueblesDesplegable_Click(object sender, EventArgs e)
         {
@@ -116,6 +165,7 @@ namespace UI
         {
             //ABRIR FORM DE CRU DE MARCA
             openChildForm(new Marca());
+            this.Text = "Marcas";
             hideSubMenu();
         }
 
@@ -130,12 +180,57 @@ namespace UI
             //ABRIR FORM DE CRU DE MODELO
             hideSubMenu();
         }
-        #endregion 
+        #endregion
+
+        #region Gestion
+
+        private void buttonGestion_Click(object sender, EventArgs e)
+        {
+            showSubMenu(panelGestion);
+        }
+
+        private void buttonPermisos_Click(object sender, EventArgs e)
+        {
+            hideSubMenu();
+            this.Text = "Permisos";
+            openChildForm(new FormPermisos());
+
+        }
+
+        private void buttonCerrarSesion_Click(object sender, EventArgs e)
+        {
+            hideSubMenu();
+
+            Login login = new Login();
+            login.Show();
+            this.Dispose();
+        }
+
+
+        #endregion
+
+        #region Reportes
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            showSubMenu(panelReportes);
+        }
+
+        private void buttonReporte1_Click(object sender, EventArgs e)
+        {
+            hideSubMenu();
+        }
+
+
+
+
+        #endregion
 
         private Form activeForm = null;
         private void openChildForm(Form childForm)
         {
-            if(activeForm != null){
+            if (activeForm != null)
+            {
                 activeForm.Close();
             }
             activeForm = childForm;
@@ -146,6 +241,11 @@ namespace UI
             panelChildForm.Tag = childForm;
             childForm.BringToFront();
             childForm.Show();
+        }
+
+        private void Menu_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

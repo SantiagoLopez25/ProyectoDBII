@@ -40,8 +40,30 @@ namespace UI
                 string respuesta = loginService.inicioSesion(user, password);
                 if (respuesta == "Administrador")
                 {
-                    Administrador admin = new Administrador();
-                    admin.Show();
+                    Menu menu = new Menu();
+                    menu.setPrivileges(respuesta, textBoxUsuario.Text);
+                    menu.ShowDialog();
+                    this.Hide();
+                }
+                else if (respuesta == "Vendedor")
+                {
+                    Menu menu = new Menu();
+                    menu.setPrivileges(respuesta, textBoxUsuario.Text);
+                    menu.ShowDialog();
+                    this.Hide();
+                }
+                else if (respuesta == "Bodeguero")
+                {
+                    Menu menu = new Menu();
+                    menu.setPrivileges(respuesta, textBoxUsuario.Text);
+                    menu.ShowDialog();
+                    this.Hide();
+                }
+                else if (respuesta == "Gerente")
+                {
+                    Menu menu = new Menu();
+                    menu.setPrivileges(respuesta, textBoxUsuario.Text);
+                    menu.ShowDialog();
                     this.Hide();
                 }
 

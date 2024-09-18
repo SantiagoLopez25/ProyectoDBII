@@ -1,6 +1,6 @@
 ﻿namespace UI
 {
-    partial class Administrador
+    partial class Menu
     {
         /// <summary>
         ///  Required designer variable.
@@ -29,6 +29,16 @@
         private void InitializeComponent()
         {
             panelSideMenu = new Panel();
+            panelGestion = new Panel();
+            buttonCerrarSesion = new Button();
+            buttonPermisos = new Button();
+            buttonGestion = new Button();
+            panelReportes = new Panel();
+            button3 = new Button();
+            button4 = new Button();
+            buttonReporte2 = new Button();
+            buttonReporte1 = new Button();
+            buttonReportes = new Button();
             panelMueblesSubMenu = new Panel();
             btnModelo = new Button();
             btnCategoría = new Button();
@@ -48,17 +58,25 @@
             btnVentasDesplegable = new Button();
             panelLogo = new Panel();
             panelPlayer = new Panel();
+            labelUsuario = new Label();
             panelChildForm = new Panel();
             panelSideMenu.SuspendLayout();
+            panelGestion.SuspendLayout();
+            panelReportes.SuspendLayout();
             panelMueblesSubMenu.SuspendLayout();
             panelPedidosProveedorSubMenu.SuspendLayout();
             panelVentasSubMenu.SuspendLayout();
+            panelPlayer.SuspendLayout();
             SuspendLayout();
             // 
             // panelSideMenu
             // 
             panelSideMenu.AutoScroll = true;
             panelSideMenu.BackColor = Color.FromArgb(11, 7, 17);
+            panelSideMenu.Controls.Add(panelGestion);
+            panelSideMenu.Controls.Add(buttonGestion);
+            panelSideMenu.Controls.Add(panelReportes);
+            panelSideMenu.Controls.Add(buttonReportes);
             panelSideMenu.Controls.Add(panelMueblesSubMenu);
             panelSideMenu.Controls.Add(btnMueblesDesplegable);
             panelSideMenu.Controls.Add(panelPedidosProveedorSubMenu);
@@ -72,6 +90,155 @@
             panelSideMenu.Size = new Size(250, 592);
             panelSideMenu.TabIndex = 0;
             panelSideMenu.Paint += panelSideMenu_Paint;
+            // 
+            // panelGestion
+            // 
+            panelGestion.BackColor = Color.FromArgb(35, 32, 39);
+            panelGestion.Controls.Add(buttonCerrarSesion);
+            panelGestion.Controls.Add(buttonPermisos);
+            panelGestion.Dock = DockStyle.Top;
+            panelGestion.Location = new Point(0, 987);
+            panelGestion.Name = "panelGestion";
+            panelGestion.Size = new Size(224, 98);
+            panelGestion.TabIndex = 10;
+            // 
+            // buttonCerrarSesion
+            // 
+            buttonCerrarSesion.Dock = DockStyle.Top;
+            buttonCerrarSesion.FlatAppearance.BorderSize = 0;
+            buttonCerrarSesion.FlatStyle = FlatStyle.Flat;
+            buttonCerrarSesion.ForeColor = Color.LightGray;
+            buttonCerrarSesion.Location = new Point(0, 40);
+            buttonCerrarSesion.Name = "buttonCerrarSesion";
+            buttonCerrarSesion.Padding = new Padding(35, 0, 0, 0);
+            buttonCerrarSesion.Size = new Size(224, 40);
+            buttonCerrarSesion.TabIndex = 1;
+            buttonCerrarSesion.Text = "Salir";
+            buttonCerrarSesion.TextAlign = ContentAlignment.MiddleLeft;
+            buttonCerrarSesion.UseVisualStyleBackColor = true;
+            buttonCerrarSesion.Click += buttonCerrarSesion_Click;
+            // 
+            // buttonPermisos
+            // 
+            buttonPermisos.Dock = DockStyle.Top;
+            buttonPermisos.FlatAppearance.BorderSize = 0;
+            buttonPermisos.FlatStyle = FlatStyle.Flat;
+            buttonPermisos.ForeColor = Color.LightGray;
+            buttonPermisos.Location = new Point(0, 0);
+            buttonPermisos.Name = "buttonPermisos";
+            buttonPermisos.Padding = new Padding(35, 0, 0, 0);
+            buttonPermisos.Size = new Size(224, 40);
+            buttonPermisos.TabIndex = 0;
+            buttonPermisos.Text = "Permisos";
+            buttonPermisos.TextAlign = ContentAlignment.MiddleLeft;
+            buttonPermisos.UseVisualStyleBackColor = true;
+            buttonPermisos.Click += buttonPermisos_Click;
+            // 
+            // buttonGestion
+            // 
+            buttonGestion.Dock = DockStyle.Top;
+            buttonGestion.FlatAppearance.BorderSize = 0;
+            buttonGestion.FlatStyle = FlatStyle.Flat;
+            buttonGestion.ForeColor = Color.Gainsboro;
+            buttonGestion.Location = new Point(0, 942);
+            buttonGestion.Name = "buttonGestion";
+            buttonGestion.Padding = new Padding(10, 0, 0, 0);
+            buttonGestion.Size = new Size(224, 45);
+            buttonGestion.TabIndex = 9;
+            buttonGestion.Text = "Gestion";
+            buttonGestion.TextAlign = ContentAlignment.MiddleLeft;
+            buttonGestion.UseVisualStyleBackColor = true;
+            buttonGestion.Click += buttonGestion_Click;
+            // 
+            // panelReportes
+            // 
+            panelReportes.BackColor = Color.FromArgb(35, 32, 39);
+            panelReportes.Controls.Add(button3);
+            panelReportes.Controls.Add(button4);
+            panelReportes.Controls.Add(buttonReporte2);
+            panelReportes.Controls.Add(buttonReporte1);
+            panelReportes.Dock = DockStyle.Top;
+            panelReportes.Location = new Point(0, 771);
+            panelReportes.Name = "panelReportes";
+            panelReportes.Size = new Size(224, 171);
+            panelReportes.TabIndex = 8;
+            // 
+            // button3
+            // 
+            button3.Dock = DockStyle.Top;
+            button3.FlatAppearance.BorderSize = 0;
+            button3.FlatStyle = FlatStyle.Flat;
+            button3.ForeColor = Color.LightGray;
+            button3.Location = new Point(0, 120);
+            button3.Name = "button3";
+            button3.Padding = new Padding(35, 0, 0, 0);
+            button3.Size = new Size(224, 40);
+            button3.TabIndex = 3;
+            button3.Text = "Modelo";
+            button3.TextAlign = ContentAlignment.MiddleLeft;
+            button3.UseVisualStyleBackColor = true;
+            // 
+            // button4
+            // 
+            button4.Dock = DockStyle.Top;
+            button4.FlatAppearance.BorderSize = 0;
+            button4.FlatStyle = FlatStyle.Flat;
+            button4.ForeColor = Color.LightGray;
+            button4.Location = new Point(0, 80);
+            button4.Name = "button4";
+            button4.Padding = new Padding(35, 0, 0, 0);
+            button4.Size = new Size(224, 40);
+            button4.TabIndex = 2;
+            button4.Text = "Categoría";
+            button4.TextAlign = ContentAlignment.MiddleLeft;
+            button4.UseVisualStyleBackColor = true;
+            // 
+            // buttonReporte2
+            // 
+            buttonReporte2.Dock = DockStyle.Top;
+            buttonReporte2.FlatAppearance.BorderSize = 0;
+            buttonReporte2.FlatStyle = FlatStyle.Flat;
+            buttonReporte2.ForeColor = Color.LightGray;
+            buttonReporte2.Location = new Point(0, 40);
+            buttonReporte2.Name = "buttonReporte2";
+            buttonReporte2.Padding = new Padding(35, 0, 0, 0);
+            buttonReporte2.Size = new Size(224, 40);
+            buttonReporte2.TabIndex = 1;
+            buttonReporte2.Text = "Reporte";
+            buttonReporte2.TextAlign = ContentAlignment.MiddleLeft;
+            buttonReporte2.UseVisualStyleBackColor = true;
+            // 
+            // buttonReporte1
+            // 
+            buttonReporte1.Dock = DockStyle.Top;
+            buttonReporte1.FlatAppearance.BorderSize = 0;
+            buttonReporte1.FlatStyle = FlatStyle.Flat;
+            buttonReporte1.ForeColor = Color.LightGray;
+            buttonReporte1.Location = new Point(0, 0);
+            buttonReporte1.Name = "buttonReporte1";
+            buttonReporte1.Padding = new Padding(35, 0, 0, 0);
+            buttonReporte1.Size = new Size(224, 40);
+            buttonReporte1.TabIndex = 0;
+            buttonReporte1.Text = "Reportes";
+            buttonReporte1.TextAlign = ContentAlignment.MiddleLeft;
+            buttonReporte1.UseVisualStyleBackColor = true;
+            buttonReporte1.Click += buttonReporte1_Click;
+            // 
+            // buttonReportes
+            // 
+            buttonReportes.Dock = DockStyle.Top;
+            buttonReportes.FlatAppearance.BorderSize = 0;
+            buttonReportes.FlatStyle = FlatStyle.Flat;
+            buttonReportes.ForeColor = Color.Gainsboro;
+            buttonReportes.Location = new Point(0, 726);
+            buttonReportes.Name = "buttonReportes";
+            buttonReportes.Padding = new Padding(10, 0, 0, 0);
+            buttonReportes.Size = new Size(224, 45);
+            buttonReportes.TabIndex = 7;
+            buttonReportes.Text = "Reportes";
+            buttonReportes.TextAlign = ContentAlignment.MiddleLeft;
+            buttonReportes.UseVisualStyleBackColor = true;
+            buttonReportes.Click += button2_Click;
             // 
             // panelMueblesSubMenu
             // 
@@ -346,11 +513,22 @@
             // panelPlayer
             // 
             panelPlayer.BackColor = Color.FromArgb(23, 21, 32);
+            panelPlayer.Controls.Add(labelUsuario);
             panelPlayer.Dock = DockStyle.Bottom;
             panelPlayer.Location = new Point(250, 510);
             panelPlayer.Name = "panelPlayer";
             panelPlayer.Size = new Size(1132, 82);
             panelPlayer.TabIndex = 1;
+            // 
+            // labelUsuario
+            // 
+            labelUsuario.AutoSize = true;
+            labelUsuario.ForeColor = Color.Gainsboro;
+            labelUsuario.Location = new Point(28, 32);
+            labelUsuario.Name = "labelUsuario";
+            labelUsuario.Size = new Size(64, 25);
+            labelUsuario.TabIndex = 0;
+            labelUsuario.Text = "label1";
             // 
             // panelChildForm
             // 
@@ -361,7 +539,7 @@
             panelChildForm.Size = new Size(1132, 510);
             panelChildForm.TabIndex = 2;
             // 
-            // Administrador
+            // Menu
             // 
             AutoScaleDimensions = new SizeF(12F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -371,12 +549,18 @@
             Controls.Add(panelSideMenu);
             Font = new Font("Microsoft Sans Serif", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
             Margin = new Padding(4, 3, 4, 3);
-            Name = "Administrador";
-            Text = "Administrador";
+            Name = "Menu";
+            StartPosition = FormStartPosition.CenterParent;
+            Text = "Menu";
+            Load += Menu_Load;
             panelSideMenu.ResumeLayout(false);
+            panelGestion.ResumeLayout(false);
+            panelReportes.ResumeLayout(false);
             panelMueblesSubMenu.ResumeLayout(false);
             panelPedidosProveedorSubMenu.ResumeLayout(false);
             panelVentasSubMenu.ResumeLayout(false);
+            panelPlayer.ResumeLayout(false);
+            panelPlayer.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -395,13 +579,24 @@
         private Button btnPedidosProveedor;
         private Button button1;
         private Button btnFacturas;
+        private Button btnMueblesDesplegable;
+        private Panel panelPlayer;
+        private Panel panelChildForm;
+        private Panel panelReportes;
+        private Button button3;
+        private Button button4;
+        private Button buttonReporte2;
+        private Button buttonReporte1;
+        private Button buttonReportes;
         private Panel panelMueblesSubMenu;
+        private Button btnModelo;
         private Button btnCategoría;
         private Button btnMarca;
         private Button btnMuebles;
-        private Button btnMueblesDesplegable;
-        private Button btnModelo;
-        private Panel panelPlayer;
-        private Panel panelChildForm;
+        private Panel panelGestion;
+        private Button buttonCerrarSesion;
+        private Button buttonPermisos;
+        private Button buttonGestion;
+        private Label labelUsuario;
     }
 }
