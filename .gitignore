@@ -469,3 +469,7 @@ tmp/
 
 /ProyectoBaseDatosII/.vs/ProyectoBaseDatosII/FileContentIndex/55cf4416-dc92-4cbe-85f6-ebf8be0f1ef2.vsidx
 /ProyectoBaseDatosII/.vs/ProyectoBaseDatosII/DesignTimeBuild/.dtbcache.v2
+/ProyectoBaseDatosII/.vs/ProyectoBaseDatosII
+/ProyectoBaseDatosII/BLL/obj
+/ProyectoBaseDatosII/DAL/obj
+/ProyectoBaseDatosII/UI/obj
