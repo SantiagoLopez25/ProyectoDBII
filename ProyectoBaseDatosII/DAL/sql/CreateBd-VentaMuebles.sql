@@ -133,6 +133,18 @@ IF OBJECT_ID('dbo.EliminarMarca') IS NOT NULL
 BEGIN
 	DROP PROC EliminarMarca;
 END;
+IF OBJECT_ID('dbo.EliminarCategoria') IS NOT NULL
+BEGIN
+	DROP PROC EliminarCategoria;
+END;
+IF OBJECT_ID('dbo.EliminarEmpleado') IS NOT NULL
+BEGIN
+	DROP PROC EliminarEmpleado;
+END;
+IF OBJECT_ID('dbo.EliminarProveedor') IS NOT NULL
+BEGIN
+	DROP PROC EliminarProveedor;
+END;
 GO
 										/******  CREATE TABLES  ******/
 CREATE TABLE    Categoria (
