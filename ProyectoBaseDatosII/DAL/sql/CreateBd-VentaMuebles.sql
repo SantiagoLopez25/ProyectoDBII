@@ -5,6 +5,7 @@ GO
 USE VentaMuebles
 GO
 
+
 IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'Categoria')
 DROP TABLE Categoria
 GO
@@ -133,7 +134,13 @@ IF OBJECT_ID('dbo.EliminarMarca') IS NOT NULL
 BEGIN
 	DROP PROC EliminarMarca;
 END;
+IF OBJECT_ID('dbo.EliminarProveedor') IS NOT NULL
+BEGIN
+	DROP PROC EliminarProveedor;
+END;
 GO
+
+
 										/******  CREATE TABLES  ******/
 CREATE TABLE    Categoria (
 	 id_Categoria INTEGER PRIMARY KEY IDENTITY(1,1),
