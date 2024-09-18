@@ -81,6 +81,10 @@ namespace UI
             {
                 panelGestion.Visible = false;
             }
+            if (panelReportes.Visible == true)
+            {
+                panelReportes.Visible = false;
+            }
 
         }
         private void showSubMenu(Panel subMenu)
@@ -201,14 +205,7 @@ namespace UI
 
         }
 
-        private void buttonCerrarSesion_Click(object sender, EventArgs e)
-        {
-            hideSubMenu();
 
-            Login login = new Login();
-            login.Show();
-            this.Dispose();
-        }
 
 
         #endregion
@@ -250,6 +247,23 @@ namespace UI
         private void Menu_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void buttonCerrarSesion_Click(object sender, EventArgs e)
+        {
+            hideSubMenu();
+
+            Login login = new Login();
+            login.Show();
+            this.Dispose();
+            Application.Exit();
+        }
+
+        private void btnEmpleados_Click(object sender, EventArgs e)
+        {
+            hideSubMenu();
+            this.Text = "Empleados";
+            openChildForm(new Empleado());
         }
     }
 }
