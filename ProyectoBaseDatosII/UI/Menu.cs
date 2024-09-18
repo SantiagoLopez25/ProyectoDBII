@@ -174,6 +174,8 @@ namespace UI
         private void btnCategoría_Click(object sender, EventArgs e)
         {
             //ABRIR FORM DE CRU DE CATEGORIA
+            openChildForm(new Categoria());
+            this.Text = "Categorias";
             hideSubMenu();
         }
 
