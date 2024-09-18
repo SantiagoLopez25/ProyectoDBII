@@ -28,6 +28,7 @@ namespace UI
                 btnVentasDesplegable.Visible = false;
                 buttonPermisos.Visible = false;
                 button1.Visible = false;
+                btnEmpleados.Visible = false;
 
 
             }
@@ -36,7 +37,7 @@ namespace UI
                 buttonPermisos.Visible = false;
                 buttonReportes.Visible = false;
                 button1.Visible = false;
-
+                btnEmpleados.Visible = false;
 
             }
 
@@ -45,7 +46,7 @@ namespace UI
                 buttonPermisos.Visible = false;
                 btnMueblesDesplegable.Visible = false;
                 btnVentasDesplegable.Visible = false;
-
+                btnEmpleados.Visible = false;
             }
 
 
