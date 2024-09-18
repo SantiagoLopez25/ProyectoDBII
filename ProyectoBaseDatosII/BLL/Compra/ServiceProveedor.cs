@@ -10,7 +10,6 @@ namespace BLL.Compra
 {
     public class ServiceProveedor : IServiceProveedor
     {
-
         //Declaración para utilizar la clase que se comunica con la BD (RepositoryProveedor)
         private readonly RepositoryProveedor _proveedorDAL;
         public ServiceProveedor()
