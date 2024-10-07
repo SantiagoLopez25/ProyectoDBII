@@ -239,3 +239,250 @@ END;
 
 GO
 
+
+
+--Procedimiento almacenado para actualizar Stocks usando FIFO
+
+CREATE procedure [dbo].[actualizarInventario]
+	@productos udt_DetalleFactura READONLY
+	--@inventario udtInventario READONLY
+	AS 
+	BEGIN 
+	DECLARE @id_mueble INT;
+    DECLARE @cantidad INT;
+    DECLARE @cantidadRestante INT;
+    DECLARE @id_Stock INT;
+    DECLARE @CantidadStock INT;
+
+  
+    DECLARE productos_cursor CURSOR FOR
+    SELECT id_mueble, cantidad
+    FROM @productos;
+
+    OPEN productos_cursor;
+
+    FETCH NEXT FROM productos_cursor INTO @id_mueble, @cantidad;
+
+   
+    WHILE @@FETCH_STATUS = 0
+    BEGIN
+        SET @cantidadRestante = @cantidad;
+
+      
+        DECLARE stock_cursor CURSOR FOR
+        SELECT id_Stock, CantidadStock
+        FROM Stock
+        WHERE id_mueble = @id_mueble
+          AND CantidadStock > 0
+        ORDER BY FechaIngreso ASC;
+
+        OPEN stock_cursor;
+
+        FETCH NEXT FROM stock_cursor INTO @id_Stock, @CantidadStock;
+
+       
+        WHILE @@FETCH_STATUS = 0 AND @cantidadRestante > 0
+        BEGIN
+            IF @CantidadStock >= @cantidadRestante
+            BEGIN
+               
+                UPDATE Stock
+                SET CantidadStock = CantidadStock - @cantidadRestante
+                WHERE id_Stock = @id_Stock;
+                
+                SET @cantidadRestante = 0; 
+            END
+            ELSE
+            BEGIN
+                
+                UPDATE Stock
+                SET CantidadStock = 0
+                WHERE id_Stock = @id_Stock;
+                
+                SET @cantidadRestante = @cantidadRestante - @CantidadStock;
+            END
+
+            FETCH NEXT FROM stock_cursor INTO @id_Stock, @CantidadStock;
+        END
+
+        CLOSE stock_cursor;
+        DEALLOCATE stock_cursor;
+
+        
+        FETCH NEXT FROM productos_cursor INTO @id_mueble, @cantidad;
+    END
+
+    CLOSE productos_cursor;
+    DEALLOCATE productos_cursor;
+END;
+
+
+
+-- Procedimiento almacenado para la facturación
+
+CREATE procedure [dbo].[GenerarFactura]
+@detalle udt_DetalleFactura READONLY, 
+@serie varchar(150),
+@id_cliente int = null,
+@nombre_cliente varchar(200) = null,
+@direccion_Facturacion varchar(30) = null,
+@telefono varchar(10) = null,
+@correo varchar(50) = null,
+@nit varchar(8) = 'CF',
+@id_DireccionEntrega int = null,
+@direccionEntrega varchar(150) = null,
+@descripcionEntrega varchar(200),
+@telefonoReferencia varchar(8),
+@fechaEntrega date,
+@horaEntrega time,
+@idTTipoPago1 int,
+@idTTipoPago2 int = null,
+@idTipoPago3 int = null,
+@porcentajePago1 decimal(4,2) = null, 
+@porcentajePago2 decimal(4,2) = null,
+@porcentajePago3 decimal(4,2) = null,
+@id_Usuario int,
+@resultado varchar(200) OUTPUT
+AS
+BEGIN
+	declare @id_Entrega as int
+	declare @cantidad1 as decimal(10,2)
+	declare @cantidad2 as decimal(10,2)
+	declare @cantidad3 as decimal (10,2)
+	set NOCOUNT ON
+	BEGIN TRAN factura
+		Begin Try
+
+
+			IF (@id_cliente is null) 
+				BEGIN 
+					insert into Cliente (Nombre_Cliente, DireccionFacturacion, Telefono, Correo,Descuentos, NIT, Estado)
+					values (@nombre_cliente, @direccion_Facturacion, @telefono, @correo, 0, @nit, 1)
+					set @id_cliente = @@IDENTITY
+				END
+			
+			IF (@id_DireccionEntrega is null) 
+				BEGIN
+					insert into DireccionEntrega (Direccion, id_Cliente)
+					values (@direccionEntrega, @id_cliente)
+					set @id_DireccionEntrega = @@IDENTITY
+				END
+
+			
+			INSERT INTO Entrega (DescripcionEntrega, TelefonoReferencia, Estado, id_EstadoPedido, id_DirecciónEntrega, fechaEntrega, horaEntrega)
+			values (@descripcionEntrega, @telefonoReferencia, 1, 1, @id_DireccionEntrega, @fechaEntrega, @horaEntrega)
+			set @id_Entrega = @@IDENTITY
+
+			
+			-- Verificar que haya existencias de los productos
+			IF EXISTS (SELECT d.id_mueble, SUM(Stock.CantidadStock) AS TotalStock
+				FROM Stock INNER JOIN @detalle d ON Stock.id_mueble = d.id_Mueble
+				GROUP BY d.id_mueble
+				HAVING SUM(Stock.CantidadStock) <=0 or SUM(Stock.CantidadStock) < MAX( d.cantidad)
+				)
+				BEGIN
+					set @resultado = 'No hay Stock suficiente'
+					Rollback TRAN factura
+				END
+			
+				ELSE
+				BEGIN 
+
+
+					-- Asignación del total a una variable
+					declare @total as decimal(10,2)
+					select @total = SUM(PrecioVenta*d.cantidad)  from Muebles inner join @detalle d
+						on muebles.id_Mueble = d.id_mueble 
+
+					declare @descuento as decimal(10,2)
+					select @descuento = SUM(PrecioVenta*d.cantidad*(Descuento/100))  from Muebles inner join @detalle d
+						on muebles.id_Mueble = d.id_mueble 
+
+					declare @totalDescuento as decimal(10,2)
+					set @totalDescuento = @total - @descuento
+
+				
+				
+					insert into Factura (id_Serie, fechaFactura, montoTotal, totalSinDescuento,  Estado, id_Cliente, id_Usuario, id_Domicilio)
+					values (@serie, GETDATE(), @totalDescuento, @total, 1, @id_cliente, @id_Usuario, @id_Entrega)
+
+					declare @id_Factura as int
+					set @id_Factura= @@IDENTITY
+
+					--Guardar detalle
+					insert into DetalleFactura (cantidadMuebles, id_mueble, id_Factura, id_Serie)
+					select cantidad, id_mueble, @id_Factura, @serie from @detalle
+
+
+					--Métodos de pago
+					IF (@idTTipoPago2 is  null and @idTipoPago3 is null)
+						begin
+							set @cantidad1 = @totalDescuento
+							set @porcentajePago1 = 100
+							insert into Pago (porcentaje, cantidad, id_TipoPago, id_Factura, id_Serie)
+							values (@porcentajePago1, @cantidad1, @idTTipoPago1, @id_Factura, @serie)
+						end
+
+					ELSE IF (@idTipoPago3 is null)
+						BEGIN
+							set @cantidad1 = @totalDescuento * @porcentajePago1/100
+							set @cantidad2 = @totalDescuento * @porcentajePago2/100
+
+							IF (@cantidad1 + @cantidad2 != @totalDescuento)
+								BEGIN
+									IF @cantidad1 < @cantidad2
+											set @cantidad1 = @cantidad1 + (@totalDescuento - (@cantidad1 + @cantidad2))
+									ELSE
+										set @cantidad2 = @cantidad2 + (@totalDescuento - (@cantidad1 + @cantidad2))
+					
+								END
+
+							insert into Pago (porcentaje, cantidad, id_TipoPago, id_Factura, id_Serie)
+							values (@porcentajePago1, @cantidad1, @idTTipoPago1, @id_Factura, @serie),
+							(@porcentajePago2, @cantidad2, @idTTipoPago2, @id_Factura, @serie)
+
+		
+						END
+
+					ELSE 
+						BEGIN
+							set @cantidad1 = @totalDescuento * @porcentajePago1/100
+							set @cantidad2 = @totalDescuento * @porcentajePago2/100
+							set @cantidad3 = @totalDescuento * @porcentajePago3/100
+
+							IF (@cantidad1 + @cantidad2+@cantidad3 != @totalDescuento)
+								BEGIN
+									IF ((@cantidad1 < @cantidad2) AND (@cantidad1<@cantidad3))
+											set @cantidad1 = @cantidad1 + (@totalDescuento - (@cantidad1 + @cantidad2 +@cantidad3))
+									ELSE IF ((@cantidad2 < @cantidad1) AND (@cantidad2<@cantidad3))
+										set @cantidad2 = @cantidad2 + (@totalDescuento - (@cantidad1 + @cantidad2 +@cantidad3))
+									ELSE IF ((@cantidad3 < @cantidad1) AND (@cantidad3<@cantidad2))
+										set @cantidad3 = @cantidad3 + (@totalDescuento - (@cantidad1 + @cantidad2 +@cantidad3))
+					
+								END
+			
+							insert into Pago (porcentaje, cantidad, id_TipoPago, id_Factura, id_Serie)
+							values (@porcentajePago1, @cantidad1, @idTTipoPago1, @id_Factura, @serie),
+							(@porcentajePago2, @cantidad2, @idTTipoPago2, @id_Factura, @serie),
+							(@porcentajePago3, @cantidad3, @idTipoPago3, @id_Factura, @serie)
+
+						END
+
+
+					-- Actualizar inventario (siguiendo el concepto FIFO)
+					exec actualizarInventario @productos = @detalle
+
+
+				END
+
+		--insert into DetalleFactura 
+		set @resultado = 'Se gurado correctamente la factura'
+		COMMIT TRAN factura
+	End Try
+		
+	Begin Catch
+		set @resultado = 'Ocurrio un error: ' + ERROR_MESSAGE() + ' en la línea: ' + CONVERT(NVARCHAR(255), ERROR_LINE() ) + '.'
+		Rollback TRAN factura
+	End Catch 
+
+End

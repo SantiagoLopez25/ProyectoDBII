@@ -23,7 +23,7 @@ VALUES
 	('Otto', 0xAAFF9106875B7964E8991352C0C0E4E8DB27A94E76086C993BC2470DBFF0C8CFCD1524D0C358424288B4E552F5D1A31274960BC43905763B1633F246A975FB73, 1, 3, 5),
 	('juanjo', 0x7DDE3B93B0A76254ECF6AFF493067453F763DD9FFBBE99BA6228D66CF3C353C17E34E121385DC01C29DA7541BD342ED99D4DBB66936246FEC33FD41367E80E7D, 1, 4, 1);
 
-insert into marca (marca values ('Arketipo'), ('MueblesGT'), ('Muebles'), ('MuebleriaLosAltos'), ('Casa Bella')
+insert into marca (marca) values ('Arketipo'), ('MueblesGT'), ('Muebles'), ('MuebleriaLosAltos'), ('Casa Bella')
 UPDATE marca set estado = 0 where id_Marca = 3;
 
 
@@ -135,4 +135,21 @@ VALUES
 (10, 0, '2024-03-18', 0, 16);
 
 update stock set Estado = REPLACE(Estado, 0, 1) where id_Stock <= 21
+
+
+
+insert into SerieFactura (id_Serie, fechaInicio, Estado) values
+('A-23', '2024-10-05', 1), ('A-30', '2024-08-01', 1)
+
+
+insert into EstadoPedido_Entrega (Nombre_EstadoPedido)
+values ('Facturado'), ('Entregado'), ('Cancelado'), ('Enviado')
+
+insert into TipoPago (Nombre_TipoPago, Estado)
+values ('Efectivo', 1), ('Tarjeta de crédito', 1), ('Tarjeta de Débito', 1), ('Apple Pay', 1), 
+('Google Pay',1), ('PayPal', 1)
+
+
+
+
 
