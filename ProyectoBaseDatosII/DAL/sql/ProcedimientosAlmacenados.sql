@@ -338,9 +338,9 @@ CREATE procedure [dbo].[GenerarFactura]
 @idTTipoPago1 int,
 @idTTipoPago2 int = null,
 @idTipoPago3 int = null,
-@porcentajePago1 decimal(4,2) = null, 
-@porcentajePago2 decimal(4,2) = null,
-@porcentajePago3 decimal(4,2) = null,
+@porcentajePago1 decimal(4,1) = null, 
+@porcentajePago2 decimal(4,1) = null,
+@porcentajePago3 decimal(4,1) = null,
 @id_Usuario int,
 @resultado varchar(200) OUTPUT
 AS
@@ -352,26 +352,8 @@ BEGIN
 	set NOCOUNT ON
 	BEGIN TRAN factura
 		Begin Try
-
-
-			IF (@id_cliente is null) 
-				BEGIN 
-					insert into Cliente (Nombre_Cliente, DireccionFacturacion, Telefono, Correo,Descuentos, NIT, Estado)
-					values (@nombre_cliente, @direccion_Facturacion, @telefono, @correo, 0, @nit, 1)
-					set @id_cliente = @@IDENTITY
-				END
+	
 			
-			IF (@id_DireccionEntrega is null) 
-				BEGIN
-					insert into DireccionEntrega (Direccion, id_Cliente)
-					values (@direccionEntrega, @id_cliente)
-					set @id_DireccionEntrega = @@IDENTITY
-				END
-
-			
-			INSERT INTO Entrega (DescripcionEntrega, TelefonoReferencia, Estado, id_EstadoPedido, id_DirecciónEntrega, fechaEntrega, horaEntrega)
-			values (@descripcionEntrega, @telefonoReferencia, 1, 1, @id_DireccionEntrega, @fechaEntrega, @horaEntrega)
-			set @id_Entrega = @@IDENTITY
 
 			
 			-- Verificar que haya existencias de los productos
@@ -388,6 +370,24 @@ BEGIN
 				ELSE
 				BEGIN 
 
+					IF (@id_cliente is null)
+					BEGIN 
+						insert into Cliente (Nombre_Cliente, DireccionFacturacion, Telefono, Correo,Descuentos, NIT, Estado)
+						values (@nombre_cliente, @direccion_Facturacion, @telefono, @correo, 0, @nit, 1)
+						set @id_cliente = @@IDENTITY
+					END
+			
+					IF (@id_DireccionEntrega is null) 
+						BEGIN
+							insert into DireccionEntrega (Direccion, id_Cliente)
+							values (@direccionEntrega, @id_cliente)
+							set @id_DireccionEntrega = @@IDENTITY
+						END
+
+			
+					INSERT INTO Entrega (DescripcionEntrega, TelefonoReferencia, Estado, id_EstadoPedido, id_DirecciónEntrega, fechaEntrega, horaEntrega)
+					values (@descripcionEntrega, @telefonoReferencia, 1, 1, @id_DireccionEntrega, @fechaEntrega, @horaEntrega)
+					set @id_Entrega = @@IDENTITY
 
 					-- Asignación del total a una variable
 					declare @total as decimal(10,2)
@@ -421,12 +421,14 @@ BEGIN
 							set @porcentajePago1 = 100
 							insert into Pago (porcentaje, cantidad, id_TipoPago, id_Factura, id_Serie)
 							values (@porcentajePago1, @cantidad1, @idTTipoPago1, @id_Factura, @serie)
+							--select @cantidad1, @cantidad2, @cantidad3
 						end
 
 					ELSE IF (@idTipoPago3 is null)
 						BEGIN
 							set @cantidad1 = @totalDescuento * @porcentajePago1/100
 							set @cantidad2 = @totalDescuento * @porcentajePago2/100
+							
 
 							IF (@cantidad1 + @cantidad2 != @totalDescuento)
 								BEGIN
@@ -481,8 +483,9 @@ BEGIN
 	End Try
 		
 	Begin Catch
-		set @resultado = 'Ocurrio un error: ' + ERROR_MESSAGE() + ' en la línea: ' + CONVERT(NVARCHAR(255), ERROR_LINE() ) + '.'
 		Rollback TRAN factura
+		set @resultado = 'Ocurrio un error: ' + ERROR_MESSAGE() + ' en la línea: ' + CONVERT(NVARCHAR(255), ERROR_LINE() ) + '.'
+		
 	End Catch 
 
 End
