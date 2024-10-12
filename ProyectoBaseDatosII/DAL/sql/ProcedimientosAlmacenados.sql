@@ -398,9 +398,28 @@ BEGIN
 					select @descuento = SUM(PrecioVenta*d.cantidad*(Descuento/100))  from Muebles inner join @detalle d
 						on muebles.id_Mueble = d.id_mueble 
 
-					declare @totalDescuento as decimal(10,2)
-					set @totalDescuento = @total - @descuento
 
+					declare @totalDescuento as decimal(10,2)
+
+
+					IF exists (select Descuentos from Cliente where id_Cliente = @id_cliente and Descuentos != 0)
+						BEGIN 
+							declare @descuentoCliente as decimal (3,2)
+							select @descuentoCliente = Descuentos from Cliente where id_Cliente = @id_cliente and Descuentos != 0
+
+							set @totalDescuento = @total - @descuento
+							set @descuento = @descuento + (@totalDescuento * (@descuentoCliente/100))
+							set @totalDescuento =@total - @descuento
+						END 
+
+					ELSE 
+						BEGIN
+							set @totalDescuento = @total - @descuento
+
+						END
+
+					
+					
 				
 				
 					insert into Factura (id_Serie, fechaFactura, montoTotal, totalSinDescuento,  Estado, id_Cliente, id_Usuario, id_Domicilio)
@@ -470,6 +489,19 @@ BEGIN
 
 						END
 
+
+					-- Select para imprimir datos de la factura
+					select id_Factura, id_Serie, fechaFactura, montoTotal, totalSinDescuento, Nombre_Cliente, DireccionFacturacion, Usuario	
+					from Factura
+					inner join Cliente on Cliente.id_Cliente = Factura.id_Cliente 
+					inner join usuario on Factura.id_Usuario = usuario.id_Usuario
+					where Factura.id_Factura = @id_Factura and Factura.id_Cliente = @id_cliente
+
+					
+					
+					select muebles.Nombre, d.cantidad, SUM(PrecioVenta*d.cantidad) as 'Total' from Muebles
+					inner join @detalle d on Muebles.id_mueble= d.id_Mueble
+					group by Muebles.Nombre, d.cantidad
 
 					-- Actualizar inventario (siguiendo el concepto FIFO)
 					exec actualizarInventario @productos = @detalle
