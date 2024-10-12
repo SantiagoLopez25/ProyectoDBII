@@ -167,7 +167,7 @@ CREATE TABLE Cliente (
 	 Telefono varchar(10) NOT NULL,
 	 Correo varchar(50) NOT NULL,
 	 Estado bit NOT NULL,
-	 Descuentos bit NULL,
+	 Descuentos decimal(3,2) NOT NULL,
 	 NIT varchar(8) NULL
 ); 
 GO
@@ -209,6 +209,8 @@ CREATE TABLE Entrega (
 	 id_Entrega INTEGER PRIMARY KEY IDENTITY(1,1),
 	 DescripcionEntrega varchar(200) NOT NULL,
 	 TelefonoReferencia varchar(8) NOT NULL,
+	 fechaEntrega date NOT NULL,
+	 horaEntrega time NOT NULL,
 	 Estado bit NOT NULL,
 	 id_EstadoPedido int NULL,
 	 id_DirecciónEntrega int NULL
@@ -234,6 +236,7 @@ CREATE TABLE Factura (
 	 id_Serie varchar(25) NOT NULL,
 	 fechaFactura datetime NOT NULL,
 	 montoTotal decimal(10, 2) NOT NULL,
+	 totalSinDescuento decimal (10,2) NOT NULL,
 	 Estado bit NOT NULL,
 	 id_Cliente int NULL,
 	 id_Usuario int NULL,
@@ -343,7 +346,7 @@ GO
 
 CREATE TABLE Pago (
     id_Pago INTEGER PRIMARY KEY IDENTITY(1,1),
-    porcentaje DECIMAL(3,1) NOT NULL,
+    porcentaje DECIMAL(4,2) NOT NULL,
     cantidad DECIMAL(18,2) NOT NULL,
     id_TipoPago INT NOT NULL,
     id_Factura INT NOT NULL,
