@@ -510,7 +510,7 @@ BEGIN
 				END
 
 		--insert into DetalleFactura 
-		set @resultado = 'Se gurado correctamente la factura'
+		set @resultado = 'Se guardado correctamente la factura'
 		COMMIT TRAN factura
 	End Try
 		
