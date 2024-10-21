@@ -108,7 +108,7 @@ namespace UI
 
         private void btnVentas_Click(object sender, EventArgs e)
         {
-            //ABRIR CRU DE VENTAS
+            openChildForm(new Venta());
             this.Text = "Venta";
             hideSubMenu();
         }
