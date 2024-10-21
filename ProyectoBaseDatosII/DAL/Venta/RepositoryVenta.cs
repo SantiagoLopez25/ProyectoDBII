@@ -25,7 +25,7 @@ namespace DAL.Venta
             {
                 connection.Open();
 
-                using (var command = new SqlCommand("ListarMuebles", connection))
+                using (var command = new SqlCommand("ExistenciasMuebles", connection))
                 {
                     command.CommandType = CommandType.StoredProcedure;
 
@@ -38,6 +38,77 @@ namespace DAL.Venta
 
             return tablaMuebles;
         }
+
+        public DataTable ListarVentas()
+        {
+            DataTable tablaVentas = new DataTable();
+
+            using (var connection = _conexion.GetConnection())
+            {
+                connection.Open();
+
+                using (var command = new SqlCommand("ListarVentas", connection))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+
+                    using (var reader = command.ExecuteReader())
+                    {
+                        tablaVentas.Load(reader);
+                    }
+                }
+            }
+
+            return tablaVentas;
+        }
+
+        public DataTable BuscarNit(string nit)
+        {
+            DataTable tablaCliente = new DataTable();
+            using (var connection = _conexion.GetConnection())
+            {
+                connection.Open();
+                try
+                {
+                    using (var command = new SqlCommand("BuscarClientePorNit", connection))
+                    {
+                        command.CommandType = CommandType.StoredProcedure;
+                        command.Parameters.AddWithValue("@nit", nit);
+
+                        using (var reader = command.ExecuteReader())
+                        {
+                            tablaCliente.Load(reader);
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception($"Ocurrió un error al buscar el cliente. \nError: {ex.Message}");
+                }
+            }
+            return tablaCliente;
+        }
+        public DataTable ListarTiposPago()
+        {
+            DataTable tablaTiposPago = new DataTable();
+
+            using (var connection = _conexion.GetConnection())
+            {
+                connection.Open();
+
+                using (var command = new SqlCommand("ListarTiposPago", connection))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+
+                    using (var reader = command.ExecuteReader())
+                    {
+                        tablaTiposPago.Load(reader);
+                    }
+                }
+            }
+
+            return tablaTiposPago;
+        }
+
 
     }
 }

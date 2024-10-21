@@ -39,6 +39,8 @@
             btnEliminar = new FontAwesome.Sharp.IconButton();
             btnEditar = new FontAwesome.Sharp.IconButton();
             btnImprimir = new FontAwesome.Sharp.IconButton();
+            groupBoxListar = new Panel();
+            dataGridViewVentas = new DataGridView();
             groupBoxAgregarProductos = new GroupBox();
             btnEliminarMueble = new FontAwesome.Sharp.IconButton();
             btnAgregarMueble = new FontAwesome.Sharp.IconButton();
@@ -49,7 +51,12 @@
             btnMostrarDatosCliente = new FontAwesome.Sharp.IconButton();
             label10 = new Label();
             dataGridViewDetalle = new DataGridView();
+            ID = new DataGridViewTextBoxColumn();
+            Nombre = new DataGridViewTextBoxColumn();
+            Cantidad = new DataGridViewTextBoxColumn();
+            Total = new DataGridViewTextBoxColumn();
             groupBoxCrear = new GroupBox();
+            btnAgregarTipoPago = new Button();
             btnCancelarVenta = new FontAwesome.Sharp.IconButton();
             btnCompletarVenta = new FontAwesome.Sharp.IconButton();
             dataGridViewPagos = new DataGridView();
@@ -58,8 +65,8 @@
             txtMontoPagar = new TextBox();
             comboBoxTipoPago = new ComboBox();
             label18 = new Label();
-            label16 = new Label();
-            label17 = new Label();
+            lblDescuento = new Label();
+            lblTotal = new Label();
             label15 = new Label();
             label14 = new Label();
             label13 = new Label();
@@ -86,17 +93,15 @@
             label4 = new Label();
             comboBoxDireccionesEntrega = new ComboBox();
             txtNuevaDirección = new TextBox();
-            groupBoxListar = new Panel();
-            dataGridViewVentas = new DataGridView();
             panelCreate.SuspendLayout();
             groupBoxAccionesExtra.SuspendLayout();
+            groupBoxListar.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridViewVentas).BeginInit();
             groupBoxAgregarProductos.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridViewProductos).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridViewDetalle).BeginInit();
             groupBoxCrear.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridViewPagos).BeginInit();
-            groupBoxListar.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridViewVentas).BeginInit();
             SuspendLayout();
             // 
             // txtNIT
@@ -106,6 +111,7 @@
             txtNIT.Name = "txtNIT";
             txtNIT.Size = new Size(214, 24);
             txtNIT.TabIndex = 0;
+            txtNIT.Leave += txtNIT_Leave;
             // 
             // label1
             // 
@@ -126,9 +132,9 @@
             panelCreate.Controls.Add(btnMostrarAgregar);
             panelCreate.Controls.Add(btnListarVentas);
             panelCreate.Controls.Add(groupBoxAccionesExtra);
+            panelCreate.Controls.Add(groupBoxListar);
             panelCreate.Controls.Add(groupBoxAgregarProductos);
             panelCreate.Controls.Add(groupBoxCrear);
-            panelCreate.Controls.Add(groupBoxListar);
             panelCreate.Dock = DockStyle.Fill;
             panelCreate.Location = new Point(0, 0);
             panelCreate.Margin = new Padding(0);
@@ -224,6 +230,36 @@
             btnImprimir.TextAlign = ContentAlignment.MiddleRight;
             btnImprimir.UseVisualStyleBackColor = true;
             // 
+            // groupBoxListar
+            // 
+            groupBoxListar.Controls.Add(dataGridViewVentas);
+            groupBoxListar.Location = new Point(15, 74);
+            groupBoxListar.Name = "groupBoxListar";
+            groupBoxListar.Size = new Size(1233, 469);
+            groupBoxListar.TabIndex = 20;
+            // 
+            // dataGridViewVentas
+            // 
+            dataGridViewVentas.AllowUserToAddRows = false;
+            dataGridViewVentas.AllowUserToDeleteRows = false;
+            dataGridViewVentas.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            dataGridViewVentas.BackgroundColor = Color.FromArgb(32, 30, 45);
+            dataGridViewVentas.BorderStyle = BorderStyle.None;
+            dataGridViewVentas.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dataGridViewVentas.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dataGridViewVentas.ColumnHeadersHeight = 29;
+            dataGridViewVentas.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            dataGridViewVentas.EnableHeadersVisualStyles = false;
+            dataGridViewVentas.Location = new Point(12, 10);
+            dataGridViewVentas.Margin = new Padding(12, 10, 12, 10);
+            dataGridViewVentas.Name = "dataGridViewVentas";
+            dataGridViewVentas.ReadOnly = true;
+            dataGridViewVentas.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
+            dataGridViewVentas.RowHeadersWidth = 51;
+            dataGridViewVentas.Size = new Size(1206, 459);
+            dataGridViewVentas.TabIndex = 3;
+            dataGridViewVentas.SelectionChanged += dataGridViewVentaes_SelectionChanged;
+            // 
             // groupBoxAgregarProductos
             // 
             groupBoxAgregarProductos.Controls.Add(btnEliminarMueble);
@@ -257,6 +293,7 @@
             btnEliminarMueble.Text = "ELIMINAR";
             btnEliminarMueble.TextAlign = ContentAlignment.MiddleRight;
             btnEliminarMueble.UseVisualStyleBackColor = true;
+            btnEliminarMueble.Click += btnEliminarMueble_Click;
             // 
             // btnAgregarMueble
             // 
@@ -272,9 +309,14 @@
             btnAgregarMueble.Text = "AGREGAR";
             btnAgregarMueble.TextAlign = ContentAlignment.MiddleRight;
             btnAgregarMueble.UseVisualStyleBackColor = true;
+            btnAgregarMueble.Click += btnAgregarMueble_Click;
             // 
             // dataGridViewProductos
             // 
+            dataGridViewProductos.AllowUserToAddRows = false;
+            dataGridViewProductos.AllowUserToDeleteRows = false;
+            dataGridViewProductos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
+            dataGridViewProductos.BackgroundColor = Color.FromArgb(32, 30, 45);
             dataGridViewProductos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = SystemColors.Window;
@@ -286,6 +328,7 @@
             dataGridViewProductos.DefaultCellStyle = dataGridViewCellStyle1;
             dataGridViewProductos.Location = new Point(10, 93);
             dataGridViewProductos.Name = "dataGridViewProductos";
+            dataGridViewProductos.ReadOnly = true;
             dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = SystemColors.Control;
             dataGridViewCellStyle2.Font = new Font("Microsoft Sans Serif", 7.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
@@ -297,6 +340,7 @@
             dataGridViewProductos.RowHeadersWidth = 51;
             dataGridViewProductos.Size = new Size(529, 293);
             dataGridViewProductos.TabIndex = 55;
+            dataGridViewProductos.SelectionChanged += dataGridViewProductos_SelectionChanged;
             // 
             // btnCancelarVenta2
             // 
@@ -313,6 +357,7 @@
             btnCancelarVenta2.Text = "CANCELAR";
             btnCancelarVenta2.TextAlign = ContentAlignment.MiddleRight;
             btnCancelarVenta2.UseVisualStyleBackColor = true;
+            btnCancelarVenta2.Click += btnCancelarVenta2_Click;
             // 
             // txtCantidad
             // 
@@ -364,15 +409,58 @@
             // 
             // dataGridViewDetalle
             // 
+            dataGridViewDetalle.AllowUserToAddRows = false;
+            dataGridViewDetalle.AllowUserToDeleteRows = false;
+            dataGridViewDetalle.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
+            dataGridViewDetalle.BackgroundColor = Color.FromArgb(32, 30, 45);
             dataGridViewDetalle.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewDetalle.Columns.AddRange(new DataGridViewColumn[] { ID, Nombre, Cantidad, Total });
             dataGridViewDetalle.Location = new Point(726, 93);
             dataGridViewDetalle.Name = "dataGridViewDetalle";
+            dataGridViewDetalle.ReadOnly = true;
             dataGridViewDetalle.RowHeadersWidth = 51;
             dataGridViewDetalle.Size = new Size(504, 293);
             dataGridViewDetalle.TabIndex = 34;
+            dataGridViewDetalle.CellValueChanged += dataGridViewDetalle_CellValueChanged;
+            dataGridViewDetalle.RowsAdded += dataGridViewDetalle_RowsAdded;
+            dataGridViewDetalle.RowsRemoved += dataGridViewDetalle_RowsRemoved;
+            dataGridViewDetalle.SelectionChanged += dataGridViewDetalle_SelectionChanged;
+            // 
+            // ID
+            // 
+            ID.HeaderText = "ID";
+            ID.MinimumWidth = 6;
+            ID.Name = "ID";
+            ID.ReadOnly = true;
+            ID.Width = 55;
+            // 
+            // Nombre
+            // 
+            Nombre.HeaderText = "Nombre";
+            Nombre.MinimumWidth = 6;
+            Nombre.Name = "Nombre";
+            Nombre.ReadOnly = true;
+            Nombre.Width = 97;
+            // 
+            // Cantidad
+            // 
+            Cantidad.HeaderText = "Cantidad";
+            Cantidad.MinimumWidth = 6;
+            Cantidad.Name = "Cantidad";
+            Cantidad.ReadOnly = true;
+            Cantidad.Width = 104;
+            // 
+            // Total
+            // 
+            Total.HeaderText = "Total";
+            Total.MinimumWidth = 6;
+            Total.Name = "Total";
+            Total.ReadOnly = true;
+            Total.Width = 75;
             // 
             // groupBoxCrear
             // 
+            groupBoxCrear.Controls.Add(btnAgregarTipoPago);
             groupBoxCrear.Controls.Add(btnCancelarVenta);
             groupBoxCrear.Controls.Add(btnCompletarVenta);
             groupBoxCrear.Controls.Add(dataGridViewPagos);
@@ -381,8 +469,8 @@
             groupBoxCrear.Controls.Add(txtMontoPagar);
             groupBoxCrear.Controls.Add(comboBoxTipoPago);
             groupBoxCrear.Controls.Add(label18);
-            groupBoxCrear.Controls.Add(label16);
-            groupBoxCrear.Controls.Add(label17);
+            groupBoxCrear.Controls.Add(lblDescuento);
+            groupBoxCrear.Controls.Add(lblTotal);
             groupBoxCrear.Controls.Add(label15);
             groupBoxCrear.Controls.Add(label14);
             groupBoxCrear.Controls.Add(label13);
@@ -419,6 +507,18 @@
             groupBoxCrear.TabIndex = 18;
             groupBoxCrear.TabStop = false;
             groupBoxCrear.Visible = false;
+            // 
+            // btnAgregarTipoPago
+            // 
+            btnAgregarTipoPago.BackColor = Color.WhiteSmoke;
+            btnAgregarTipoPago.ForeColor = Color.FromArgb(32, 30, 45);
+            btnAgregarTipoPago.Location = new Point(125, 408);
+            btnAgregarTipoPago.Margin = new Padding(0);
+            btnAgregarTipoPago.Name = "btnAgregarTipoPago";
+            btnAgregarTipoPago.Size = new Size(94, 29);
+            btnAgregarTipoPago.TabIndex = 54;
+            btnAgregarTipoPago.Text = "Agregar";
+            btnAgregarTipoPago.UseVisualStyleBackColor = false;
             // 
             // btnCancelarVenta
             // 
@@ -499,7 +599,6 @@
             // comboBoxTipoPago
             // 
             comboBoxTipoPago.FormattingEnabled = true;
-            comboBoxTipoPago.Items.AddRange(new object[] { "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18" });
             comboBoxTipoPago.Location = new Point(105, 358);
             comboBoxTipoPago.Name = "comboBoxTipoPago";
             comboBoxTipoPago.Size = new Size(148, 28);
@@ -518,31 +617,31 @@
             label18.TabIndex = 46;
             label18.Text = "FORMAS DE PAGO";
             // 
-            // label16
+            // lblDescuento
             // 
-            label16.AutoSize = true;
-            label16.BackColor = Color.FromArgb(32, 30, 45);
-            label16.FlatStyle = FlatStyle.Flat;
-            label16.Font = new Font("Microsoft Sans Serif", 10F);
-            label16.ForeColor = Color.Gainsboro;
-            label16.Location = new Point(436, 443);
-            label16.Name = "label16";
-            label16.Size = new Size(72, 20);
-            label16.TabIndex = 45;
-            label16.Text = "cantidad";
+            lblDescuento.AutoSize = true;
+            lblDescuento.BackColor = Color.FromArgb(32, 30, 45);
+            lblDescuento.FlatStyle = FlatStyle.Flat;
+            lblDescuento.Font = new Font("Microsoft Sans Serif", 10F);
+            lblDescuento.ForeColor = Color.Gainsboro;
+            lblDescuento.Location = new Point(436, 443);
+            lblDescuento.Name = "lblDescuento";
+            lblDescuento.Size = new Size(72, 20);
+            lblDescuento.TabIndex = 45;
+            lblDescuento.Text = "cantidad";
             // 
-            // label17
+            // lblTotal
             // 
-            label17.AutoSize = true;
-            label17.BackColor = Color.FromArgb(32, 30, 45);
-            label17.FlatStyle = FlatStyle.Flat;
-            label17.Font = new Font("Microsoft Sans Serif", 10F);
-            label17.ForeColor = Color.Gainsboro;
-            label17.Location = new Point(434, 412);
-            label17.Name = "label17";
-            label17.Size = new Size(72, 20);
-            label17.TabIndex = 44;
-            label17.Text = "cantidad";
+            lblTotal.AutoSize = true;
+            lblTotal.BackColor = Color.FromArgb(32, 30, 45);
+            lblTotal.FlatStyle = FlatStyle.Flat;
+            lblTotal.Font = new Font("Microsoft Sans Serif", 10F);
+            lblTotal.ForeColor = Color.Gainsboro;
+            lblTotal.Location = new Point(434, 412);
+            lblTotal.Name = "lblTotal";
+            lblTotal.Size = new Size(72, 20);
+            lblTotal.TabIndex = 44;
+            lblTotal.Text = "cantidad";
             // 
             // label15
             // 
@@ -828,34 +927,6 @@
             txtNuevaDirección.TabIndex = 26;
             txtNuevaDirección.Visible = false;
             // 
-            // groupBoxListar
-            // 
-            groupBoxListar.Controls.Add(dataGridViewVentas);
-            groupBoxListar.Location = new Point(15, 74);
-            groupBoxListar.Name = "groupBoxListar";
-            groupBoxListar.Size = new Size(1233, 469);
-            groupBoxListar.TabIndex = 20;
-            // 
-            // dataGridViewVentas
-            // 
-            dataGridViewVentas.AllowUserToAddRows = false;
-            dataGridViewVentas.AllowUserToDeleteRows = false;
-            dataGridViewVentas.BorderStyle = BorderStyle.None;
-            dataGridViewVentas.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-            dataGridViewVentas.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridViewVentas.ColumnHeadersHeight = 29;
-            dataGridViewVentas.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridViewVentas.EnableHeadersVisualStyles = false;
-            dataGridViewVentas.Location = new Point(12, 10);
-            dataGridViewVentas.Margin = new Padding(12, 10, 12, 10);
-            dataGridViewVentas.Name = "dataGridViewVentas";
-            dataGridViewVentas.ReadOnly = true;
-            dataGridViewVentas.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
-            dataGridViewVentas.RowHeadersWidth = 51;
-            dataGridViewVentas.Size = new Size(1206, 459);
-            dataGridViewVentas.TabIndex = 3;
-            dataGridViewVentas.SelectionChanged += dataGridViewVentaes_SelectionChanged;
-            // 
             // Venta
             // 
             AutoScaleDimensions = new SizeF(10F, 20F);
@@ -868,6 +939,8 @@
             Load += Venta_Load;
             panelCreate.ResumeLayout(false);
             groupBoxAccionesExtra.ResumeLayout(false);
+            groupBoxListar.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dataGridViewVentas).EndInit();
             groupBoxAgregarProductos.ResumeLayout(false);
             groupBoxAgregarProductos.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridViewProductos).EndInit();
@@ -875,8 +948,6 @@
             groupBoxCrear.ResumeLayout(false);
             groupBoxCrear.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridViewPagos).EndInit();
-            groupBoxListar.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)dataGridViewVentas).EndInit();
             ResumeLayout(false);
         }
 
@@ -927,8 +998,8 @@
         private ComboBox comboBoxHora;
         private Label label15;
         private Label label14;
-        private Label label16;
-        private Label label17;
+        private Label lblDescuento;
+        private Label lblTotal;
         private Label label20;
         private Label label19;
         private TextBox txtMontoPagar;
@@ -943,5 +1014,10 @@
         private DataGridView dataGridViewProductos;
         private TextBox txtCantidad;
         private Label label22;
+        private DataGridViewTextBoxColumn ID;
+        private DataGridViewTextBoxColumn Nombre;
+        private DataGridViewTextBoxColumn Cantidad;
+        private DataGridViewTextBoxColumn Total;
+        private Button btnAgregarTipoPago;
     }
 }

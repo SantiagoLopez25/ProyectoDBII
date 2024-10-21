@@ -10,5 +10,8 @@ namespace BLL.Venta
     public interface IServiceVenta
     {
         DataTable ListarMuebles();
+        DataTable ListarVentas();
+        DataTable BuscarNit(string nit);
+        DataTable ListarTiposPago();
     }
 }

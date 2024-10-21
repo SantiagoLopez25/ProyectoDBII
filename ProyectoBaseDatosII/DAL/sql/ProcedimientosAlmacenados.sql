@@ -40,8 +40,26 @@ CREATE PROC BuscarClientePorNit
 @nit varchar (8)
 AS BEGIN
 SELECT * FROM Cliente
-WHERE  NIT LIKE @nit
+WHERE  NIT LIKE @nit;
 END;
+GO
+
+-- Procedimiento para listar Ventas
+CREATE PROC ListarVentas
+AS
+SELECT 
+	Factura.id_Factura as 'ID',
+	Factura.fechaFactura as 'Fecha',
+	Factura.montoTotal as 'Total',
+	Cliente.Nombre_Cliente as 'Cliente',
+	Usuario.Usuario as 'Atendió',
+	DireccionEntrega.Direccion as 'Dirección Entrega'
+FROM Factura
+INNER JOIN Cliente on Factura.id_Cliente = Cliente.id_Cliente
+INNER JOIN Usuario on Factura.id_Usuario = Usuario.id_Usuario
+INNER JOIN DireccionEntrega on Factura.id_Domicilio = DireccionEntrega.id_DirecciónEntrega
+ORDER BY 
+	Factura.fechaFactura DESC
 GO
 
 -- Procedimiento para listar tipos de Proveedores
@@ -80,18 +98,25 @@ GO
 CREATE PROC ExistenciasMuebles
 AS
 SELECT 
-        M.id_mueble, 
-        M.Nombre, 
-        SUM(S.CantidadStock) AS TotalExistencias,
-		M.PrecioVenta
+        M.id_mueble as 'ID', 
+        M.Nombre as 'Nombre', 
+		Modelo.modelo as 'Modelo',
+        SUM(S.CantidadStock) AS 'Existencias',
+		M.PrecioVenta as 'Precio',
+		M.TiempoGarantia as 'Garantía',
+		M.Descuento as 'Descuento'
     FROM Muebles M
     INNER JOIN  Stock S ON M.id_mueble = S.id_mueble
+	INNER JOIN Modelo on M.id_Modelo = Modelo.id_Modelo
     WHERE 
         M.Estado = 1 AND S.Estado = 1 AND S.CantidadStock > 0
 	GROUP BY 
         M.id_mueble, 
         M.Nombre,
-		M.PrecioVenta
+		Modelo.modelo,
+		M.PrecioVenta,
+		M.TiempoGarantia,
+		M.Descuento
 GO
 
 -- Procedimiento para registrar nuevo Proveedor

@@ -22,5 +22,18 @@ namespace BLL.Venta
         {
             return _ventaDAL.ListarMuebles();
         }
+
+        public DataTable ListarVentas()
+        {
+            return _ventaDAL.ListarVentas();
+        }
+        public DataTable BuscarNit(string nit)
+        {
+            return _ventaDAL.BuscarNit(nit);
+        }
+        public DataTable ListarTiposPago()
+        {
+            return _ventaDAL.ListarTiposPago();
+        }
     }
 }
