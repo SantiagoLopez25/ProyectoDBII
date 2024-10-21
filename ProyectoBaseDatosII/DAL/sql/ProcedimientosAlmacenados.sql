@@ -597,7 +597,9 @@ BEGIN
 				END
 
 		--insert into DetalleFactura 
-		set @resultado = 'Se guardo correctamente la factura'
+
+		set @resultado = 'Se ha guardado correctamente la factura'
+
 		COMMIT TRAN factura
 	End Try
 		
@@ -608,4 +610,6 @@ BEGIN
 	End Catch 
 
 End
+
 GO
+
