@@ -2,6 +2,47 @@
 
 USE VentaMuebles
 GO
+--Procedimiento para listar los muebles
+CREATE PROC ListarMuebles
+AS
+SELECT 
+	Muebles.id_mueble as 'ID',
+	Muebles.Nombre as 'Nombre Mueble',
+	Muebles.PrecioVenta as 'Precio Venta',
+	Muebles.Descuento as 'Descuento',
+	Muebles.TiempoGarantia as 'Garantía',
+	Modelo.modelo as 'Modelo'
+FROM Muebles
+INNER JOIN Modelo on Muebles.id_Modelo = Modelo.id_Modelo
+	WHERE 
+	Muebles.Estado = 1 AND Modelo.Estado = 1
+ORDER BY 
+	Muebles.id_mueble,
+	Muebles.Nombre,
+	Muebles.PrecioVenta,
+	Muebles.Descuento,
+	Muebles.TiempoGarantia
+GO
+
+-- Procedimiento para listar tipos de pago
+CREATE PROC ListarTiposPago
+AS
+SELECT 
+	id_TipoPago,
+	Nombre_TipoPago
+FROM TipoPago
+WHERE Estado = 1
+ORDER BY Nombre_TipoPago ASC
+GO
+
+-- Procedimiento para buscar Cliente por Nit
+CREATE PROC BuscarClientePorNit
+@nit varchar (8)
+AS BEGIN
+SELECT * FROM Cliente
+WHERE  NIT LIKE @nit
+END;
+GO
 
 -- Procedimiento para listar tipos de Proveedores
 CREATE PROC ListarProveedor
@@ -33,6 +74,24 @@ AS
 SELECT * FROM Empleado 
 WHERE Estado = 1
 ORDER BY id_Empleado ASC
+GO
+
+--Procedimiento para solicitar datos de stock
+CREATE PROC ExistenciasMuebles
+AS
+SELECT 
+        M.id_mueble, 
+        M.Nombre, 
+        SUM(S.CantidadStock) AS TotalExistencias,
+		M.PrecioVenta
+    FROM Muebles M
+    INNER JOIN  Stock S ON M.id_mueble = S.id_mueble
+    WHERE 
+        M.Estado = 1 AND S.Estado = 1 AND S.CantidadStock > 0
+	GROUP BY 
+        M.id_mueble, 
+        M.Nombre,
+		M.PrecioVenta
 GO
 
 -- Procedimiento para registrar nuevo Proveedor
@@ -187,6 +246,9 @@ AS BEGIN
 END;
 GO
 
+
+	
+
 -- Procedimiento almacenado que permite crear un usuario, actualizarlo y deshabilitarlo
 
 GO
@@ -315,7 +377,7 @@ CREATE procedure [dbo].[actualizarInventario]
     CLOSE productos_cursor;
     DEALLOCATE productos_cursor;
 END;
-
+GO
 
 
 -- Procedimiento almacenado para la facturación
@@ -510,7 +572,7 @@ BEGIN
 				END
 
 		--insert into DetalleFactura 
-		set @resultado = 'Se gurado correctamente la factura'
+		set @resultado = 'Se guardo correctamente la factura'
 		COMMIT TRAN factura
 	End Try
 		
@@ -521,3 +583,4 @@ BEGIN
 	End Catch 
 
 End
+GO
