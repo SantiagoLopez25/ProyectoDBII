@@ -6,7 +6,9 @@ using System.Text;
 using System.Threading.Tasks;
 using DAL.Compra;
 using DAL.Venta;
+
 using static BLL.Venta.Modelos;
+
 
 namespace BLL.Venta
 {
@@ -36,6 +38,7 @@ namespace BLL.Venta
         {
             return _ventaDAL.ListarTiposPago();
         }
+
         public DataTable ListarSeriesFacturas()
         {
             return _ventaDAL.ListarSeriesFacturas();
@@ -101,6 +104,12 @@ namespace BLL.Venta
             }
 
             return table;
+
+
+        public DataSet DatosImprimir(int idFactura)
+        {
+            return _ventaDAL.DatosImprimir(idFactura);
+
         }
     }
 }

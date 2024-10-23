@@ -36,7 +36,6 @@ ORDER BY Nombre_TipoPago ASC
 GO
 
 
-
 -- Procedimiento para buscar Cliente por Nit
 CREATE PROC BuscarClientePorNit
 @nit varchar (8)
@@ -45,6 +44,7 @@ SELECT * FROM Cliente
 WHERE  NIT LIKE @nit;
 END;
 GO
+
 
 --Procedimiento para buscar Cliente por Nombre
 CREATE PROC BuscarClientePorNombre
@@ -89,6 +89,7 @@ INNER JOIN Cliente on Factura.id_Cliente = Cliente.id_Cliente
 INNER JOIN Usuario on Factura.id_Usuario = Usuario.id_Usuario
 INNER JOIN Entrega on Factura.id_Domicilio = Entrega.id_Entrega
 INNER JOIN DireccionEntrega on Entrega.id_DirecciónEntrega = DireccionEntrega.id_DirecciónEntrega
+
 ORDER BY 
 	Factura.fechaFactura DESC
 GO
@@ -495,7 +496,7 @@ BEGIN
 				)
 				BEGIN
 					set @resultado = 'No hay Stock suficiente'
-					
+
 				END
 			
 				ELSE
@@ -623,7 +624,7 @@ BEGIN
 
 
 					-- Select para imprimir datos de la factura
-					select id_Factura, id_Serie, fechaFactura, montoTotal, totalSinDescuento, Nombre_Cliente, DireccionFacturacion, Usuario	
+					/*select id_Factura, id_Serie, fechaFactura, montoTotal, totalSinDescuento, Nombre_Cliente, DireccionFacturacion, Usuario	
 					from Factura
 					inner join Cliente on Cliente.id_Cliente = Factura.id_Cliente 
 					inner join usuario on Factura.id_Usuario = usuario.id_Usuario
@@ -633,17 +634,18 @@ BEGIN
 					
 					select muebles.Nombre, d.cantidad, SUM(PrecioVenta*d.cantidad) as 'Total' from Muebles
 					inner join @detalle d on Muebles.id_mueble= d.id_Mueble
-					group by Muebles.Nombre, d.cantidad
+					group by Muebles.Nombre, d.cantidad*/
 
 					-- Actualizar inventario (siguiendo el concepto FIFO)
 					exec actualizarInventario @productos = @detalle
 
-					set @resultado = 'Se gurado correctamente la factura'
 
+				set @resultado = 'Se ha guardado correctamente la factura'
 				END
 
 		--insert into DetalleFactura 
-		
+
+
 		COMMIT TRAN factura
 	End Try
 		
@@ -654,6 +656,9 @@ BEGIN
 	End Catch 
 
 End
+
+
+GO
 
 
 -- Procedimiento para obtener los datos de la factura (para su impresión)
@@ -695,4 +700,7 @@ where pago.id_Factura = @idFactura;
 
 				
 		
+
 END
+
+

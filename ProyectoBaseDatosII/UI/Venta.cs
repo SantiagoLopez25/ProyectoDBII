@@ -9,8 +9,10 @@ using System.Threading.Tasks;
 using System.Windows.Automation.Text;
 using System.Windows.Forms;
 using BLL.Venta;
+
 using DAL.Venta;
 using static BLL.Venta.Modelos;
+
 
 
 namespace UI
@@ -21,9 +23,13 @@ namespace UI
         private int id_Mueble, cantidad_Mueble;
         private float precioVenta, TotalVenta;
         private string nombre_mueble;
+
         private List<PagoPorcentaje> listaPagosPorcentaje = new List<PagoPorcentaje>();
 
         private int idcliente;
+
+        private int idFactura;
+
         //Dictionary<int, string, int, float> detalle;
 
 
@@ -43,6 +49,7 @@ namespace UI
             comboBoxTipoPago.ValueMember = "id_TipoPago"; // El valor asociado (id)
         }
 
+
         private void CargarDireccionesEntrega(int id_Cliente)
         {
             DataTable direccionesEntrega = _serviceVenta.BuscarDireccionesEntregaCliente(id_Cliente);
@@ -51,6 +58,7 @@ namespace UI
             comboBoxDireccionesEntrega.DisplayMember = "Direccion";
             comboBoxDireccionesEntrega.ValueMember = "ID";
         }
+
         private void CargarTotal()
         {
             TotalVenta = 0;
@@ -59,11 +67,14 @@ namespace UI
             {
                 if (row.Cells["Total"].Value != null)
                 {
+
                     TotalVenta += float.Parse(row.Cells["Total"].Value.ToString());
                 }
             }
 
+
             lblTotal.Text = TotalVenta.ToString("C2");
+
         }
 
         private void ListarMuebles()
@@ -76,6 +87,7 @@ namespace UI
             dataGridViewVentas.DataSource = _serviceVenta.ListarVentas();
         }
 
+
         private void ListarSeriesFactura()
         {
             DataTable seriesFacturas = _serviceVenta.ListarSeriesFacturas();
@@ -84,12 +96,15 @@ namespace UI
             comboBoxSerieFactura.ValueMember = "id_Serie";
         }
 
+
         private void Venta_Load(object sender, EventArgs e)
         {
             groupBoxListar.Visible = true;
             groupBoxCrear.Visible = false;
             groupBoxAccionesExtra.Visible = false;
+
             LimpiarFormularioYListarVentas();
+
             ListarVentas();
         }
 
@@ -98,6 +113,7 @@ namespace UI
             groupBoxListar.Visible = false;
             groupBoxCrear.Visible = true;
             groupBoxAccionesExtra.Visible = false;
+
 
         }
 
@@ -110,26 +126,76 @@ namespace UI
             txtCorreo.Clear();
             txtTelefono.Clear();
             txtTelefonoReferencia.Clear();
+
         }
 
         private void btnEditarVenta_Click(object sender, EventArgs e)
         {
+
+            if (dataGridViewVentas.SelectedRows.Count > 0)
+            {
+                /*groupCrear.Hide();
+                groupEditar.Show();
+                btnMostrarCrear.Enabled = false;
+                _serviceVenta.EditarVenta(
+                Convert.ToInt32(dataGridViewVentaes.CurrentRow.Cells[0].Value),
+                txtVentaEditar.Text,
+                txtDireccionEditar.Text,
+                txtTelefonoEditar.Text,
+                txtTelExtraEditar.Text,
+                txtCorreoEditar.Text,
+                Boolean.Parse(lblEstado.Text)
+                );*/
+                MessageBox.Show("Editado correctamente");
+                //ListarVentaes();
+                ClearData();
+            }
+            else
+                MessageBox.Show("Debe seleccionar un registro a editar");
+
         }
 
         private void dataGridViewVentaes_SelectionChanged(object sender, EventArgs e)
         {
+
+
             if (dataGridViewVentas.SelectedRows.Count > 0)
             {
                 groupBoxAccionesExtra.Visible = true;
+
+                DataGridViewRow filaSeleccionada = dataGridViewVentas.SelectedRows[0];
+
+                 idFactura = Convert.ToInt32(filaSeleccionada.Cells[0].Value);
+
+               
+                
+              
+
+                /*groupCrear.Hide();
+                groupEditar.Show();
+                btnMostrarCrear.Enabled = false;
+                btnEditarVenta.Enabled = true;
+                btnEliminarVenta.Enabled = true;
+
+                DataGridViewRow selectedRow = dataGridViewVentas.SelectedRows[0];
+                txtVentaEditar.Text = (selectedRow.Cells[1].Value).ToString();
+                txtDireccionEditar.Text = (selectedRow.Cells[2].Value).ToString();
+                txtTelefonoEditar.Text = (selectedRow.Cells[3].Value).ToString();
+                txtTelExtraEditar.Text = (selectedRow.Cells[4].Value).ToString();
+                txtCorreoEditar.Text = (selectedRow.Cells[5].Value).ToString();
+                lblEstado.Text = (selectedRow.Cells[6].Value).ToString();*/
+
             }
             else
             {
                 groupBoxAccionesExtra.Visible = false;
+
             }
         }
 
         private void btnEliminarVenta_Click(object sender, EventArgs e)
         {
+
         }
 
         private void btnListarVentas_Click(object sender, EventArgs e)
@@ -166,7 +232,9 @@ namespace UI
 
         private void btnListarVentas_Click_1(object sender, EventArgs e)
         {
+
             LimpiarFormularioYListarVentas();
+
             groupBoxAgregarProductos.Visible = false;
             groupBoxCrear.Visible = false;
             groupBoxAccionesExtra.Visible = false;
@@ -180,7 +248,9 @@ namespace UI
             groupBoxAccionesExtra.Visible = false;
             groupBoxListar.Visible = false;
             CargarTiposPago();
+
             ListarSeriesFactura();
+
         }
 
         private void btnMostrarAgrProductos_Click(object sender, EventArgs e)
@@ -242,7 +312,9 @@ namespace UI
 
         private void btnCancelarVenta2_Click(object sender, EventArgs e)
         {
+
             LimpiarFormularioYListarVentas();
+
             groupBoxAgregarProductos.Visible = false;
             groupBoxCrear.Visible = false;
             groupBoxAccionesExtra.Visible = false;
@@ -253,6 +325,7 @@ namespace UI
         {
             string nit = txtNIT.Text;
 
+
             if (!string.IsNullOrEmpty(nit) && (nit != "CF"))
             {
                 DataTable clienteData = _serviceVenta.BuscarNit(nit);
@@ -262,15 +335,18 @@ namespace UI
                 {
                     DataRow row = clienteData.Rows[0];
                     idcliente = Convert.ToInt32(row["id_Cliente"]);
+
                     txtNombreCliente.Text = row["Nombre_Cliente"].ToString();
                     txtDireccionFacturacion.Text = row["DireccionFacturacion"].ToString();
                     txtCorreo.Text = row["Correo"].ToString();
                     txtTelefono.Text = row["Telefono"].ToString();
 
+
                     CargarDireccionesEntrega(idcliente);
 
                     txtNombreCliente.Enabled = false;
                     checkNuevaDirección.Checked = false;
+
                     txtDireccionFacturacion.Enabled = false;
                     txtCorreo.Enabled = false;
                     txtTelefono.Enabled = false;
@@ -278,6 +354,7 @@ namespace UI
                 else
                 {
                     MessageBox.Show("Cliente no encontrado.");
+
                     limpiarDatosCliente();
                     checkNuevaDirección.Checked = true;
                 }
@@ -291,11 +368,13 @@ namespace UI
                 txtCorreo.Enabled = true;
                 txtTelefono.Enabled = true;
             }
+
         }
 
         private void dataGridViewDetalle_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
             CargarTotal();
+
         }
 
         private void dataGridViewDetalle_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
@@ -708,6 +787,36 @@ namespace UI
                 limpiarDatosCliente();
 
             } 
+
+        private void btnImprimir_Click(object sender, EventArgs e)
+        {
+            DataSet dataSet;
+
+            
+
+            dataSet = _serviceVenta.DatosImprimir(idFactura);
+
+            dataSet.WriteXml("C:\\Users\\marco\\Downloads\\prueba.xml");
+
+            DataTable encabezado = dataSet.Tables[0];
+
+            string carpeta = @"..\..\..\..\..\facturas\";
+           
+           
+            string noFactura = encabezado.Rows[0]["id_Factura"].ToString();
+           
+            string nombreArchivo = carpeta+ "facutraNo"+noFactura  + ".PDF";
+
+            GenerarPDF pdf = new GenerarPDF();
+            pdf.ImprimirFacturaPDF(dataSet, nombreArchivo);
+
+
+        }
+
+        private void dataGridViewVentas_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+           
+
         }
     }
 }
