@@ -470,17 +470,15 @@ ALTER procedure [dbo].[GenerarFactura]
 @idTTipoPago1 int,
 @idTTipoPago2 int = null,
 @idTipoPago3 int = null,
-@porcentajePago1 decimal(4,1) = null, 
-@porcentajePago2 decimal(4,1) = null,
-@porcentajePago3 decimal(4,1) = null,
+@cantidad1 as decimal(10,2) = 0,
+@cantidad2 as decimal(10,2) = 0,
+@cantidad3 as decimal (10,2) =0,
 @id_Usuario int,
 @resultado varchar(200) OUTPUT
 AS
 BEGIN
 	declare @id_Entrega as int
-	declare @cantidad1 as decimal(10,2)
-	declare @cantidad2 as decimal(10,2)
-	declare @cantidad3 as decimal (10,2)
+	
 	set NOCOUNT ON
 	BEGIN TRAN factura
 		Begin Try
@@ -496,7 +494,7 @@ BEGIN
 				)
 				BEGIN
 					set @resultado = 'No hay Stock suficiente'
-
+					
 				END
 			
 				ELSE
@@ -567,7 +565,7 @@ BEGIN
 
 
 					--Métodos de pago
-					IF (@idTTipoPago2 is  null and @idTipoPago3 is null)
+					/*IF (@idTTipoPago2 is  null and @idTipoPago3 is null)
 						begin
 							set @cantidad1 = @totalDescuento
 							set @porcentajePago1 = 100
@@ -620,11 +618,30 @@ BEGIN
 							(@porcentajePago2, @cantidad2, @idTTipoPago2, @id_Factura, @serie),
 							(@porcentajePago3, @cantidad3, @idTipoPago3, @id_Factura, @serie)
 
-						END
+						END*/
+
+
+						if(@cantidad3!=0)
+						begin
+						insert into Pago (porcentaje, cantidad, id_TipoPago, id_Factura, id_Serie)
+							values (0, @cantidad3, @idTipoPago3, @id_Factura, @serie)
+						end
+
+						if(@cantidad2!=0)
+						begin
+						insert into Pago (porcentaje, cantidad, id_TipoPago, id_Factura, id_Serie)
+							values (0, @cantidad2, @idTTipoPago2, @id_Factura, @serie)
+						end
+
+						if(@cantidad1!=0)
+						begin
+						insert into Pago (porcentaje, cantidad, id_TipoPago, id_Factura, id_Serie)
+							values (0, @cantidad1, @idTTipoPago1, @id_Factura, @serie)
+						end
 
 
 					-- Select para imprimir datos de la factura
-					/*select id_Factura, id_Serie, fechaFactura, montoTotal, totalSinDescuento, Nombre_Cliente, DireccionFacturacion, Usuario	
+					select id_Factura, id_Serie, fechaFactura, montoTotal, totalSinDescuento, Nombre_Cliente, DireccionFacturacion, Usuario	
 					from Factura
 					inner join Cliente on Cliente.id_Cliente = Factura.id_Cliente 
 					inner join usuario on Factura.id_Usuario = usuario.id_Usuario
@@ -634,18 +651,17 @@ BEGIN
 					
 					select muebles.Nombre, d.cantidad, SUM(PrecioVenta*d.cantidad) as 'Total' from Muebles
 					inner join @detalle d on Muebles.id_mueble= d.id_Mueble
-					group by Muebles.Nombre, d.cantidad*/
+					group by Muebles.Nombre, d.cantidad
 
 					-- Actualizar inventario (siguiendo el concepto FIFO)
 					exec actualizarInventario @productos = @detalle
 
+					set @resultado = 'Se gurado correctamente la factura'
 
-				set @resultado = 'Se ha guardado correctamente la factura'
 				END
 
 		--insert into DetalleFactura 
-
-
+		
 		COMMIT TRAN factura
 	End Try
 		
@@ -656,10 +672,6 @@ BEGIN
 	End Catch 
 
 End
-
-
-GO
-
 
 -- Procedimiento para obtener los datos de la factura (para su impresión)
 USE [VentaMuebles]
