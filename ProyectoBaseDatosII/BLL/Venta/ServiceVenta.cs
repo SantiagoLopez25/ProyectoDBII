@@ -105,6 +105,7 @@ namespace BLL.Venta
 
             return table;
 
+        }
 
         public DataSet DatosImprimir(int idFactura)
         {

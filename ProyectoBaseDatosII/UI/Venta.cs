@@ -146,9 +146,9 @@ namespace UI
                 txtCorreoEditar.Text,
                 Boolean.Parse(lblEstado.Text)
                 );*/
-                MessageBox.Show("Editado correctamente");
+                //MessageBox.Show("Editado correctamente");
                 //ListarVentaes();
-                ClearData();
+                //ClearData();
             }
             else
                 MessageBox.Show("Debe seleccionar un registro a editar");
@@ -786,7 +786,8 @@ namespace UI
                 checkNuevaDirección.Checked = true;
                 limpiarDatosCliente();
 
-            } 
+            }
+        }
 
         private void btnImprimir_Click(object sender, EventArgs e)
         {
