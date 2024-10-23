@@ -376,7 +376,7 @@ namespace UI
            
             string noFactura = encabezado.Rows[0]["id_Factura"].ToString();
            
-            string nombreArchivo = carpeta+ "facutra"+noFactura  + ".PDF";
+            string nombreArchivo = carpeta+ "facutraNo"+noFactura  + ".PDF";
 
             GenerarPDF pdf = new GenerarPDF();
             pdf.ImprimirFacturaPDF(dataSet, nombreArchivo);
