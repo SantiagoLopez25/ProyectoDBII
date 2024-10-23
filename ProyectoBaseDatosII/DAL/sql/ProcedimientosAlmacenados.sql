@@ -451,7 +451,6 @@ BEGIN
 				)
 				BEGIN
 					set @resultado = 'No hay Stock suficiente'
-					Rollback TRAN factura
 				END
 			
 				ELSE
@@ -593,12 +592,10 @@ BEGIN
 					-- Actualizar inventario (siguiendo el concepto FIFO)
 					exec actualizarInventario @productos = @detalle
 
-
+				set @resultado = 'Se ha guardado correctamente la factura'
 				END
 
 		--insert into DetalleFactura 
-
-		set @resultado = 'Se ha guardado correctamente la factura'
 
 		COMMIT TRAN factura
 	End Try
