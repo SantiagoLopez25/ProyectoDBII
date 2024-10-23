@@ -148,7 +148,7 @@ namespace UI
                 );*/
                 MessageBox.Show("Editado correctamente");
                 //ListarVentaes();
-                //ClearData();
+                ClearData();
             }
             else
                 MessageBox.Show("Debe seleccionar un registro a editar");
@@ -165,11 +165,11 @@ namespace UI
 
                 DataGridViewRow filaSeleccionada = dataGridViewVentas.SelectedRows[0];
 
-                idFactura = Convert.ToInt32(filaSeleccionada.Cells[0].Value);
+                 idFactura = Convert.ToInt32(filaSeleccionada.Cells[0].Value);
 
-
-
-
+               
+                
+              
 
                 /*groupCrear.Hide();
                 groupEditar.Show();
@@ -547,7 +547,7 @@ namespace UI
                         {
                             Cantidad = Convert.ToInt32(row.Cells["cantidad"].Value),
                             IdMueble = Convert.ToInt32(row.Cells["ID"].Value)
-
+                           
                         };
                         detalles.Add(detalle);
                         //MessageBox.Show($"ID: {detalle.IdMueble}\nCantidad: {detalle.Cantidad}", "Detalle Agregado", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -585,8 +585,7 @@ namespace UI
                             FechaEntrega = fechaEntrega,
                             HoraEntrega = calcularHora()
                         };
-                    }
-                    else
+                    }else
                     {
                         direccionEntrega = new DireccionEntregaModel
                         {
@@ -598,7 +597,7 @@ namespace UI
                             HoraEntrega = calcularHora()
                         };
                     }
-
+                    
 
                     /*MessageBox.Show($"Dirección de Entrega:\nID: {direccionEntrega.IdDireccionEntrega}\nDescripción: {direccionEntrega.DescripcionEntrega}\nTeléfono Referencia: {direccionEntrega.TelefonoReferencia}\nFecha Entrega: {direccionEntrega.FechaEntrega}\nHora Entrega: {direccionEntrega.HoraEntrega}",
                     "Información de Dirección de Entrega", MessageBoxButtons.OK, MessageBoxIcon.Information);*/
@@ -787,43 +786,37 @@ namespace UI
                 checkNuevaDirección.Checked = true;
                 limpiarDatosCliente();
 
-            }
-        }
+            } 
 
         private void btnImprimir_Click(object sender, EventArgs e)
         {
-            
-        }
-
-        private void dataGridViewVentas_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-
-        }
-
-        private void btnImprimir_Click_1(object sender, EventArgs e)
-        {
             DataSet dataSet;
 
-
+            
 
             dataSet = _serviceVenta.DatosImprimir(idFactura);
 
-            //dataSet.WriteXml("C:\\Users\\marco\\Downloads\\prueba.xml");
+            dataSet.WriteXml("C:\\Users\\marco\\Downloads\\prueba.xml");
 
             DataTable encabezado = dataSet.Tables[0];
 
             string carpeta = @"..\..\..\..\..\facturas\";
-
-
+           
+           
             string noFactura = encabezado.Rows[0]["id_Factura"].ToString();
-
-            string nombreArchivo = carpeta + "facutraNo" + noFactura + ".PDF";
+           
+            string nombreArchivo = carpeta+ "facutraNo"+noFactura  + ".PDF";
 
             GenerarPDF pdf = new GenerarPDF();
             pdf.ImprimirFacturaPDF(dataSet, nombreArchivo);
 
-            
+
+        }
+
+        private void dataGridViewVentas_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+           
+
         }
     }
 }
