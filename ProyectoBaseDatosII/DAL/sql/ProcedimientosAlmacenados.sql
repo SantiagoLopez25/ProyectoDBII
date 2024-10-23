@@ -35,6 +35,7 @@ WHERE Estado = 1
 ORDER BY Nombre_TipoPago ASC
 GO
 
+
 -- Procedimiento para buscar Cliente por Nit
 CREATE PROC BuscarClientePorNit
 @nit varchar (8)
@@ -44,20 +45,51 @@ WHERE  NIT LIKE @nit;
 END;
 GO
 
+
+--Procedimiento para buscar Cliente por Nombre
+CREATE PROC BuscarClientePorNombre
+@nombre_cliente varchar (175)
+AS BEGIN
+SELECT * FROM CLIENTE
+WHERE Nombre_Cliente LIKE @nombre_cliente;
+END;
+GO
+
+--Procedimiento para buscar Direcciones de entrega por id_Cliente
+CREATE PROC BuscarDireccionesEntregaClientePorNombre
+    @nombre_cliente VARCHAR(200)
+AS
+BEGIN
+    -- Convertir el nombre de cliente a mayúsculas para la comparación
+    SELECT 
+        DireccionEntrega.id_DirecciónEntrega AS 'ID',
+        DireccionEntrega.Direccion
+    FROM 
+        DireccionEntrega
+    INNER JOIN 
+        Cliente ON DireccionEntrega.id_Cliente = Cliente.id_Cliente
+    WHERE 
+        UPPER(Cliente.Nombre_Cliente) = UPPER(@nombre_cliente);
+END
+GO
+
 -- Procedimiento para listar Ventas
 CREATE PROC ListarVentas
 AS
-SELECT 
+Select
 	Factura.id_Factura as 'ID',
 	Factura.fechaFactura as 'Fecha',
 	Factura.montoTotal as 'Total',
-	Cliente.Nombre_Cliente as 'Cliente',
+	Cliente.Nombre_Cliente as 'Compró',
 	Usuario.Usuario as 'Atendió',
-	DireccionEntrega.Direccion as 'Dirección Entrega'
-FROM Factura
+	DireccionEntrega.Direccion as 'Entrega'
+
+from Factura
 INNER JOIN Cliente on Factura.id_Cliente = Cliente.id_Cliente
 INNER JOIN Usuario on Factura.id_Usuario = Usuario.id_Usuario
-INNER JOIN DireccionEntrega on Factura.id_Domicilio = DireccionEntrega.id_DirecciónEntrega
+INNER JOIN Entrega on Factura.id_Domicilio = Entrega.id_Entrega
+INNER JOIN DireccionEntrega on Entrega.id_DirecciónEntrega = DireccionEntrega.id_DirecciónEntrega
+
 ORDER BY 
 	Factura.fechaFactura DESC
 GO
@@ -326,6 +358,12 @@ END;
 
 GO
 
+-- Procedimiento para buscar SerieFactura
+CREATE PROC ListarSeriesDeFactura
+AS
+Select id_Serie from SerieFactura
+ORDER BY fechaInicio ASC
+GO
 
 
 --Procedimiento almacenado para actualizar Stocks usando FIFO
@@ -407,16 +445,23 @@ GO
 
 -- Procedimiento almacenado para la facturación
 
-CREATE procedure [dbo].[GenerarFactura]
+USE [VentaMuebles]
+GO
+/****** Object:  StoredProcedure [dbo].[GenerarFactura]    Script Date: 23/10/2024 07:54:40 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+ALTER procedure [dbo].[GenerarFactura]
 @detalle udt_DetalleFactura READONLY, 
 @serie varchar(150),
-@id_cliente int = null,
+@id_cliente int = 0,
 @nombre_cliente varchar(200) = null,
 @direccion_Facturacion varchar(30) = null,
 @telefono varchar(10) = null,
 @correo varchar(50) = null,
 @nit varchar(8) = 'CF',
-@id_DireccionEntrega int = null,
+@id_DireccionEntrega int = 0,
 @direccionEntrega varchar(150) = null,
 @descripcionEntrega varchar(200),
 @telefonoReferencia varchar(8),
@@ -451,19 +496,21 @@ BEGIN
 				)
 				BEGIN
 					set @resultado = 'No hay Stock suficiente'
+
 				END
 			
 				ELSE
 				BEGIN 
 
-					IF (@id_cliente is null)
+					IF (@id_cliente = 0)
 					BEGIN 
+						IF (@nit = '') set @nit ='CF'
 						insert into Cliente (Nombre_Cliente, DireccionFacturacion, Telefono, Correo,Descuentos, NIT, Estado)
 						values (@nombre_cliente, @direccion_Facturacion, @telefono, @correo, 0, @nit, 1)
 						set @id_cliente = @@IDENTITY
 					END
 			
-					IF (@id_DireccionEntrega is null) 
+					IF (@id_DireccionEntrega = 0) 
 						BEGIN
 							insert into DireccionEntrega (Direccion, id_Cliente)
 							values (@direccionEntrega, @id_cliente)
@@ -592,10 +639,12 @@ BEGIN
 					-- Actualizar inventario (siguiendo el concepto FIFO)
 					exec actualizarInventario @productos = @detalle
 
+
 				set @resultado = 'Se ha guardado correctamente la factura'
 				END
 
 		--insert into DetalleFactura 
+
 
 		COMMIT TRAN factura
 	End Try
@@ -607,6 +656,7 @@ BEGIN
 	End Catch 
 
 End
+
 
 GO
 
@@ -650,8 +700,7 @@ where pago.id_Factura = @idFactura;
 
 				
 		
+
 END
-
-
 
 
