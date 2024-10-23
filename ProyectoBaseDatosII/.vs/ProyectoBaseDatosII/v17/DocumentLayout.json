@@ -3,64 +3,40 @@
   "WorkspaceRootPath": "C:\\Users\\marco\\Documents\\SextoSemestre\\Base de Datos II\\ProyectoBDII\\ProyectoDBII\\ProyectoBaseDatosII\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{9CC9B0DA-03EA-4515-BADC-E801E5CDB5C0}|UI\\UI.csproj|c:\\users\\marco\\documents\\sextosemestre\\base de datos ii\\proyectobdii\\proyectodbii\\proyectobasedatosii\\ui\\formlogueo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9CC9B0DA-03EA-4515-BADC-E801E5CDB5C0}|UI\\UI.csproj|solutionrelative:ui\\formlogueo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{9CC9B0DA-03EA-4515-BADC-E801E5CDB5C0}|UI\\UI.csproj|c:\\users\\marco\\documents\\sextosemestre\\base de datos ii\\proyectobdii\\proyectodbii\\proyectobasedatosii\\ui\\generarpdf.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9CC9B0DA-03EA-4515-BADC-E801E5CDB5C0}|UI\\UI.csproj|solutionrelative:ui\\generarpdf.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9CC9B0DA-03EA-4515-BADC-E801E5CDB5C0}|UI\\UI.csproj|c:\\users\\marco\\documents\\sextosemestre\\base de datos ii\\proyectobdii\\proyectodbii\\proyectobasedatosii\\ui\\formlogueo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{9CC9B0DA-03EA-4515-BADC-E801E5CDB5C0}|UI\\UI.csproj|solutionrelative:ui\\formlogueo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{9CC9B0DA-03EA-4515-BADC-E801E5CDB5C0}|UI\\UI.csproj|c:\\users\\marco\\documents\\sextosemestre\\base de datos ii\\proyectobdii\\proyectodbii\\proyectobasedatosii\\ui\\venta.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9CC9B0DA-03EA-4515-BADC-E801E5CDB5C0}|UI\\UI.csproj|solutionrelative:ui\\venta.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9CC9B0DA-03EA-4515-BADC-E801E5CDB5C0}|UI\\UI.csproj|c:\\users\\marco\\documents\\sextosemestre\\base de datos ii\\proyectobdii\\proyectodbii\\proyectobasedatosii\\ui\\menu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9CC9B0DA-03EA-4515-BADC-E801E5CDB5C0}|UI\\UI.csproj|solutionrelative:ui\\menu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{9CC9B0DA-03EA-4515-BADC-E801E5CDB5C0}|UI\\UI.csproj|C:\\Users\\marco\\Documents\\SextoSemestre\\Base de Datos II\\ProyectoBDII\\ProyectoDBII\\ProyectoBaseDatosII\\ui\\venta.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{9CC9B0DA-03EA-4515-BADC-E801E5CDB5C0}|UI\\UI.csproj|solutionrelative:ui\\venta.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9CC9B0DA-03EA-4515-BADC-E801E5CDB5C0}|UI\\UI.csproj|c:\\users\\marco\\documents\\sextosemestre\\base de datos ii\\proyectobdii\\proyectodbii\\proyectobasedatosii\\ui\\menu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{9CC9B0DA-03EA-4515-BADC-E801E5CDB5C0}|UI\\UI.csproj|solutionrelative:ui\\menu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{C518D096-44A4-4F1F-8D6A-5E02C7B00680}|DAL\\DAL.csproj|c:\\users\\marco\\documents\\sextosemestre\\base de datos ii\\proyectobdii\\proyectodbii\\proyectobasedatosii\\dal\\venta\\repositoryventa.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C518D096-44A4-4F1F-8D6A-5E02C7B00680}|DAL\\DAL.csproj|solutionrelative:dal\\venta\\repositoryventa.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9CC9B0DA-03EA-4515-BADC-E801E5CDB5C0}|UI\\UI.csproj|c:\\users\\marco\\documents\\sextosemestre\\base de datos ii\\proyectobdii\\proyectodbii\\proyectobasedatosii\\ui\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9CC9B0DA-03EA-4515-BADC-E801E5CDB5C0}|UI\\UI.csproj|solutionrelative:ui\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{8C1BF44D-1711-4907-A836-0B24C53B5B40}|BLL\\BLL.csproj|c:\\users\\marco\\documents\\sextosemestre\\base de datos ii\\proyectobdii\\proyectodbii\\proyectobasedatosii\\bll\\venta\\iserviceventa.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8C1BF44D-1711-4907-A836-0B24C53B5B40}|BLL\\BLL.csproj|solutionrelative:bll\\venta\\iserviceventa.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9CC9B0DA-03EA-4515-BADC-E801E5CDB5C0}|UI\\UI.csproj|c:\\users\\marco\\documents\\sextosemestre\\base de datos ii\\proyectobdii\\proyectodbii\\proyectobasedatosii\\ui\\menu.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9CC9B0DA-03EA-4515-BADC-E801E5CDB5C0}|UI\\UI.csproj|solutionrelative:ui\\menu.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{8C1BF44D-1711-4907-A836-0B24C53B5B40}|BLL\\BLL.csproj|c:\\users\\marco\\documents\\sextosemestre\\base de datos ii\\proyectobdii\\proyectodbii\\proyectobasedatosii\\bll\\venta\\serviceventa.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8C1BF44D-1711-4907-A836-0B24C53B5B40}|BLL\\BLL.csproj|solutionrelative:bll\\venta\\serviceventa.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9CC9B0DA-03EA-4515-BADC-E801E5CDB5C0}|UI\\UI.csproj|C:\\Users\\marco\\Documents\\SextoSemestre\\Base de Datos II\\ProyectoBDII\\ProyectoDBII\\ProyectoBaseDatosII\\ui\\formpermisos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{9CC9B0DA-03EA-4515-BADC-E801E5CDB5C0}|UI\\UI.csproj|solutionrelative:ui\\formpermisos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9CC9B0DA-03EA-4515-BADC-E801E5CDB5C0}|UI\\UI.csproj|C:\\Users\\marco\\Documents\\SextoSemestre\\Base de Datos II\\ProyectoBDII\\ProyectoDBII\\ProyectoBaseDatosII\\ui\\marca.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{9CC9B0DA-03EA-4515-BADC-E801E5CDB5C0}|UI\\UI.csproj|solutionrelative:ui\\marca.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8C1BF44D-1711-4907-A836-0B24C53B5B40}|BLL\\BLL.csproj|c:\\users\\marco\\documents\\sextosemestre\\base de datos ii\\proyectobdii\\proyectodbii\\proyectobasedatosii\\bll\\permisos\\ipermisosservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8C1BF44D-1711-4907-A836-0B24C53B5B40}|BLL\\BLL.csproj|solutionrelative:bll\\permisos\\ipermisosservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8C1BF44D-1711-4907-A836-0B24C53B5B40}|BLL\\BLL.csproj|c:\\users\\marco\\documents\\sextosemestre\\base de datos ii\\proyectobdii\\proyectodbii\\proyectobasedatosii\\bll\\permisos\\permisosservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8C1BF44D-1711-4907-A836-0B24C53B5B40}|BLL\\BLL.csproj|solutionrelative:bll\\permisos\\permisosservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8C1BF44D-1711-4907-A836-0B24C53B5B40}|BLL\\BLL.csproj|c:\\users\\marco\\documents\\sextosemestre\\base de datos ii\\proyectobdii\\proyectodbii\\proyectobasedatosii\\bll\\mueble\\servicemarca.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8C1BF44D-1711-4907-A836-0B24C53B5B40}|BLL\\BLL.csproj|solutionrelative:bll\\mueble\\servicemarca.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C518D096-44A4-4F1F-8D6A-5E02C7B00680}|DAL\\DAL.csproj|c:\\users\\marco\\documents\\sextosemestre\\base de datos ii\\proyectobdii\\proyectodbii\\proyectobasedatosii\\dal\\permisos\\irepositorypermisos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C518D096-44A4-4F1F-8D6A-5E02C7B00680}|DAL\\DAL.csproj|solutionrelative:dal\\permisos\\irepositorypermisos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C518D096-44A4-4F1F-8D6A-5E02C7B00680}|DAL\\DAL.csproj|c:\\users\\marco\\documents\\sextosemestre\\base de datos ii\\proyectobdii\\proyectodbii\\proyectobasedatosii\\dal\\permisos\\repositorypermisos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C518D096-44A4-4F1F-8D6A-5E02C7B00680}|DAL\\DAL.csproj|solutionrelative:dal\\permisos\\repositorypermisos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C518D096-44A4-4F1F-8D6A-5E02C7B00680}|DAL\\DAL.csproj|c:\\users\\marco\\documents\\sextosemestre\\base de datos ii\\proyectobdii\\proyectodbii\\proyectobasedatosii\\dal\\conexion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C518D096-44A4-4F1F-8D6A-5E02C7B00680}|DAL\\DAL.csproj|solutionrelative:dal\\conexion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{9CC9B0DA-03EA-4515-BADC-E801E5CDB5C0}|UI\\UI.csproj|c:\\users\\marco\\documents\\sextosemestre\\base de datos ii\\proyectobdii\\proyectodbii\\proyectobasedatosii\\ui\\formpermisos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{9CC9B0DA-03EA-4515-BADC-E801E5CDB5C0}|UI\\UI.csproj|solutionrelative:ui\\formpermisos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C518D096-44A4-4F1F-8D6A-5E02C7B00680}|DAL\\DAL.csproj|c:\\users\\marco\\documents\\sextosemestre\\base de datos ii\\proyectobdii\\proyectodbii\\proyectobasedatosii\\dal\\mueble\\repositorymarca.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C518D096-44A4-4F1F-8D6A-5E02C7B00680}|DAL\\DAL.csproj|solutionrelative:dal\\mueble\\repositorymarca.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{9CC9B0DA-03EA-4515-BADC-E801E5CDB5C0}|UI\\UI.csproj|C:\\Users\\marco\\Documents\\SextoSemestre\\Base de Datos II\\ProyectoBDII\\ProyectoDBII\\ProyectoBaseDatosII\\ui\\categoria.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{9CC9B0DA-03EA-4515-BADC-E801E5CDB5C0}|UI\\UI.csproj|solutionrelative:ui\\categoria.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     }
   ],
   "DocumentGroupContainers": [
@@ -70,190 +46,116 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "Menu.cs [Dise\u00F1o]",
-              "DocumentMoniker": "C:\\Users\\marco\\Documents\\SextoSemestre\\Base de Datos II\\ProyectoBDII\\ProyectoDBII\\ProyectoBaseDatosII\\UI\\Menu.cs",
-              "RelativeDocumentMoniker": "UI\\Menu.cs",
-              "ToolTip": "C:\\Users\\marco\\Documents\\SextoSemestre\\Base de Datos II\\ProyectoBDII\\ProyectoDBII\\ProyectoBaseDatosII\\UI\\Menu.cs [Dise\u00F1o]",
-              "RelativeToolTip": "UI\\Menu.cs [Dise\u00F1o]",
+              "Title": "RepositoryVenta.cs",
+              "DocumentMoniker": "C:\\Users\\marco\\Documents\\SextoSemestre\\Base de Datos II\\ProyectoBDII\\ProyectoDBII\\ProyectoBaseDatosII\\DAL\\Venta\\RepositoryVenta.cs",
+              "RelativeDocumentMoniker": "DAL\\Venta\\RepositoryVenta.cs",
+              "ToolTip": "C:\\Users\\marco\\Documents\\SextoSemestre\\Base de Datos II\\ProyectoBDII\\ProyectoDBII\\ProyectoBaseDatosII\\DAL\\Venta\\RepositoryVenta.cs",
+              "RelativeToolTip": "DAL\\Venta\\RepositoryVenta.cs",
+              "ViewState": "AgIAACkAAAAAAAAAAAA3wD0AAABDAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-18T00:49:58.227Z",
+              "WhenOpened": "2024-10-21T18:43:47.866Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Venta.cs [Dise\u00F1o]",
+              "DocumentMoniker": "C:\\Users\\marco\\Documents\\SextoSemestre\\Base de Datos II\\ProyectoBDII\\ProyectoDBII\\ProyectoBaseDatosII\\UI\\Venta.cs",
+              "RelativeDocumentMoniker": "UI\\Venta.cs",
+              "ToolTip": "C:\\Users\\marco\\Documents\\SextoSemestre\\Base de Datos II\\ProyectoBDII\\ProyectoDBII\\ProyectoBaseDatosII\\UI\\Venta.cs [Dise\u00F1o]",
+              "RelativeToolTip": "UI\\Venta.cs [Dise\u00F1o]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-22T01:11:42.302Z",
               "EditorCaption": " [Dise\u00F1o]"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "Menu.Designer.cs",
-              "DocumentMoniker": "C:\\Users\\marco\\Documents\\SextoSemestre\\Base de Datos II\\ProyectoBDII\\ProyectoDBII\\ProyectoBaseDatosII\\UI\\Menu.Designer.cs",
-              "RelativeDocumentMoniker": "UI\\Menu.Designer.cs",
-              "ToolTip": "C:\\Users\\marco\\Documents\\SextoSemestre\\Base de Datos II\\ProyectoBDII\\ProyectoDBII\\ProyectoBaseDatosII\\UI\\Menu.Designer.cs",
-              "RelativeToolTip": "UI\\Menu.Designer.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACoCAAALAAAAAAAAAA==",
+              "DocumentIndex": 4,
+              "Title": "IServiceVenta.cs",
+              "DocumentMoniker": "C:\\Users\\marco\\Documents\\SextoSemestre\\Base de Datos II\\ProyectoBDII\\ProyectoDBII\\ProyectoBaseDatosII\\BLL\\Venta\\IServiceVenta.cs",
+              "RelativeDocumentMoniker": "BLL\\Venta\\IServiceVenta.cs",
+              "ToolTip": "C:\\Users\\marco\\Documents\\SextoSemestre\\Base de Datos II\\ProyectoBDII\\ProyectoDBII\\ProyectoBaseDatosII\\BLL\\Venta\\IServiceVenta.cs",
+              "RelativeToolTip": "BLL\\Venta\\IServiceVenta.cs",
+              "ViewState": "AgIAABMAAAAAAAAAAAAAABAAAAArAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-18T00:40:21.942Z",
+              "WhenOpened": "2024-10-22T00:41:21.521Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "ServiceVenta.cs",
+              "DocumentMoniker": "C:\\Users\\marco\\Documents\\SextoSemestre\\Base de Datos II\\ProyectoBDII\\ProyectoDBII\\ProyectoBaseDatosII\\BLL\\Venta\\ServiceVenta.cs",
+              "RelativeDocumentMoniker": "BLL\\Venta\\ServiceVenta.cs",
+              "ToolTip": "C:\\Users\\marco\\Documents\\SextoSemestre\\Base de Datos II\\ProyectoBDII\\ProyectoDBII\\ProyectoBaseDatosII\\BLL\\Venta\\ServiceVenta.cs",
+              "RelativeToolTip": "BLL\\Venta\\ServiceVenta.cs",
+              "ViewState": "AgIAABgAAAAAAAAAAAAYwCkAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-22T00:40:26.194Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "GenerarPDF.cs",
+              "DocumentMoniker": "C:\\Users\\marco\\Documents\\SextoSemestre\\Base de Datos II\\ProyectoBDII\\ProyectoDBII\\ProyectoBaseDatosII\\UI\\GenerarPDF.cs",
+              "RelativeDocumentMoniker": "UI\\GenerarPDF.cs",
+              "ToolTip": "C:\\Users\\marco\\Documents\\SextoSemestre\\Base de Datos II\\ProyectoBDII\\ProyectoDBII\\ProyectoBaseDatosII\\UI\\GenerarPDF.cs*",
+              "RelativeToolTip": "UI\\GenerarPDF.cs*",
+              "ViewState": "AgIAADEAAAAAAAAAAAAwwDgAAAA4AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-22T00:53:19.105Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "FormLogueo.cs [Dise\u00F1o]",
-              "DocumentMoniker": "C:\\Users\\marco\\Documents\\SextoSemestre\\Base de Datos II\\ProyectoBDII\\ProyectoDBII\\ProyectoBaseDatosII\\UI\\FormLogueo.cs",
-              "RelativeDocumentMoniker": "UI\\FormLogueo.cs",
-              "ToolTip": "C:\\Users\\marco\\Documents\\SextoSemestre\\Base de Datos II\\ProyectoBDII\\ProyectoDBII\\ProyectoBaseDatosII\\UI\\FormLogueo.cs [Dise\u00F1o]*",
-              "RelativeToolTip": "UI\\FormLogueo.cs [Dise\u00F1o]*",
+              "Title": "Venta.cs",
+              "DocumentMoniker": "C:\\Users\\marco\\Documents\\SextoSemestre\\Base de Datos II\\ProyectoBDII\\ProyectoDBII\\ProyectoBaseDatosII\\UI\\Venta.cs",
+              "RelativeDocumentMoniker": "UI\\Venta.cs",
+              "ToolTip": "C:\\Users\\marco\\Documents\\SextoSemestre\\Base de Datos II\\ProyectoBDII\\ProyectoDBII\\ProyectoBaseDatosII\\UI\\Venta.cs",
+              "RelativeToolTip": "UI\\Venta.cs",
+              "ViewState": "AgIAAGYBAAAAAAAAAAAqwHUBAAAuAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-17T23:59:57.357Z",
-              "EditorCaption": " [Dise\u00F1o]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Menu.cs",
-              "DocumentMoniker": "C:\\Users\\marco\\Documents\\SextoSemestre\\Base de Datos II\\ProyectoBDII\\ProyectoDBII\\ProyectoBaseDatosII\\UI\\Menu.cs",
-              "RelativeDocumentMoniker": "UI\\Menu.cs",
-              "ToolTip": "C:\\Users\\marco\\Documents\\SextoSemestre\\Base de Datos II\\ProyectoBDII\\ProyectoDBII\\ProyectoBaseDatosII\\UI\\Menu.cs",
-              "RelativeToolTip": "UI\\Menu.cs",
-              "ViewState": "AgIAAAUAAAAAAAAAAAAAwBEAAAA7AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-17T23:45:48.198Z",
+              "WhenOpened": "2024-10-22T01:11:48.358Z",
               "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\marco\\Documents\\SextoSemestre\\Base de Datos II\\ProyectoBDII\\ProyectoDBII\\ProyectoBaseDatosII\\UI\\Program.cs",
-              "RelativeDocumentMoniker": "UI\\Program.cs",
-              "ToolTip": "C:\\Users\\marco\\Documents\\SextoSemestre\\Base de Datos II\\ProyectoBDII\\ProyectoDBII\\ProyectoBaseDatosII\\UI\\Program.cs",
-              "RelativeToolTip": "UI\\Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAhAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-16T01:05:46.744Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "FormLogueo.cs",
-              "DocumentMoniker": "C:\\Users\\marco\\Documents\\SextoSemestre\\Base de Datos II\\ProyectoBDII\\ProyectoDBII\\ProyectoBaseDatosII\\UI\\FormLogueo.cs",
-              "RelativeDocumentMoniker": "UI\\FormLogueo.cs",
-              "ToolTip": "C:\\Users\\marco\\Documents\\SextoSemestre\\Base de Datos II\\ProyectoBDII\\ProyectoDBII\\ProyectoBaseDatosII\\UI\\FormLogueo.cs*",
-              "RelativeToolTip": "UI\\FormLogueo.cs*",
-              "ViewState": "AgIAADEAAAAAAAAAAAAawD0AAAAwAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-17T23:59:59.55Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "Marca.cs [Dise\u00F1o]",
-              "DocumentMoniker": "C:\\Users\\marco\\Documents\\SextoSemestre\\Base de Datos II\\ProyectoBDII\\ProyectoDBII\\ProyectoBaseDatosII\\UI\\Marca.cs",
-              "RelativeDocumentMoniker": "UI\\Marca.cs",
-              "ToolTip": "C:\\Users\\marco\\Documents\\SextoSemestre\\Base de Datos II\\ProyectoBDII\\ProyectoDBII\\ProyectoBaseDatosII\\UI\\Marca.cs [Dise\u00F1o]",
-              "RelativeToolTip": "UI\\Marca.cs [Dise\u00F1o]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-16T01:05:38.507Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 6,
-              "Title": "FormPermisos.cs [Dise\u00F1o]",
-              "DocumentMoniker": "C:\\Users\\marco\\Documents\\SextoSemestre\\Base de Datos II\\ProyectoBDII\\ProyectoDBII\\ProyectoBaseDatosII\\UI\\FormPermisos.cs",
-              "RelativeDocumentMoniker": "UI\\FormPermisos.cs",
-              "ToolTip": "C:\\Users\\marco\\Documents\\SextoSemestre\\Base de Datos II\\ProyectoBDII\\ProyectoDBII\\ProyectoBaseDatosII\\UI\\FormPermisos.cs [Dise\u00F1o]",
-              "RelativeToolTip": "UI\\FormPermisos.cs [Dise\u00F1o]",
+              "Title": "Conexion.cs",
+              "DocumentMoniker": "C:\\Users\\marco\\Documents\\SextoSemestre\\Base de Datos II\\ProyectoBDII\\ProyectoDBII\\ProyectoBaseDatosII\\DAL\\Conexion.cs",
+              "RelativeDocumentMoniker": "DAL\\Conexion.cs",
+              "ToolTip": "C:\\Users\\marco\\Documents\\SextoSemestre\\Base de Datos II\\ProyectoBDII\\ProyectoDBII\\ProyectoBaseDatosII\\DAL\\Conexion.cs",
+              "RelativeToolTip": "DAL\\Conexion.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAABMAAAAmAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-16T01:03:32.031Z",
-              "EditorCaption": " [Dise\u00F1o]"
+              "WhenOpened": "2024-10-21T17:38:28.531Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "IPermisosService.cs",
-              "DocumentMoniker": "C:\\Users\\marco\\Documents\\SextoSemestre\\Base de Datos II\\ProyectoBDII\\ProyectoDBII\\ProyectoBaseDatosII\\BLL\\Permisos\\IPermisosService.cs",
-              "RelativeDocumentMoniker": "BLL\\Permisos\\IPermisosService.cs",
-              "ToolTip": "C:\\Users\\marco\\Documents\\SextoSemestre\\Base de Datos II\\ProyectoBDII\\ProyectoDBII\\ProyectoBaseDatosII\\BLL\\Permisos\\IPermisosService.cs",
-              "RelativeToolTip": "BLL\\Permisos\\IPermisosService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAARAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-16T01:03:09.716Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "PermisosService.cs",
-              "DocumentMoniker": "C:\\Users\\marco\\Documents\\SextoSemestre\\Base de Datos II\\ProyectoBDII\\ProyectoDBII\\ProyectoBaseDatosII\\BLL\\Permisos\\PermisosService.cs",
-              "RelativeDocumentMoniker": "BLL\\Permisos\\PermisosService.cs",
-              "ToolTip": "C:\\Users\\marco\\Documents\\SextoSemestre\\Base de Datos II\\ProyectoBDII\\ProyectoDBII\\ProyectoBaseDatosII\\BLL\\Permisos\\PermisosService.cs",
-              "RelativeToolTip": "BLL\\Permisos\\PermisosService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAuwAsAAAAiAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-16T01:02:55.122Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "ServiceMarca.cs",
-              "DocumentMoniker": "C:\\Users\\marco\\Documents\\SextoSemestre\\Base de Datos II\\ProyectoBDII\\ProyectoDBII\\ProyectoBaseDatosII\\BLL\\Mueble\\ServiceMarca.cs",
-              "RelativeDocumentMoniker": "BLL\\Mueble\\ServiceMarca.cs",
-              "ToolTip": "C:\\Users\\marco\\Documents\\SextoSemestre\\Base de Datos II\\ProyectoBDII\\ProyectoDBII\\ProyectoBaseDatosII\\BLL\\Mueble\\ServiceMarca.cs",
-              "RelativeToolTip": "BLL\\Mueble\\ServiceMarca.cs",
-              "ViewState": "AgIAAA4AAAAAAAAAAAAAwAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-16T01:02:42.55Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "IRepositoryPermisos.cs",
-              "DocumentMoniker": "C:\\Users\\marco\\Documents\\SextoSemestre\\Base de Datos II\\ProyectoBDII\\ProyectoDBII\\ProyectoBaseDatosII\\DAL\\Permisos\\IRepositoryPermisos.cs",
-              "RelativeDocumentMoniker": "DAL\\Permisos\\IRepositoryPermisos.cs",
-              "ToolTip": "C:\\Users\\marco\\Documents\\SextoSemestre\\Base de Datos II\\ProyectoBDII\\ProyectoDBII\\ProyectoBaseDatosII\\DAL\\Permisos\\IRepositoryPermisos.cs",
-              "RelativeToolTip": "DAL\\Permisos\\IRepositoryPermisos.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAARAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-16T00:46:15.877Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "RepositoryPermisos.cs",
-              "DocumentMoniker": "C:\\Users\\marco\\Documents\\SextoSemestre\\Base de Datos II\\ProyectoBDII\\ProyectoDBII\\ProyectoBaseDatosII\\DAL\\Permisos\\RepositoryPermisos.cs",
-              "RelativeDocumentMoniker": "DAL\\Permisos\\RepositoryPermisos.cs",
-              "ToolTip": "C:\\Users\\marco\\Documents\\SextoSemestre\\Base de Datos II\\ProyectoBDII\\ProyectoDBII\\ProyectoBaseDatosII\\DAL\\Permisos\\RepositoryPermisos.cs",
-              "RelativeToolTip": "DAL\\Permisos\\RepositoryPermisos.cs",
-              "ViewState": "AgIAABQAAAAAAAAAAAAUwBcAAAA+AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-16T00:42:59.82Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 7,
               "Title": "FormPermisos.cs",
               "DocumentMoniker": "C:\\Users\\marco\\Documents\\SextoSemestre\\Base de Datos II\\ProyectoBDII\\ProyectoDBII\\ProyectoBaseDatosII\\UI\\FormPermisos.cs",
               "RelativeDocumentMoniker": "UI\\FormPermisos.cs",
               "ToolTip": "C:\\Users\\marco\\Documents\\SextoSemestre\\Base de Datos II\\ProyectoBDII\\ProyectoDBII\\ProyectoBaseDatosII\\UI\\FormPermisos.cs",
               "RelativeToolTip": "UI\\FormPermisos.cs",
-              "ViewState": "AgIAABcAAAAAAAAAAAA0wDAAAAAMAAAAAAAAAA==",
+              "ViewState": "AgIAACgAAAAAAAAAAAAkwD0AAABlAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-16T01:03:33.861Z"
+              "WhenOpened": "2024-10-22T02:20:25.794Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
-              "Title": "RepositoryMarca.cs",
-              "DocumentMoniker": "C:\\Users\\marco\\Documents\\SextoSemestre\\Base de Datos II\\ProyectoBDII\\ProyectoDBII\\ProyectoBaseDatosII\\DAL\\Mueble\\RepositoryMarca.cs",
-              "RelativeDocumentMoniker": "DAL\\Mueble\\RepositoryMarca.cs",
-              "ToolTip": "C:\\Users\\marco\\Documents\\SextoSemestre\\Base de Datos II\\ProyectoBDII\\ProyectoDBII\\ProyectoBaseDatosII\\DAL\\Mueble\\RepositoryMarca.cs",
-              "RelativeToolTip": "DAL\\Mueble\\RepositoryMarca.cs",
-              "ViewState": "AgIAAA4AAAAAAAAAAAAAwB0AAABNAAAAAAAAAA==",
+              "DocumentIndex": 8,
+              "Title": "Categoria.cs [Dise\u00F1o]",
+              "DocumentMoniker": "C:\\Users\\marco\\Documents\\SextoSemestre\\Base de Datos II\\ProyectoBDII\\ProyectoDBII\\ProyectoBaseDatosII\\UI\\Categoria.cs",
+              "RelativeDocumentMoniker": "UI\\Categoria.cs",
+              "ToolTip": "C:\\Users\\marco\\Documents\\SextoSemestre\\Base de Datos II\\ProyectoBDII\\ProyectoDBII\\ProyectoBaseDatosII\\UI\\Categoria.cs [Dise\u00F1o]",
+              "RelativeToolTip": "UI\\Categoria.cs [Dise\u00F1o]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-16T00:42:57.934Z"
+              "WhenOpened": "2024-10-21T17:37:32.765Z"
             }
           ]
         }

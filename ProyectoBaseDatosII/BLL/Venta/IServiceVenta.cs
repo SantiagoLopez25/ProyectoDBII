@@ -13,5 +13,7 @@ namespace BLL.Venta
         DataTable ListarVentas();
         DataTable BuscarNit(string nit);
         DataTable ListarTiposPago();
+
+        DataSet DatosImprimir(int idFactura);
     }
 }

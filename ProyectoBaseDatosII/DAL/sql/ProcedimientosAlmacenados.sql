@@ -578,7 +578,7 @@ BEGIN
 
 
 					-- Select para imprimir datos de la factura
-					select id_Factura, id_Serie, fechaFactura, montoTotal, totalSinDescuento, Nombre_Cliente, DireccionFacturacion, Usuario	
+					/*select id_Factura, id_Serie, fechaFactura, montoTotal, totalSinDescuento, Nombre_Cliente, DireccionFacturacion, Usuario	
 					from Factura
 					inner join Cliente on Cliente.id_Cliente = Factura.id_Cliente 
 					inner join usuario on Factura.id_Usuario = usuario.id_Usuario
@@ -588,7 +588,7 @@ BEGIN
 					
 					select muebles.Nombre, d.cantidad, SUM(PrecioVenta*d.cantidad) as 'Total' from Muebles
 					inner join @detalle d on Muebles.id_mueble= d.id_Mueble
-					group by Muebles.Nombre, d.cantidad
+					group by Muebles.Nombre, d.cantidad*/
 
 					-- Actualizar inventario (siguiendo el concepto FIFO)
 					exec actualizarInventario @productos = @detalle
@@ -612,4 +612,49 @@ BEGIN
 End
 
 GO
+
+
+-- Procedimiento para obtener los datos de la factura (para su impresión)
+USE [VentaMuebles]
+GO
+/****** Object:  StoredProcedure [dbo].[datosFactura]    Script Date: 22/10/2024 17:29:34 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE procedure [dbo].[datosFactura]
+@idFactura int
+AS
+BEGIN
+select id_Factura, id_Serie, fechaFactura, montoTotal, totalSinDescuento, Nombre_cliente, 
+DireccionFacturacion, nit, Nombre from Factura inner join Cliente on Factura.id_Cliente = Cliente.id_Cliente 
+inner join usuario on Factura.id_Usuario = Usuario.id_Usuario inner join Empleado on Usuario.id_Empleado = Empleado.id_Empleado
+where id_Factura = @idFactura;
+
+
+
+
+
+
+select marca, nombre, modelo, DetalleFactura.cantidadMuebles as 'Cantidad', SUM(muebles.PrecioVenta*cantidadMuebles) as 'Total' from Muebles 
+		inner join DetalleFactura on DetalleFactura.id_mueble = Muebles.id_mueble inner join Modelo on Muebles.id_Modelo = Modelo.id_Modelo
+		inner join Marca on Modelo.id_Marca = marca.id_Marca
+
+		where DetalleFactura.id_Factura = @idFactura
+		group by nombre, cantidadMuebles, marca, modelo
+
+
+
+
+select  Nombre_TipoPago, cantidad from TipoPago inner join Pago on TipoPago.id_TipoPago = Pago.id_TipoPago
+where pago.id_Factura = @idFactura;
+
+
+
+				
+		
+END
+
+
+
 
