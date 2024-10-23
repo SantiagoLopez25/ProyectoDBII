@@ -28,8 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
+            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             txtNIT = new TextBox();
             label1 = new Label();
             panelCreate = new Panel();
@@ -39,8 +43,6 @@
             btnEliminar = new FontAwesome.Sharp.IconButton();
             btnEditar = new FontAwesome.Sharp.IconButton();
             btnImprimir = new FontAwesome.Sharp.IconButton();
-            groupBoxListar = new Panel();
-            dataGridViewVentas = new DataGridView();
             groupBoxAgregarProductos = new GroupBox();
             btnEliminarMueble = new FontAwesome.Sharp.IconButton();
             btnAgregarMueble = new FontAwesome.Sharp.IconButton();
@@ -56,10 +58,18 @@
             Cantidad = new DataGridViewTextBoxColumn();
             Total = new DataGridViewTextBoxColumn();
             groupBoxCrear = new GroupBox();
+            label16 = new Label();
+            comboBoxSerieFactura = new ComboBox();
+            lblPendientePago = new Label();
+            label17 = new Label();
+            btnEliminarTipoPago = new Button();
             btnAgregarTipoPago = new Button();
             btnCancelarVenta = new FontAwesome.Sharp.IconButton();
             btnCompletarVenta = new FontAwesome.Sharp.IconButton();
             dataGridViewPagos = new DataGridView();
+            idTipoPago = new DataGridViewTextBoxColumn();
+            nombreTipoPago = new DataGridViewTextBoxColumn();
+            montoTipoPago = new DataGridViewTextBoxColumn();
             label20 = new Label();
             label19 = new Label();
             txtMontoPagar = new TextBox();
@@ -93,15 +103,17 @@
             label4 = new Label();
             comboBoxDireccionesEntrega = new ComboBox();
             txtNuevaDirección = new TextBox();
+            groupBoxListar = new Panel();
+            dataGridViewVentas = new DataGridView();
             panelCreate.SuspendLayout();
             groupBoxAccionesExtra.SuspendLayout();
-            groupBoxListar.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridViewVentas).BeginInit();
             groupBoxAgregarProductos.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridViewProductos).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridViewDetalle).BeginInit();
             groupBoxCrear.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridViewPagos).BeginInit();
+            groupBoxListar.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridViewVentas).BeginInit();
             SuspendLayout();
             // 
             // txtNIT
@@ -132,14 +144,14 @@
             panelCreate.Controls.Add(btnMostrarAgregar);
             panelCreate.Controls.Add(btnListarVentas);
             panelCreate.Controls.Add(groupBoxAccionesExtra);
+            panelCreate.Controls.Add(groupBoxCrear);
             panelCreate.Controls.Add(groupBoxListar);
             panelCreate.Controls.Add(groupBoxAgregarProductos);
-            panelCreate.Controls.Add(groupBoxCrear);
             panelCreate.Dock = DockStyle.Fill;
             panelCreate.Location = new Point(0, 0);
             panelCreate.Margin = new Padding(0);
             panelCreate.Name = "panelCreate";
-            panelCreate.Size = new Size(1257, 565);
+            panelCreate.Size = new Size(1257, 622);
             panelCreate.TabIndex = 2;
             // 
             // btnMostrarAgregar
@@ -230,36 +242,6 @@
             btnImprimir.TextAlign = ContentAlignment.MiddleRight;
             btnImprimir.UseVisualStyleBackColor = true;
             // 
-            // groupBoxListar
-            // 
-            groupBoxListar.Controls.Add(dataGridViewVentas);
-            groupBoxListar.Location = new Point(15, 74);
-            groupBoxListar.Name = "groupBoxListar";
-            groupBoxListar.Size = new Size(1233, 469);
-            groupBoxListar.TabIndex = 20;
-            // 
-            // dataGridViewVentas
-            // 
-            dataGridViewVentas.AllowUserToAddRows = false;
-            dataGridViewVentas.AllowUserToDeleteRows = false;
-            dataGridViewVentas.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
-            dataGridViewVentas.BackgroundColor = Color.FromArgb(32, 30, 45);
-            dataGridViewVentas.BorderStyle = BorderStyle.None;
-            dataGridViewVentas.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-            dataGridViewVentas.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridViewVentas.ColumnHeadersHeight = 29;
-            dataGridViewVentas.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridViewVentas.EnableHeadersVisualStyles = false;
-            dataGridViewVentas.Location = new Point(12, 10);
-            dataGridViewVentas.Margin = new Padding(12, 10, 12, 10);
-            dataGridViewVentas.Name = "dataGridViewVentas";
-            dataGridViewVentas.ReadOnly = true;
-            dataGridViewVentas.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
-            dataGridViewVentas.RowHeadersWidth = 51;
-            dataGridViewVentas.Size = new Size(1206, 459);
-            dataGridViewVentas.TabIndex = 3;
-            dataGridViewVentas.SelectionChanged += dataGridViewVentaes_SelectionChanged;
-            // 
             // groupBoxAgregarProductos
             // 
             groupBoxAgregarProductos.Controls.Add(btnEliminarMueble);
@@ -274,7 +256,7 @@
             groupBoxAgregarProductos.Location = new Point(15, 74);
             groupBoxAgregarProductos.Margin = new Padding(0);
             groupBoxAgregarProductos.Name = "groupBoxAgregarProductos";
-            groupBoxAgregarProductos.Size = new Size(1233, 482);
+            groupBoxAgregarProductos.Size = new Size(1233, 536);
             groupBoxAgregarProductos.TabIndex = 39;
             groupBoxAgregarProductos.TabStop = false;
             groupBoxAgregarProductos.Visible = false;
@@ -286,7 +268,7 @@
             btnEliminarMueble.IconFont = FontAwesome.Sharp.IconFont.Auto;
             btnEliminarMueble.IconSize = 30;
             btnEliminarMueble.ImageAlign = ContentAlignment.MiddleLeft;
-            btnEliminarMueble.Location = new Point(554, 304);
+            btnEliminarMueble.Location = new Point(565, 340);
             btnEliminarMueble.Name = "btnEliminarMueble";
             btnEliminarMueble.Size = new Size(132, 33);
             btnEliminarMueble.TabIndex = 57;
@@ -302,7 +284,7 @@
             btnAgregarMueble.IconFont = FontAwesome.Sharp.IconFont.Auto;
             btnAgregarMueble.IconSize = 30;
             btnAgregarMueble.ImageAlign = ContentAlignment.MiddleLeft;
-            btnAgregarMueble.Location = new Point(557, 118);
+            btnAgregarMueble.Location = new Point(568, 154);
             btnAgregarMueble.Name = "btnAgregarMueble";
             btnAgregarMueble.Size = new Size(132, 33);
             btnAgregarMueble.TabIndex = 56;
@@ -318,27 +300,27 @@
             dataGridViewProductos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
             dataGridViewProductos.BackgroundColor = Color.FromArgb(32, 30, 45);
             dataGridViewProductos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = SystemColors.Window;
-            dataGridViewCellStyle1.Font = new Font("Microsoft Sans Serif", 7.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle1.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.False;
-            dataGridViewProductos.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = SystemColors.Window;
+            dataGridViewCellStyle5.Font = new Font("Microsoft Sans Serif", 7.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle5.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle5.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.False;
+            dataGridViewProductos.DefaultCellStyle = dataGridViewCellStyle5;
             dataGridViewProductos.Location = new Point(10, 93);
             dataGridViewProductos.Name = "dataGridViewProductos";
             dataGridViewProductos.ReadOnly = true;
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = SystemColors.Control;
-            dataGridViewCellStyle2.Font = new Font("Microsoft Sans Serif", 7.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle2.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
-            dataGridViewProductos.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = SystemColors.Control;
+            dataGridViewCellStyle6.Font = new Font("Microsoft Sans Serif", 7.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle6.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle6.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.True;
+            dataGridViewProductos.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
             dataGridViewProductos.RowHeadersWidth = 51;
-            dataGridViewProductos.Size = new Size(529, 293);
+            dataGridViewProductos.Size = new Size(529, 339);
             dataGridViewProductos.TabIndex = 55;
             dataGridViewProductos.SelectionChanged += dataGridViewProductos_SelectionChanged;
             // 
@@ -350,7 +332,7 @@
             btnCancelarVenta2.IconFont = FontAwesome.Sharp.IconFont.Auto;
             btnCancelarVenta2.IconSize = 30;
             btnCancelarVenta2.ImageAlign = ContentAlignment.MiddleLeft;
-            btnCancelarVenta2.Location = new Point(1081, 430);
+            btnCancelarVenta2.Location = new Point(1081, 475);
             btnCancelarVenta2.Name = "btnCancelarVenta2";
             btnCancelarVenta2.Size = new Size(137, 33);
             btnCancelarVenta2.TabIndex = 54;
@@ -362,7 +344,7 @@
             // txtCantidad
             // 
             txtCantidad.Font = new Font("Microsoft Sans Serif", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtCantidad.Location = new Point(649, 157);
+            txtCantidad.Location = new Point(660, 193);
             txtCantidad.Name = "txtCantidad";
             txtCantidad.Size = new Size(39, 28);
             txtCantidad.TabIndex = 43;
@@ -375,7 +357,7 @@
             label22.FlatStyle = FlatStyle.Flat;
             label22.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label22.ForeColor = Color.Gainsboro;
-            label22.Location = new Point(554, 162);
+            label22.Location = new Point(565, 198);
             label22.Name = "label22";
             label22.Size = new Size(89, 20);
             label22.TabIndex = 42;
@@ -419,7 +401,7 @@
             dataGridViewDetalle.Name = "dataGridViewDetalle";
             dataGridViewDetalle.ReadOnly = true;
             dataGridViewDetalle.RowHeadersWidth = 51;
-            dataGridViewDetalle.Size = new Size(504, 293);
+            dataGridViewDetalle.Size = new Size(504, 331);
             dataGridViewDetalle.TabIndex = 34;
             dataGridViewDetalle.CellValueChanged += dataGridViewDetalle_CellValueChanged;
             dataGridViewDetalle.RowsAdded += dataGridViewDetalle_RowsAdded;
@@ -460,6 +442,11 @@
             // 
             // groupBoxCrear
             // 
+            groupBoxCrear.Controls.Add(label16);
+            groupBoxCrear.Controls.Add(comboBoxSerieFactura);
+            groupBoxCrear.Controls.Add(lblPendientePago);
+            groupBoxCrear.Controls.Add(label17);
+            groupBoxCrear.Controls.Add(btnEliminarTipoPago);
             groupBoxCrear.Controls.Add(btnAgregarTipoPago);
             groupBoxCrear.Controls.Add(btnCancelarVenta);
             groupBoxCrear.Controls.Add(btnCompletarVenta);
@@ -503,22 +490,84 @@
             groupBoxCrear.Location = new Point(15, 74);
             groupBoxCrear.Margin = new Padding(0);
             groupBoxCrear.Name = "groupBoxCrear";
-            groupBoxCrear.Size = new Size(1233, 482);
+            groupBoxCrear.Size = new Size(1233, 539);
             groupBoxCrear.TabIndex = 18;
             groupBoxCrear.TabStop = false;
             groupBoxCrear.Visible = false;
+            // 
+            // label16
+            // 
+            label16.AutoSize = true;
+            label16.BackColor = Color.FromArgb(32, 30, 45);
+            label16.FlatStyle = FlatStyle.Flat;
+            label16.Font = new Font("Microsoft Sans Serif", 10F);
+            label16.ForeColor = Color.Gainsboro;
+            label16.Location = new Point(352, 188);
+            label16.Name = "label16";
+            label16.Size = new Size(115, 20);
+            label16.TabIndex = 59;
+            label16.Text = "Serie Factura:";
+            // 
+            // comboBoxSerieFactura
+            // 
+            comboBoxSerieFactura.FormattingEnabled = true;
+            comboBoxSerieFactura.Items.AddRange(new object[] { "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18" });
+            comboBoxSerieFactura.Location = new Point(473, 185);
+            comboBoxSerieFactura.Name = "comboBoxSerieFactura";
+            comboBoxSerieFactura.Size = new Size(116, 28);
+            comboBoxSerieFactura.TabIndex = 58;
+            // 
+            // lblPendientePago
+            // 
+            lblPendientePago.AutoSize = true;
+            lblPendientePago.BackColor = Color.FromArgb(32, 30, 45);
+            lblPendientePago.FlatStyle = FlatStyle.Flat;
+            lblPendientePago.Font = new Font("Microsoft Sans Serif", 10F);
+            lblPendientePago.ForeColor = Color.Gainsboro;
+            lblPendientePago.Location = new Point(450, 474);
+            lblPendientePago.Name = "lblPendientePago";
+            lblPendientePago.Size = new Size(72, 20);
+            lblPendientePago.TabIndex = 57;
+            lblPendientePago.Text = "cantidad";
+            // 
+            // label17
+            // 
+            label17.AutoSize = true;
+            label17.BackColor = Color.FromArgb(32, 30, 45);
+            label17.FlatStyle = FlatStyle.Flat;
+            label17.Font = new Font("Microsoft Sans Serif", 10F);
+            label17.ForeColor = Color.Gainsboro;
+            label17.Location = new Point(337, 474);
+            label17.Name = "label17";
+            label17.Size = new Size(86, 20);
+            label17.TabIndex = 56;
+            label17.Text = "PAGADO:";
+            // 
+            // btnEliminarTipoPago
+            // 
+            btnEliminarTipoPago.BackColor = Color.WhiteSmoke;
+            btnEliminarTipoPago.ForeColor = Color.FromArgb(32, 30, 45);
+            btnEliminarTipoPago.Location = new Point(115, 456);
+            btnEliminarTipoPago.Margin = new Padding(0);
+            btnEliminarTipoPago.Name = "btnEliminarTipoPago";
+            btnEliminarTipoPago.Size = new Size(94, 29);
+            btnEliminarTipoPago.TabIndex = 55;
+            btnEliminarTipoPago.Text = "Eliminar";
+            btnEliminarTipoPago.UseVisualStyleBackColor = false;
+            btnEliminarTipoPago.Click += btnEliminarTipoPago_Click;
             // 
             // btnAgregarTipoPago
             // 
             btnAgregarTipoPago.BackColor = Color.WhiteSmoke;
             btnAgregarTipoPago.ForeColor = Color.FromArgb(32, 30, 45);
-            btnAgregarTipoPago.Location = new Point(125, 408);
+            btnAgregarTipoPago.Location = new Point(115, 416);
             btnAgregarTipoPago.Margin = new Padding(0);
             btnAgregarTipoPago.Name = "btnAgregarTipoPago";
             btnAgregarTipoPago.Size = new Size(94, 29);
             btnAgregarTipoPago.TabIndex = 54;
             btnAgregarTipoPago.Text = "Agregar";
             btnAgregarTipoPago.UseVisualStyleBackColor = false;
+            btnAgregarTipoPago.Click += btnAgregarTipoPago_Click;
             // 
             // btnCancelarVenta
             // 
@@ -535,6 +584,7 @@
             btnCancelarVenta.Text = "CANCELAR";
             btnCancelarVenta.TextAlign = ContentAlignment.MiddleRight;
             btnCancelarVenta.UseVisualStyleBackColor = true;
+            btnCancelarVenta.Click += btnCancelarVenta_Click;
             // 
             // btnCompletarVenta
             // 
@@ -551,16 +601,76 @@
             btnCompletarVenta.Text = "GUARDAR";
             btnCompletarVenta.TextAlign = ContentAlignment.MiddleRight;
             btnCompletarVenta.UseVisualStyleBackColor = true;
+            btnCompletarVenta.Click += btnCompletarVenta_Click;
             // 
             // dataGridViewPagos
             // 
-            dataGridViewPagos.BackgroundColor = Color.FromArgb(32, 30, 45);
+            dataGridViewPagos.AllowUserToAddRows = false;
+            dataGridViewPagos.AllowUserToDeleteRows = false;
+            dataGridViewCellStyle1.BackColor = Color.FromArgb(32, 30, 45);
+            dataGridViewCellStyle1.Font = new Font("Microsoft Sans Serif", 6F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle1.ForeColor = Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(32, 30, 45);
+            dataGridViewCellStyle1.SelectionForeColor = Color.White;
+            dataGridViewPagos.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewPagos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
+            dataGridViewPagos.BackgroundColor = Color.FromArgb(64, 64, 64);
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = Color.FromArgb(32, 30, 45);
+            dataGridViewCellStyle2.Font = new Font("Microsoft Sans Serif", 7.20000029F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle2.ForeColor = Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
+            dataGridViewPagos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             dataGridViewPagos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewPagos.Location = new Point(281, 310);
+            dataGridViewPagos.Columns.AddRange(new DataGridViewColumn[] { idTipoPago, nombreTipoPago, montoTipoPago });
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = Color.FromArgb(32, 30, 45);
+            dataGridViewCellStyle3.Font = new Font("Microsoft Sans Serif", 6F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle3.ForeColor = Color.Transparent;
+            dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
+            dataGridViewPagos.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewPagos.GridColor = Color.FromArgb(32, 30, 45);
+            dataGridViewPagos.Location = new Point(283, 267);
             dataGridViewPagos.Name = "dataGridViewPagos";
+            dataGridViewPagos.ReadOnly = true;
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = Color.FromArgb(32, 30, 45);
+            dataGridViewCellStyle4.Font = new Font("Microsoft Sans Serif", 10F);
+            dataGridViewCellStyle4.ForeColor = Color.White;
+            dataGridViewCellStyle4.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
+            dataGridViewPagos.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
             dataGridViewPagos.RowHeadersWidth = 51;
-            dataGridViewPagos.Size = new Size(248, 87);
+            dataGridViewPagos.Size = new Size(304, 148);
             dataGridViewPagos.TabIndex = 51;
+            // 
+            // idTipoPago
+            // 
+            idTipoPago.HeaderText = "ID";
+            idTipoPago.MinimumWidth = 6;
+            idTipoPago.Name = "idTipoPago";
+            idTipoPago.ReadOnly = true;
+            idTipoPago.Width = 49;
+            // 
+            // nombreTipoPago
+            // 
+            nombreTipoPago.HeaderText = "Tipo Pago";
+            nombreTipoPago.MinimumWidth = 6;
+            nombreTipoPago.Name = "nombreTipoPago";
+            nombreTipoPago.ReadOnly = true;
+            // 
+            // montoTipoPago
+            // 
+            montoTipoPago.HeaderText = "Monto";
+            montoTipoPago.MinimumWidth = 6;
+            montoTipoPago.Name = "montoTipoPago";
+            montoTipoPago.ReadOnly = true;
+            montoTipoPago.Width = 73;
             // 
             // label20
             // 
@@ -569,7 +679,7 @@
             label20.FlatStyle = FlatStyle.Flat;
             label20.Font = new Font("Microsoft Sans Serif", 10F);
             label20.ForeColor = Color.Gainsboro;
-            label20.Location = new Point(47, 366);
+            label20.Location = new Point(47, 379);
             label20.Name = "label20";
             label20.Size = new Size(52, 20);
             label20.TabIndex = 50;
@@ -582,7 +692,7 @@
             label19.FlatStyle = FlatStyle.Flat;
             label19.Font = new Font("Microsoft Sans Serif", 10F);
             label19.ForeColor = Color.Gainsboro;
-            label19.Location = new Point(23, 317);
+            label19.Location = new Point(23, 330);
             label19.Name = "label19";
             label19.Size = new Size(76, 20);
             label19.TabIndex = 49;
@@ -591,7 +701,7 @@
             // txtMontoPagar
             // 
             txtMontoPagar.Font = new Font("Microsoft Sans Serif", 9F);
-            txtMontoPagar.Location = new Point(105, 315);
+            txtMontoPagar.Location = new Point(105, 328);
             txtMontoPagar.Name = "txtMontoPagar";
             txtMontoPagar.Size = new Size(148, 24);
             txtMontoPagar.TabIndex = 48;
@@ -599,7 +709,7 @@
             // comboBoxTipoPago
             // 
             comboBoxTipoPago.FormattingEnabled = true;
-            comboBoxTipoPago.Location = new Point(105, 358);
+            comboBoxTipoPago.Location = new Point(105, 371);
             comboBoxTipoPago.Name = "comboBoxTipoPago";
             comboBoxTipoPago.Size = new Size(148, 28);
             comboBoxTipoPago.TabIndex = 47;
@@ -611,7 +721,7 @@
             label18.FlatStyle = FlatStyle.Flat;
             label18.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Underline, GraphicsUnit.Point, 0);
             label18.ForeColor = Color.Gainsboro;
-            label18.Location = new Point(179, 270);
+            label18.Location = new Point(196, 244);
             label18.Name = "label18";
             label18.Size = new Size(162, 20);
             label18.TabIndex = 46;
@@ -624,7 +734,7 @@
             lblDescuento.FlatStyle = FlatStyle.Flat;
             lblDescuento.Font = new Font("Microsoft Sans Serif", 10F);
             lblDescuento.ForeColor = Color.Gainsboro;
-            lblDescuento.Location = new Point(436, 443);
+            lblDescuento.Location = new Point(452, 503);
             lblDescuento.Name = "lblDescuento";
             lblDescuento.Size = new Size(72, 20);
             lblDescuento.TabIndex = 45;
@@ -637,7 +747,7 @@
             lblTotal.FlatStyle = FlatStyle.Flat;
             lblTotal.Font = new Font("Microsoft Sans Serif", 10F);
             lblTotal.ForeColor = Color.Gainsboro;
-            lblTotal.Location = new Point(434, 412);
+            lblTotal.Location = new Point(450, 443);
             lblTotal.Name = "lblTotal";
             lblTotal.Size = new Size(72, 20);
             lblTotal.TabIndex = 44;
@@ -650,7 +760,7 @@
             label15.FlatStyle = FlatStyle.Flat;
             label15.Font = new Font("Microsoft Sans Serif", 10F);
             label15.ForeColor = Color.Gainsboro;
-            label15.Location = new Point(283, 443);
+            label15.Location = new Point(327, 503);
             label15.Name = "label15";
             label15.Size = new Size(119, 20);
             label15.TabIndex = 43;
@@ -663,7 +773,7 @@
             label14.FlatStyle = FlatStyle.Flat;
             label14.Font = new Font("Microsoft Sans Serif", 10F);
             label14.ForeColor = Color.Gainsboro;
-            label14.Location = new Point(281, 412);
+            label14.Location = new Point(299, 443);
             label14.Name = "label14";
             label14.Size = new Size(147, 20);
             label14.TabIndex = 42;
@@ -728,6 +838,7 @@
             // 
             // dateTimePicker1
             // 
+            dateTimePicker1.Format = DateTimePickerFormat.Custom;
             dateTimePicker1.Location = new Point(778, 286);
             dateTimePicker1.Name = "dateTimePicker1";
             dateTimePicker1.Size = new Size(306, 26);
@@ -927,11 +1038,41 @@
             txtNuevaDirección.TabIndex = 26;
             txtNuevaDirección.Visible = false;
             // 
+            // groupBoxListar
+            // 
+            groupBoxListar.Controls.Add(dataGridViewVentas);
+            groupBoxListar.Location = new Point(15, 74);
+            groupBoxListar.Name = "groupBoxListar";
+            groupBoxListar.Size = new Size(1233, 469);
+            groupBoxListar.TabIndex = 20;
+            // 
+            // dataGridViewVentas
+            // 
+            dataGridViewVentas.AllowUserToAddRows = false;
+            dataGridViewVentas.AllowUserToDeleteRows = false;
+            dataGridViewVentas.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            dataGridViewVentas.BackgroundColor = Color.FromArgb(32, 30, 45);
+            dataGridViewVentas.BorderStyle = BorderStyle.None;
+            dataGridViewVentas.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dataGridViewVentas.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dataGridViewVentas.ColumnHeadersHeight = 29;
+            dataGridViewVentas.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            dataGridViewVentas.EnableHeadersVisualStyles = false;
+            dataGridViewVentas.Location = new Point(12, 10);
+            dataGridViewVentas.Margin = new Padding(12, 10, 12, 10);
+            dataGridViewVentas.Name = "dataGridViewVentas";
+            dataGridViewVentas.ReadOnly = true;
+            dataGridViewVentas.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
+            dataGridViewVentas.RowHeadersWidth = 51;
+            dataGridViewVentas.Size = new Size(1206, 513);
+            dataGridViewVentas.TabIndex = 3;
+            dataGridViewVentas.SelectionChanged += dataGridViewVentaes_SelectionChanged;
+            // 
             // Venta
             // 
             AutoScaleDimensions = new SizeF(10F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1257, 565);
+            ClientSize = new Size(1257, 622);
             Controls.Add(panelCreate);
             Font = new Font("Microsoft Sans Serif", 10F);
             Name = "Venta";
@@ -939,8 +1080,6 @@
             Load += Venta_Load;
             panelCreate.ResumeLayout(false);
             groupBoxAccionesExtra.ResumeLayout(false);
-            groupBoxListar.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)dataGridViewVentas).EndInit();
             groupBoxAgregarProductos.ResumeLayout(false);
             groupBoxAgregarProductos.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridViewProductos).EndInit();
@@ -948,6 +1087,8 @@
             groupBoxCrear.ResumeLayout(false);
             groupBoxCrear.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridViewPagos).EndInit();
+            groupBoxListar.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dataGridViewVentas).EndInit();
             ResumeLayout(false);
         }
 
@@ -1019,5 +1160,13 @@
         private DataGridViewTextBoxColumn Cantidad;
         private DataGridViewTextBoxColumn Total;
         private Button btnAgregarTipoPago;
+        private Button btnEliminarTipoPago;
+        private DataGridViewTextBoxColumn idTipoPago;
+        private DataGridViewTextBoxColumn nombreTipoPago;
+        private DataGridViewTextBoxColumn montoTipoPago;
+        private Label lblPendientePago;
+        private Label label17;
+        private Label label16;
+        private ComboBox comboBoxSerieFactura;
     }
 }

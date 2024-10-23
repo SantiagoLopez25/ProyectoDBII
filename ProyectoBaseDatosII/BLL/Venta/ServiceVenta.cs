@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DAL.Compra;
 using DAL.Venta;
+using static BLL.Venta.Modelos;
 
 namespace BLL.Venta
 {
@@ -34,6 +35,64 @@ namespace BLL.Venta
         public DataTable ListarTiposPago()
         {
             return _ventaDAL.ListarTiposPago();
+        }
+        public DataTable ListarSeriesFacturas()
+        {
+            return _ventaDAL.ListarSeriesFacturas();
+        }
+        public DataTable BuscarDireccionesEntregaCliente(int id_Cliente)
+        {
+            return _ventaDAL.BuscarDireccionesEntregaCliente(id_Cliente);
+        }
+
+        public string GenerarFactura(List<DetalleFacturaModel> detalle, string serie, ClienteModel cliente,
+        DireccionEntregaModel direccionEntrega, PagoModel pagos, int idUsuario)
+        {
+            // Convertir el detalle a DataTable para enviarlo a DAL
+            DataTable detalleTable = ConvertirDetalleADataTable(detalle);
+
+            // Delegar la llamada al método en la capa DAL, donde ya se maneja la transacción
+            return _ventaDAL.GenerarFactura(
+                detalleTable,
+                serie,
+                cliente.IdCliente,
+                cliente.NombreCliente,
+                cliente.DireccionFacturacion,
+                cliente.Telefono,
+                cliente.Correo,
+                cliente.NIT,
+                direccionEntrega.IdDireccionEntrega,
+                direccionEntrega.Direccion,
+                direccionEntrega.DescripcionEntrega,
+                direccionEntrega.TelefonoReferencia,
+                direccionEntrega.FechaEntrega,
+                direccionEntrega.HoraEntrega,
+                pagos.IdTipoPago1,
+                pagos.IdTipoPago2,
+                pagos.IdTipoPago3,
+                pagos.PorcentajePago1,
+                pagos.PorcentajePago2,
+                pagos.PorcentajePago3,
+                idUsuario
+            );
+        }
+
+        private DataTable ConvertirDetalleADataTable(List<DetalleFacturaModel> detalle)
+        {
+            // Aquí se convierte el detalle en DataTable para mandarlo al procedimiento almacenado
+            var table = new DataTable();
+            table.Columns.Add("id_Mueble", typeof(int));
+            table.Columns.Add("cantidad", typeof(int));
+
+            foreach (var item in detalle)
+            {
+                var row = table.NewRow();
+                row["id_Mueble"] = item.IdMueble;
+                row["cantidad"] = item.Cantidad;
+                table.Rows.Add(row);
+            }
+
+            return table;
         }
     }
 }

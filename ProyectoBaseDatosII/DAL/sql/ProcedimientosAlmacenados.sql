@@ -35,12 +35,40 @@ WHERE Estado = 1
 ORDER BY Nombre_TipoPago ASC
 GO
 
+-- Procedimiento para buscar SerieFactura
+CREATE PROC ListarSeriesDeFactura
+AS
+Select id_Serie from SerieFactura
+ORDER BY fechaInicio ASC
+GO
+	
+
 -- Procedimiento para buscar Cliente por Nit
 CREATE PROC BuscarClientePorNit
 @nit varchar (8)
 AS BEGIN
 SELECT * FROM Cliente
 WHERE  NIT LIKE @nit;
+END;
+GO
+
+
+
+--Procedimiento para buscar Direcciones de entrega por id_Cliente
+CREATE PROC BuscarDireccionesEntregaCliente
+@id_cliente int
+AS BEGIN
+SELECT 
+	DireccionEntrega.id_DirecciónEntrega as 'ID',
+	DireccionEntrega.Direccion
+FROM DireccionEntrega
+	INNER JOIN Cliente on DireccionEntrega.id_Cliente = Cliente.id_Cliente
+WHERE 
+	DireccionEntrega.id_Cliente = @id_cliente
+GROUP BY 
+	DireccionEntrega.id_DirecciónEntrega,
+	DireccionEntrega.Direccion
+HAVING COUNT(*) > 0;
 END;
 GO
 
@@ -465,11 +493,11 @@ BEGIN
 					END
 			
 					IF (@id_DireccionEntrega is null) 
-						BEGIN
-							insert into DireccionEntrega (Direccion, id_Cliente)
-							values (@direccionEntrega, @id_cliente)
-							set @id_DireccionEntrega = @@IDENTITY
-						END
+					BEGIN
+						insert into DireccionEntrega (Direccion, id_Cliente)
+						values (@direccionEntrega, @id_cliente)
+						set @id_DireccionEntrega = @@IDENTITY
+					END
 
 			
 					INSERT INTO Entrega (DescripcionEntrega, TelefonoReferencia, Estado, id_EstadoPedido, id_DirecciónEntrega, fechaEntrega, horaEntrega)
