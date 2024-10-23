@@ -89,14 +89,14 @@ namespace BLL.Venta
         {
             // Aquí se convierte el detalle en DataTable para mandarlo al procedimiento almacenado
             var table = new DataTable();
-            table.Columns.Add("id_Mueble", typeof(int));
             table.Columns.Add("cantidad", typeof(int));
+            table.Columns.Add("id_Mueble", typeof(int));
 
             foreach (var item in detalle)
             {
                 var row = table.NewRow();
-                row["id_Mueble"] = item.IdMueble;
                 row["cantidad"] = item.Cantidad;
+                row["id_Mueble"] = item.IdMueble;
                 table.Rows.Add(row);
             }
 

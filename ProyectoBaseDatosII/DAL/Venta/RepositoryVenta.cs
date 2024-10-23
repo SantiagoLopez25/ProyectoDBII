@@ -218,13 +218,13 @@ namespace DAL.Venta
                         command.Parameters.Add(detalleParam);
 
                         command.Parameters.AddWithValue("@serie", serie);
-                        command.Parameters.AddWithValue("@id_cliente", idCliente ?? (object)DBNull.Value);
+                        command.Parameters.AddWithValue("@id_cliente", idCliente);
                         command.Parameters.AddWithValue("@nombre_cliente", nombreCliente ?? (object)DBNull.Value);
                         command.Parameters.AddWithValue("@direccion_Facturacion", direccionFacturacion ?? (object)DBNull.Value);
                         command.Parameters.AddWithValue("@telefono", telefono ?? (object)DBNull.Value);
                         command.Parameters.AddWithValue("@correo", correo ?? (object)DBNull.Value);
                         command.Parameters.AddWithValue("@nit", nit);
-                        command.Parameters.AddWithValue("@id_DireccionEntrega", idDireccionEntrega ?? (object)DBNull.Value);
+                        command.Parameters.AddWithValue("@id_DireccionEntrega", idDireccionEntrega);
                         command.Parameters.AddWithValue("@direccionEntrega", direccionEntrega ?? (object)DBNull.Value);
                         command.Parameters.AddWithValue("@descripcionEntrega", descripcionEntrega);
                         command.Parameters.AddWithValue("@telefonoReferencia", telefonoReferencia);

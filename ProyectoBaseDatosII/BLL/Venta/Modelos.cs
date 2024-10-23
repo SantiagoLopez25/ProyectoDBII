@@ -30,8 +30,10 @@ namespace BLL.Venta
 
         public class DetalleFacturaModel
         {
-            public int IdMueble { get; set; }
+            
             public int Cantidad { get; set; }
+
+            public int IdMueble { get; set; }
         }
 
         public class PagoModel

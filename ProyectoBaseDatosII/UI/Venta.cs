@@ -320,6 +320,11 @@ namespace UI
                     MessageBox.Show("Solo puedes agregar hasta 3 pagos en total para esta venta.");
                     return;
                 }
+                else if (float.Parse(lblPendientePago.Text) >= float.Parse(lblTotal.Text))
+                {
+                    MessageBox.Show("No se puede pagar más del total de la venta");
+                    return;
+                }
 
                 float porcentaje = (float)(((float)monto / TotalVenta) * 100);
 
@@ -461,8 +466,9 @@ namespace UI
                     {
                         DetalleFacturaModel detalle = new DetalleFacturaModel
                         {
-                            IdMueble = Convert.ToInt32(row.Cells["ID"].Value),
-                            Cantidad = Convert.ToInt32(row.Cells["cantidad"].Value)
+                            Cantidad = Convert.ToInt32(row.Cells["cantidad"].Value),
+                            IdMueble = Convert.ToInt32(row.Cells["ID"].Value)
+                           
                         };
                         detalles.Add(detalle);
                         //MessageBox.Show($"ID: {detalle.IdMueble}\nCantidad: {detalle.Cantidad}", "Detalle Agregado", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -504,7 +510,7 @@ namespace UI
                     {
                         direccionEntrega = new DireccionEntregaModel
                         {
-                            IdDireccionEntrega = null,
+                            IdDireccionEntrega = 0,
                             Direccion = txtNuevaDirección.Text,
                             DescripcionEntrega = txtDescripcion.Text,
                             TelefonoReferencia = txtTelefonoReferencia.Text,
@@ -544,7 +550,7 @@ namespace UI
                 {
                     ClienteModel cliente = new ClienteModel
                     {
-                        IdCliente = null,
+                        IdCliente = 0,
                         NombreCliente = txtNombreCliente.Text,
                         DireccionFacturacion = txtDireccionFacturacion.Text,
                         Telefono = txtTelefono.Text,
@@ -574,7 +580,7 @@ namespace UI
                     {
                         direccionEntrega = new DireccionEntregaModel
                         {
-                            IdDireccionEntrega = null,
+                            IdDireccionEntrega = 0,
                             Direccion = txtNuevaDirección.Text,
                             DescripcionEntrega = txtDescripcion.Text,
                             TelefonoReferencia = txtTelefonoReferencia.Text,

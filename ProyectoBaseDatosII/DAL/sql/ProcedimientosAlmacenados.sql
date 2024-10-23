@@ -444,16 +444,23 @@ GO
 
 -- Procedimiento almacenado para la facturación
 
-CREATE procedure [dbo].[GenerarFactura]
+USE [VentaMuebles]
+GO
+/****** Object:  StoredProcedure [dbo].[GenerarFactura]    Script Date: 23/10/2024 07:54:40 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+ALTER procedure [dbo].[GenerarFactura]
 @detalle udt_DetalleFactura READONLY, 
 @serie varchar(150),
-@id_cliente int = null,
+@id_cliente int = 0,
 @nombre_cliente varchar(200) = null,
 @direccion_Facturacion varchar(30) = null,
 @telefono varchar(10) = null,
 @correo varchar(50) = null,
 @nit varchar(8) = 'CF',
-@id_DireccionEntrega int = null,
+@id_DireccionEntrega int = 0,
 @direccionEntrega varchar(150) = null,
 @descripcionEntrega varchar(200),
 @telefonoReferencia varchar(8),
@@ -488,19 +495,21 @@ BEGIN
 				)
 				BEGIN
 					set @resultado = 'No hay Stock suficiente'
+					
 				END
 			
 				ELSE
 				BEGIN 
 
-					IF (@id_cliente is null)
+					IF (@id_cliente = 0)
 					BEGIN 
+						IF (@nit = '') set @nit ='CF'
 						insert into Cliente (Nombre_Cliente, DireccionFacturacion, Telefono, Correo,Descuentos, NIT, Estado)
 						values (@nombre_cliente, @direccion_Facturacion, @telefono, @correo, 0, @nit, 1)
 						set @id_cliente = @@IDENTITY
 					END
 			
-					IF (@id_DireccionEntrega is null) 
+					IF (@id_DireccionEntrega = 0) 
 						BEGIN
 							insert into DireccionEntrega (Direccion, id_Cliente)
 							values (@direccionEntrega, @id_cliente)
@@ -614,7 +623,7 @@ BEGIN
 
 
 					-- Select para imprimir datos de la factura
-					/*select id_Factura, id_Serie, fechaFactura, montoTotal, totalSinDescuento, Nombre_Cliente, DireccionFacturacion, Usuario	
+					select id_Factura, id_Serie, fechaFactura, montoTotal, totalSinDescuento, Nombre_Cliente, DireccionFacturacion, Usuario	
 					from Factura
 					inner join Cliente on Cliente.id_Cliente = Factura.id_Cliente 
 					inner join usuario on Factura.id_Usuario = usuario.id_Usuario
@@ -624,16 +633,17 @@ BEGIN
 					
 					select muebles.Nombre, d.cantidad, SUM(PrecioVenta*d.cantidad) as 'Total' from Muebles
 					inner join @detalle d on Muebles.id_mueble= d.id_Mueble
-					group by Muebles.Nombre, d.cantidad*/
+					group by Muebles.Nombre, d.cantidad
 
 					-- Actualizar inventario (siguiendo el concepto FIFO)
 					exec actualizarInventario @productos = @detalle
 
-				set @resultado = 'Se ha guardado correctamente la factura'
+					set @resultado = 'Se gurado correctamente la factura'
+
 				END
 
 		--insert into DetalleFactura 
-
+		
 		COMMIT TRAN factura
 	End Try
 		
@@ -644,8 +654,6 @@ BEGIN
 	End Catch 
 
 End
-
-GO
 
 
 -- Procedimiento para obtener los datos de la factura (para su impresión)
