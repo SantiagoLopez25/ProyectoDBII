@@ -28,12 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
             txtNIT = new TextBox();
             label1 = new Label();
             panelCreate = new Panel();
@@ -43,20 +43,6 @@
             btnEliminar = new FontAwesome.Sharp.IconButton();
             btnEditar = new FontAwesome.Sharp.IconButton();
             btnImprimir = new FontAwesome.Sharp.IconButton();
-            groupBoxAgregarProductos = new GroupBox();
-            btnEliminarMueble = new FontAwesome.Sharp.IconButton();
-            btnAgregarMueble = new FontAwesome.Sharp.IconButton();
-            dataGridViewProductos = new DataGridView();
-            btnCancelarVenta2 = new FontAwesome.Sharp.IconButton();
-            txtCantidad = new TextBox();
-            label22 = new Label();
-            btnMostrarDatosCliente = new FontAwesome.Sharp.IconButton();
-            label10 = new Label();
-            dataGridViewDetalle = new DataGridView();
-            ID = new DataGridViewTextBoxColumn();
-            Nombre = new DataGridViewTextBoxColumn();
-            Cantidad = new DataGridViewTextBoxColumn();
-            Total = new DataGridViewTextBoxColumn();
             groupBoxCrear = new GroupBox();
             label16 = new Label();
             comboBoxSerieFactura = new ComboBox();
@@ -105,15 +91,29 @@
             txtNuevaDirección = new TextBox();
             groupBoxListar = new Panel();
             dataGridViewVentas = new DataGridView();
+            groupBoxAgregarProductos = new GroupBox();
+            btnEliminarMueble = new FontAwesome.Sharp.IconButton();
+            btnAgregarMueble = new FontAwesome.Sharp.IconButton();
+            dataGridViewProductos = new DataGridView();
+            btnCancelarVenta2 = new FontAwesome.Sharp.IconButton();
+            txtCantidad = new TextBox();
+            label22 = new Label();
+            btnMostrarDatosCliente = new FontAwesome.Sharp.IconButton();
+            label10 = new Label();
+            dataGridViewDetalle = new DataGridView();
+            ID = new DataGridViewTextBoxColumn();
+            Nombre = new DataGridViewTextBoxColumn();
+            Cantidad = new DataGridViewTextBoxColumn();
+            Total = new DataGridViewTextBoxColumn();
             panelCreate.SuspendLayout();
             groupBoxAccionesExtra.SuspendLayout();
-            groupBoxAgregarProductos.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridViewProductos).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)dataGridViewDetalle).BeginInit();
             groupBoxCrear.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridViewPagos).BeginInit();
             groupBoxListar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridViewVentas).BeginInit();
+            groupBoxAgregarProductos.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridViewProductos).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridViewDetalle).BeginInit();
             SuspendLayout();
             // 
             // txtNIT
@@ -241,204 +241,6 @@
             btnImprimir.Text = "Imprimir";
             btnImprimir.TextAlign = ContentAlignment.MiddleRight;
             btnImprimir.UseVisualStyleBackColor = true;
-            // 
-            // groupBoxAgregarProductos
-            // 
-            groupBoxAgregarProductos.Controls.Add(btnEliminarMueble);
-            groupBoxAgregarProductos.Controls.Add(btnAgregarMueble);
-            groupBoxAgregarProductos.Controls.Add(dataGridViewProductos);
-            groupBoxAgregarProductos.Controls.Add(btnCancelarVenta2);
-            groupBoxAgregarProductos.Controls.Add(txtCantidad);
-            groupBoxAgregarProductos.Controls.Add(label22);
-            groupBoxAgregarProductos.Controls.Add(btnMostrarDatosCliente);
-            groupBoxAgregarProductos.Controls.Add(label10);
-            groupBoxAgregarProductos.Controls.Add(dataGridViewDetalle);
-            groupBoxAgregarProductos.Location = new Point(15, 74);
-            groupBoxAgregarProductos.Margin = new Padding(0);
-            groupBoxAgregarProductos.Name = "groupBoxAgregarProductos";
-            groupBoxAgregarProductos.Size = new Size(1233, 536);
-            groupBoxAgregarProductos.TabIndex = 39;
-            groupBoxAgregarProductos.TabStop = false;
-            groupBoxAgregarProductos.Visible = false;
-            // 
-            // btnEliminarMueble
-            // 
-            btnEliminarMueble.IconChar = FontAwesome.Sharp.IconChar.AngleDoubleLeft;
-            btnEliminarMueble.IconColor = Color.Black;
-            btnEliminarMueble.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            btnEliminarMueble.IconSize = 30;
-            btnEliminarMueble.ImageAlign = ContentAlignment.MiddleLeft;
-            btnEliminarMueble.Location = new Point(565, 340);
-            btnEliminarMueble.Name = "btnEliminarMueble";
-            btnEliminarMueble.Size = new Size(132, 33);
-            btnEliminarMueble.TabIndex = 57;
-            btnEliminarMueble.Text = "ELIMINAR";
-            btnEliminarMueble.TextAlign = ContentAlignment.MiddleRight;
-            btnEliminarMueble.UseVisualStyleBackColor = true;
-            btnEliminarMueble.Click += btnEliminarMueble_Click;
-            // 
-            // btnAgregarMueble
-            // 
-            btnAgregarMueble.IconChar = FontAwesome.Sharp.IconChar.AngleDoubleRight;
-            btnAgregarMueble.IconColor = Color.Black;
-            btnAgregarMueble.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            btnAgregarMueble.IconSize = 30;
-            btnAgregarMueble.ImageAlign = ContentAlignment.MiddleLeft;
-            btnAgregarMueble.Location = new Point(568, 154);
-            btnAgregarMueble.Name = "btnAgregarMueble";
-            btnAgregarMueble.Size = new Size(132, 33);
-            btnAgregarMueble.TabIndex = 56;
-            btnAgregarMueble.Text = "AGREGAR";
-            btnAgregarMueble.TextAlign = ContentAlignment.MiddleRight;
-            btnAgregarMueble.UseVisualStyleBackColor = true;
-            btnAgregarMueble.Click += btnAgregarMueble_Click;
-            // 
-            // dataGridViewProductos
-            // 
-            dataGridViewProductos.AllowUserToAddRows = false;
-            dataGridViewProductos.AllowUserToDeleteRows = false;
-            dataGridViewProductos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
-            dataGridViewProductos.BackgroundColor = Color.FromArgb(32, 30, 45);
-            dataGridViewProductos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = SystemColors.Window;
-            dataGridViewCellStyle5.Font = new Font("Microsoft Sans Serif", 7.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle5.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle5.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.False;
-            dataGridViewProductos.DefaultCellStyle = dataGridViewCellStyle5;
-            dataGridViewProductos.Location = new Point(10, 93);
-            dataGridViewProductos.Name = "dataGridViewProductos";
-            dataGridViewProductos.ReadOnly = true;
-            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = SystemColors.Control;
-            dataGridViewCellStyle6.Font = new Font("Microsoft Sans Serif", 7.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle6.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle6.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.True;
-            dataGridViewProductos.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
-            dataGridViewProductos.RowHeadersWidth = 51;
-            dataGridViewProductos.Size = new Size(529, 339);
-            dataGridViewProductos.TabIndex = 55;
-            dataGridViewProductos.SelectionChanged += dataGridViewProductos_SelectionChanged;
-            // 
-            // btnCancelarVenta2
-            // 
-            btnCancelarVenta2.ForeColor = Color.Black;
-            btnCancelarVenta2.IconChar = FontAwesome.Sharp.IconChar.Cancel;
-            btnCancelarVenta2.IconColor = Color.Black;
-            btnCancelarVenta2.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            btnCancelarVenta2.IconSize = 30;
-            btnCancelarVenta2.ImageAlign = ContentAlignment.MiddleLeft;
-            btnCancelarVenta2.Location = new Point(1081, 475);
-            btnCancelarVenta2.Name = "btnCancelarVenta2";
-            btnCancelarVenta2.Size = new Size(137, 33);
-            btnCancelarVenta2.TabIndex = 54;
-            btnCancelarVenta2.Text = "CANCELAR";
-            btnCancelarVenta2.TextAlign = ContentAlignment.MiddleRight;
-            btnCancelarVenta2.UseVisualStyleBackColor = true;
-            btnCancelarVenta2.Click += btnCancelarVenta2_Click;
-            // 
-            // txtCantidad
-            // 
-            txtCantidad.Font = new Font("Microsoft Sans Serif", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtCantidad.Location = new Point(660, 193);
-            txtCantidad.Name = "txtCantidad";
-            txtCantidad.Size = new Size(39, 28);
-            txtCantidad.TabIndex = 43;
-            txtCantidad.Text = "1";
-            // 
-            // label22
-            // 
-            label22.AutoSize = true;
-            label22.BackColor = Color.FromArgb(32, 30, 45);
-            label22.FlatStyle = FlatStyle.Flat;
-            label22.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label22.ForeColor = Color.Gainsboro;
-            label22.Location = new Point(565, 198);
-            label22.Name = "label22";
-            label22.Size = new Size(89, 20);
-            label22.TabIndex = 42;
-            label22.Text = "Cantidad:";
-            // 
-            // btnMostrarDatosCliente
-            // 
-            btnMostrarDatosCliente.IconChar = FontAwesome.Sharp.IconChar.AngleRight;
-            btnMostrarDatosCliente.IconColor = Color.Black;
-            btnMostrarDatosCliente.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            btnMostrarDatosCliente.IconSize = 30;
-            btnMostrarDatosCliente.Location = new Point(12, 25);
-            btnMostrarDatosCliente.Name = "btnMostrarDatosCliente";
-            btnMostrarDatosCliente.Size = new Size(43, 30);
-            btnMostrarDatosCliente.TabIndex = 40;
-            btnMostrarDatosCliente.UseVisualStyleBackColor = true;
-            btnMostrarDatosCliente.Click += btnMostrarDatosCliente_Click;
-            // 
-            // label10
-            // 
-            label10.AutoSize = true;
-            label10.BackColor = Color.FromArgb(32, 30, 45);
-            label10.FlatStyle = FlatStyle.Flat;
-            label10.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Bold | FontStyle.Underline, GraphicsUnit.Point, 0);
-            label10.ForeColor = Color.Gainsboro;
-            label10.Location = new Point(512, 35);
-            label10.Name = "label10";
-            label10.Size = new Size(221, 20);
-            label10.TabIndex = 35;
-            label10.Text = "AGREGAR PRODUCTOS";
-            // 
-            // dataGridViewDetalle
-            // 
-            dataGridViewDetalle.AllowUserToAddRows = false;
-            dataGridViewDetalle.AllowUserToDeleteRows = false;
-            dataGridViewDetalle.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
-            dataGridViewDetalle.BackgroundColor = Color.FromArgb(32, 30, 45);
-            dataGridViewDetalle.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewDetalle.Columns.AddRange(new DataGridViewColumn[] { ID, Nombre, Cantidad, Total });
-            dataGridViewDetalle.Location = new Point(726, 93);
-            dataGridViewDetalle.Name = "dataGridViewDetalle";
-            dataGridViewDetalle.ReadOnly = true;
-            dataGridViewDetalle.RowHeadersWidth = 51;
-            dataGridViewDetalle.Size = new Size(504, 331);
-            dataGridViewDetalle.TabIndex = 34;
-            dataGridViewDetalle.CellValueChanged += dataGridViewDetalle_CellValueChanged;
-            dataGridViewDetalle.RowsAdded += dataGridViewDetalle_RowsAdded;
-            dataGridViewDetalle.RowsRemoved += dataGridViewDetalle_RowsRemoved;
-            dataGridViewDetalle.SelectionChanged += dataGridViewDetalle_SelectionChanged;
-            // 
-            // ID
-            // 
-            ID.HeaderText = "ID";
-            ID.MinimumWidth = 6;
-            ID.Name = "ID";
-            ID.ReadOnly = true;
-            ID.Width = 55;
-            // 
-            // Nombre
-            // 
-            Nombre.HeaderText = "Nombre";
-            Nombre.MinimumWidth = 6;
-            Nombre.Name = "Nombre";
-            Nombre.ReadOnly = true;
-            Nombre.Width = 97;
-            // 
-            // Cantidad
-            // 
-            Cantidad.HeaderText = "Cantidad";
-            Cantidad.MinimumWidth = 6;
-            Cantidad.Name = "Cantidad";
-            Cantidad.ReadOnly = true;
-            Cantidad.Width = 104;
-            // 
-            // Total
-            // 
-            Total.HeaderText = "Total";
-            Total.MinimumWidth = 6;
-            Total.Name = "Total";
-            Total.ReadOnly = true;
-            Total.Width = 75;
             // 
             // groupBoxCrear
             // 
@@ -628,7 +430,7 @@
             dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = Color.FromArgb(32, 30, 45);
             dataGridViewCellStyle3.Font = new Font("Microsoft Sans Serif", 6F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle3.ForeColor = Color.Transparent;
+            dataGridViewCellStyle3.ForeColor = Color.White;
             dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
             dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
@@ -736,9 +538,8 @@
             lblDescuento.ForeColor = Color.Gainsboro;
             lblDescuento.Location = new Point(452, 503);
             lblDescuento.Name = "lblDescuento";
-            lblDescuento.Size = new Size(72, 20);
+            lblDescuento.Size = new Size(0, 20);
             lblDescuento.TabIndex = 45;
-            lblDescuento.Text = "cantidad";
             // 
             // lblTotal
             // 
@@ -952,6 +753,7 @@
             txtNombreCliente.Name = "txtNombreCliente";
             txtNombreCliente.Size = new Size(214, 24);
             txtNombreCliente.TabIndex = 8;
+            txtNombreCliente.Leave += txtNombreCliente_Leave;
             // 
             // label6
             // 
@@ -1068,6 +870,204 @@
             dataGridViewVentas.TabIndex = 3;
             dataGridViewVentas.SelectionChanged += dataGridViewVentaes_SelectionChanged;
             // 
+            // groupBoxAgregarProductos
+            // 
+            groupBoxAgregarProductos.Controls.Add(btnEliminarMueble);
+            groupBoxAgregarProductos.Controls.Add(btnAgregarMueble);
+            groupBoxAgregarProductos.Controls.Add(dataGridViewProductos);
+            groupBoxAgregarProductos.Controls.Add(btnCancelarVenta2);
+            groupBoxAgregarProductos.Controls.Add(txtCantidad);
+            groupBoxAgregarProductos.Controls.Add(label22);
+            groupBoxAgregarProductos.Controls.Add(btnMostrarDatosCliente);
+            groupBoxAgregarProductos.Controls.Add(label10);
+            groupBoxAgregarProductos.Controls.Add(dataGridViewDetalle);
+            groupBoxAgregarProductos.Location = new Point(15, 74);
+            groupBoxAgregarProductos.Margin = new Padding(0);
+            groupBoxAgregarProductos.Name = "groupBoxAgregarProductos";
+            groupBoxAgregarProductos.Size = new Size(1233, 536);
+            groupBoxAgregarProductos.TabIndex = 39;
+            groupBoxAgregarProductos.TabStop = false;
+            groupBoxAgregarProductos.Visible = false;
+            // 
+            // btnEliminarMueble
+            // 
+            btnEliminarMueble.IconChar = FontAwesome.Sharp.IconChar.AngleDoubleLeft;
+            btnEliminarMueble.IconColor = Color.Black;
+            btnEliminarMueble.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            btnEliminarMueble.IconSize = 30;
+            btnEliminarMueble.ImageAlign = ContentAlignment.MiddleLeft;
+            btnEliminarMueble.Location = new Point(565, 340);
+            btnEliminarMueble.Name = "btnEliminarMueble";
+            btnEliminarMueble.Size = new Size(132, 33);
+            btnEliminarMueble.TabIndex = 57;
+            btnEliminarMueble.Text = "ELIMINAR";
+            btnEliminarMueble.TextAlign = ContentAlignment.MiddleRight;
+            btnEliminarMueble.UseVisualStyleBackColor = true;
+            btnEliminarMueble.Click += btnEliminarMueble_Click;
+            // 
+            // btnAgregarMueble
+            // 
+            btnAgregarMueble.IconChar = FontAwesome.Sharp.IconChar.AngleDoubleRight;
+            btnAgregarMueble.IconColor = Color.Black;
+            btnAgregarMueble.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            btnAgregarMueble.IconSize = 30;
+            btnAgregarMueble.ImageAlign = ContentAlignment.MiddleLeft;
+            btnAgregarMueble.Location = new Point(568, 154);
+            btnAgregarMueble.Name = "btnAgregarMueble";
+            btnAgregarMueble.Size = new Size(132, 33);
+            btnAgregarMueble.TabIndex = 56;
+            btnAgregarMueble.Text = "AGREGAR";
+            btnAgregarMueble.TextAlign = ContentAlignment.MiddleRight;
+            btnAgregarMueble.UseVisualStyleBackColor = true;
+            btnAgregarMueble.Click += btnAgregarMueble_Click;
+            // 
+            // dataGridViewProductos
+            // 
+            dataGridViewProductos.AllowUserToAddRows = false;
+            dataGridViewProductos.AllowUserToDeleteRows = false;
+            dataGridViewProductos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
+            dataGridViewProductos.BackgroundColor = Color.FromArgb(32, 30, 45);
+            dataGridViewProductos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = SystemColors.Window;
+            dataGridViewCellStyle5.Font = new Font("Microsoft Sans Serif", 7.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle5.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle5.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.False;
+            dataGridViewProductos.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewProductos.Location = new Point(10, 93);
+            dataGridViewProductos.Name = "dataGridViewProductos";
+            dataGridViewProductos.ReadOnly = true;
+            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = SystemColors.Control;
+            dataGridViewCellStyle6.Font = new Font("Microsoft Sans Serif", 7.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle6.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle6.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.True;
+            dataGridViewProductos.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewProductos.RowHeadersWidth = 51;
+            dataGridViewProductos.Size = new Size(529, 339);
+            dataGridViewProductos.TabIndex = 55;
+            dataGridViewProductos.SelectionChanged += dataGridViewProductos_SelectionChanged;
+            // 
+            // btnCancelarVenta2
+            // 
+            btnCancelarVenta2.ForeColor = Color.Black;
+            btnCancelarVenta2.IconChar = FontAwesome.Sharp.IconChar.Cancel;
+            btnCancelarVenta2.IconColor = Color.Black;
+            btnCancelarVenta2.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            btnCancelarVenta2.IconSize = 30;
+            btnCancelarVenta2.ImageAlign = ContentAlignment.MiddleLeft;
+            btnCancelarVenta2.Location = new Point(1081, 475);
+            btnCancelarVenta2.Name = "btnCancelarVenta2";
+            btnCancelarVenta2.Size = new Size(137, 33);
+            btnCancelarVenta2.TabIndex = 54;
+            btnCancelarVenta2.Text = "CANCELAR";
+            btnCancelarVenta2.TextAlign = ContentAlignment.MiddleRight;
+            btnCancelarVenta2.UseVisualStyleBackColor = true;
+            btnCancelarVenta2.Click += btnCancelarVenta2_Click;
+            // 
+            // txtCantidad
+            // 
+            txtCantidad.Font = new Font("Microsoft Sans Serif", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtCantidad.Location = new Point(660, 193);
+            txtCantidad.Name = "txtCantidad";
+            txtCantidad.Size = new Size(39, 28);
+            txtCantidad.TabIndex = 43;
+            txtCantidad.Text = "1";
+            // 
+            // label22
+            // 
+            label22.AutoSize = true;
+            label22.BackColor = Color.FromArgb(32, 30, 45);
+            label22.FlatStyle = FlatStyle.Flat;
+            label22.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label22.ForeColor = Color.Gainsboro;
+            label22.Location = new Point(565, 198);
+            label22.Name = "label22";
+            label22.Size = new Size(89, 20);
+            label22.TabIndex = 42;
+            label22.Text = "Cantidad:";
+            // 
+            // btnMostrarDatosCliente
+            // 
+            btnMostrarDatosCliente.IconChar = FontAwesome.Sharp.IconChar.AngleRight;
+            btnMostrarDatosCliente.IconColor = Color.Black;
+            btnMostrarDatosCliente.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            btnMostrarDatosCliente.IconSize = 30;
+            btnMostrarDatosCliente.Location = new Point(12, 25);
+            btnMostrarDatosCliente.Name = "btnMostrarDatosCliente";
+            btnMostrarDatosCliente.Size = new Size(43, 30);
+            btnMostrarDatosCliente.TabIndex = 40;
+            btnMostrarDatosCliente.UseVisualStyleBackColor = true;
+            btnMostrarDatosCliente.Click += btnMostrarDatosCliente_Click;
+            // 
+            // label10
+            // 
+            label10.AutoSize = true;
+            label10.BackColor = Color.FromArgb(32, 30, 45);
+            label10.FlatStyle = FlatStyle.Flat;
+            label10.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Bold | FontStyle.Underline, GraphicsUnit.Point, 0);
+            label10.ForeColor = Color.Gainsboro;
+            label10.Location = new Point(512, 35);
+            label10.Name = "label10";
+            label10.Size = new Size(221, 20);
+            label10.TabIndex = 35;
+            label10.Text = "AGREGAR PRODUCTOS";
+            // 
+            // dataGridViewDetalle
+            // 
+            dataGridViewDetalle.AllowUserToAddRows = false;
+            dataGridViewDetalle.AllowUserToDeleteRows = false;
+            dataGridViewDetalle.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
+            dataGridViewDetalle.BackgroundColor = Color.FromArgb(32, 30, 45);
+            dataGridViewDetalle.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewDetalle.Columns.AddRange(new DataGridViewColumn[] { ID, Nombre, Cantidad, Total });
+            dataGridViewDetalle.Location = new Point(726, 93);
+            dataGridViewDetalle.Name = "dataGridViewDetalle";
+            dataGridViewDetalle.ReadOnly = true;
+            dataGridViewDetalle.RowHeadersWidth = 51;
+            dataGridViewDetalle.Size = new Size(504, 331);
+            dataGridViewDetalle.TabIndex = 34;
+            dataGridViewDetalle.CellValueChanged += dataGridViewDetalle_CellValueChanged;
+            dataGridViewDetalle.RowsAdded += dataGridViewDetalle_RowsAdded;
+            dataGridViewDetalle.RowsRemoved += dataGridViewDetalle_RowsRemoved;
+            dataGridViewDetalle.SelectionChanged += dataGridViewDetalle_SelectionChanged;
+            // 
+            // ID
+            // 
+            ID.HeaderText = "ID";
+            ID.MinimumWidth = 6;
+            ID.Name = "ID";
+            ID.ReadOnly = true;
+            ID.Width = 55;
+            // 
+            // Nombre
+            // 
+            Nombre.HeaderText = "Nombre";
+            Nombre.MinimumWidth = 6;
+            Nombre.Name = "Nombre";
+            Nombre.ReadOnly = true;
+            Nombre.Width = 97;
+            // 
+            // Cantidad
+            // 
+            Cantidad.HeaderText = "Cantidad";
+            Cantidad.MinimumWidth = 6;
+            Cantidad.Name = "Cantidad";
+            Cantidad.ReadOnly = true;
+            Cantidad.Width = 104;
+            // 
+            // Total
+            // 
+            Total.HeaderText = "Total";
+            Total.MinimumWidth = 6;
+            Total.Name = "Total";
+            Total.ReadOnly = true;
+            Total.Width = 75;
+            // 
             // Venta
             // 
             AutoScaleDimensions = new SizeF(10F, 20F);
@@ -1080,15 +1080,15 @@
             Load += Venta_Load;
             panelCreate.ResumeLayout(false);
             groupBoxAccionesExtra.ResumeLayout(false);
-            groupBoxAgregarProductos.ResumeLayout(false);
-            groupBoxAgregarProductos.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridViewProductos).EndInit();
-            ((System.ComponentModel.ISupportInitialize)dataGridViewDetalle).EndInit();
             groupBoxCrear.ResumeLayout(false);
             groupBoxCrear.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridViewPagos).EndInit();
             groupBoxListar.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridViewVentas).EndInit();
+            groupBoxAgregarProductos.ResumeLayout(false);
+            groupBoxAgregarProductos.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridViewProductos).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridViewDetalle).EndInit();
             ResumeLayout(false);
         }
 

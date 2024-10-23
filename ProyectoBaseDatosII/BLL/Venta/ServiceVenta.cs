@@ -44,6 +44,14 @@ namespace BLL.Venta
         {
             return _ventaDAL.BuscarDireccionesEntregaCliente(id_Cliente);
         }
+        public DataTable BuscarClientePorNombre(string nombreCliente)
+        {
+            return _ventaDAL.BuscarClientePorNombre(nombreCliente);
+        }
+        public DataTable BuscarDireccionesEntregaClientePorNombre(string nombreCliente)
+        {
+            return _ventaDAL.BuscarDireccionesEntregaClientePorNombre(nombreCliente);
+        }
 
         public string GenerarFactura(List<DetalleFacturaModel> detalle, string serie, ClienteModel cliente,
         DireccionEntregaModel direccionEntrega, PagoModel pagos, int idUsuario)

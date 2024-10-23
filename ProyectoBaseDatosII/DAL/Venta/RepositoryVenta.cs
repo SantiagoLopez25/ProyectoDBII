@@ -151,6 +151,48 @@ namespace DAL.Venta
             }
             return tablaDirecciones;
         }
+        public DataTable BuscarClientePorNombre(string nombreCliente)
+        {
+            DataTable tablaCliente = new DataTable();
+            using (var connection = _conexion.GetConnection())
+            {
+                connection.Open();
+
+                using (var command = new SqlCommand("BuscarClientePorNombre", connection))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@nombre_cliente", nombreCliente);
+
+                    using (var reader = command.ExecuteReader())
+                    {
+                        tablaCliente.Load(reader);
+                    }
+
+                }
+            }
+            return tablaCliente;
+        }
+        public DataTable BuscarDireccionesEntregaClientePorNombre(string nombreCliente)
+        {
+            DataTable tablaDirecciones = new DataTable();
+            using (var connection = _conexion.GetConnection())
+            {
+                connection.Open();
+
+                using (var command = new SqlCommand("BuscarDireccionesEntregaClientePorNombre", connection))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@nombre_cliente", nombreCliente);
+
+                    using (var reader = command.ExecuteReader())
+                    {
+                        tablaDirecciones.Load(reader);
+                    }
+
+                }
+            }
+            return tablaDirecciones;
+        }
 
         public string GenerarFactura(DataTable detalle, string serie, int? idCliente, string nombreCliente,
     string direccionFacturacion, string telefono, string correo, string nit, int? idDireccionEntrega,

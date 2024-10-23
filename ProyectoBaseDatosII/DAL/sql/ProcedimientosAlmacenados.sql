@@ -35,14 +35,6 @@ WHERE Estado = 1
 ORDER BY Nombre_TipoPago ASC
 GO
 
--- Procedimiento para buscar SerieFactura
-CREATE PROC ListarSeriesDeFactura
-AS
-Select id_Serie from SerieFactura
-ORDER BY fechaInicio ASC
-GO
-	
-
 -- Procedimiento para buscar Cliente por Nit
 CREATE PROC BuscarClientePorNit
 @nit varchar (8)
@@ -52,40 +44,40 @@ WHERE  NIT LIKE @nit;
 END;
 GO
 
-
-
 --Procedimiento para buscar Direcciones de entrega por id_Cliente
-CREATE PROC BuscarDireccionesEntregaCliente
-@id_cliente int
-AS BEGIN
-SELECT 
-	DireccionEntrega.id_DirecciónEntrega as 'ID',
-	DireccionEntrega.Direccion
-FROM DireccionEntrega
-	INNER JOIN Cliente on DireccionEntrega.id_Cliente = Cliente.id_Cliente
-WHERE 
-	DireccionEntrega.id_Cliente = @id_cliente
-GROUP BY 
-	DireccionEntrega.id_DirecciónEntrega,
-	DireccionEntrega.Direccion
-HAVING COUNT(*) > 0;
-END;
+CREATE PROC BuscarDireccionesEntregaClientePorNombre
+    @nombre_cliente VARCHAR(200)
+AS
+BEGIN
+    -- Convertir el nombre de cliente a mayúsculas para la comparación
+    SELECT 
+        DireccionEntrega.id_DirecciónEntrega AS 'ID',
+        DireccionEntrega.Direccion
+    FROM 
+        DireccionEntrega
+    INNER JOIN 
+        Cliente ON DireccionEntrega.id_Cliente = Cliente.id_Cliente
+    WHERE 
+        UPPER(Cliente.Nombre_Cliente) = UPPER(@nombre_cliente);
+END
 GO
 
 -- Procedimiento para listar Ventas
 CREATE PROC ListarVentas
 AS
-SELECT 
+Select
 	Factura.id_Factura as 'ID',
 	Factura.fechaFactura as 'Fecha',
 	Factura.montoTotal as 'Total',
-	Cliente.Nombre_Cliente as 'Cliente',
+	Cliente.Nombre_Cliente as 'Compró',
 	Usuario.Usuario as 'Atendió',
-	DireccionEntrega.Direccion as 'Dirección Entrega'
-FROM Factura
+	DireccionEntrega.Direccion as 'Entrega'
+
+from Factura
 INNER JOIN Cliente on Factura.id_Cliente = Cliente.id_Cliente
 INNER JOIN Usuario on Factura.id_Usuario = Usuario.id_Usuario
-INNER JOIN DireccionEntrega on Factura.id_Domicilio = DireccionEntrega.id_DirecciónEntrega
+INNER JOIN Entrega on Factura.id_Domicilio = Entrega.id_Entrega
+INNER JOIN DireccionEntrega on Entrega.id_DirecciónEntrega = DireccionEntrega.id_DirecciónEntrega
 ORDER BY 
 	Factura.fechaFactura DESC
 GO
@@ -354,6 +346,12 @@ END;
 
 GO
 
+-- Procedimiento para buscar SerieFactura
+CREATE PROC ListarSeriesDeFactura
+AS
+Select id_Serie from SerieFactura
+ORDER BY fechaInicio ASC
+GO
 
 
 --Procedimiento almacenado para actualizar Stocks usando FIFO
@@ -479,7 +477,6 @@ BEGIN
 				)
 				BEGIN
 					set @resultado = 'No hay Stock suficiente'
-					Rollback TRAN factura
 				END
 			
 				ELSE
@@ -493,11 +490,11 @@ BEGIN
 					END
 			
 					IF (@id_DireccionEntrega is null) 
-					BEGIN
-						insert into DireccionEntrega (Direccion, id_Cliente)
-						values (@direccionEntrega, @id_cliente)
-						set @id_DireccionEntrega = @@IDENTITY
-					END
+						BEGIN
+							insert into DireccionEntrega (Direccion, id_Cliente)
+							values (@direccionEntrega, @id_cliente)
+							set @id_DireccionEntrega = @@IDENTITY
+						END
 
 			
 					INSERT INTO Entrega (DescripcionEntrega, TelefonoReferencia, Estado, id_EstadoPedido, id_DirecciónEntrega, fechaEntrega, horaEntrega)
@@ -606,7 +603,7 @@ BEGIN
 
 
 					-- Select para imprimir datos de la factura
-					select id_Factura, id_Serie, fechaFactura, montoTotal, totalSinDescuento, Nombre_Cliente, DireccionFacturacion, Usuario	
+					/*select id_Factura, id_Serie, fechaFactura, montoTotal, totalSinDescuento, Nombre_Cliente, DireccionFacturacion, Usuario	
 					from Factura
 					inner join Cliente on Cliente.id_Cliente = Factura.id_Cliente 
 					inner join usuario on Factura.id_Usuario = usuario.id_Usuario
@@ -616,17 +613,15 @@ BEGIN
 					
 					select muebles.Nombre, d.cantidad, SUM(PrecioVenta*d.cantidad) as 'Total' from Muebles
 					inner join @detalle d on Muebles.id_mueble= d.id_Mueble
-					group by Muebles.Nombre, d.cantidad
+					group by Muebles.Nombre, d.cantidad*/
 
 					-- Actualizar inventario (siguiendo el concepto FIFO)
 					exec actualizarInventario @productos = @detalle
 
-
+				set @resultado = 'Se ha guardado correctamente la factura'
 				END
 
 		--insert into DetalleFactura 
-
-		set @resultado = 'Se ha guardado correctamente la factura'
 
 		COMMIT TRAN factura
 	End Try
@@ -641,3 +636,44 @@ End
 
 GO
 
+
+-- Procedimiento para obtener los datos de la factura (para su impresión)
+USE [VentaMuebles]
+GO
+/****** Object:  StoredProcedure [dbo].[datosFactura]    Script Date: 22/10/2024 17:29:34 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE procedure [dbo].[datosFactura]
+@idFactura int
+AS
+BEGIN
+select id_Factura, id_Serie, fechaFactura, montoTotal, totalSinDescuento, Nombre_cliente, 
+DireccionFacturacion, nit, Nombre from Factura inner join Cliente on Factura.id_Cliente = Cliente.id_Cliente 
+inner join usuario on Factura.id_Usuario = Usuario.id_Usuario inner join Empleado on Usuario.id_Empleado = Empleado.id_Empleado
+where id_Factura = @idFactura;
+
+
+
+
+
+
+select marca, nombre, modelo, DetalleFactura.cantidadMuebles as 'Cantidad', SUM(muebles.PrecioVenta*cantidadMuebles) as 'Total' from Muebles 
+		inner join DetalleFactura on DetalleFactura.id_mueble = Muebles.id_mueble inner join Modelo on Muebles.id_Modelo = Modelo.id_Modelo
+		inner join Marca on Modelo.id_Marca = marca.id_Marca
+
+		where DetalleFactura.id_Factura = @idFactura
+		group by nombre, cantidadMuebles, marca, modelo
+
+
+
+
+select  Nombre_TipoPago, cantidad from TipoPago inner join Pago on TipoPago.id_TipoPago = Pago.id_TipoPago
+where pago.id_Factura = @idFactura;
+
+
+
+				
+		
+END

@@ -16,6 +16,8 @@ namespace BLL.Venta
         DataTable ListarTiposPago();
         DataTable ListarSeriesFacturas();
         DataTable BuscarDireccionesEntregaCliente(int id_Cliente);
+        DataTable BuscarClientePorNombre(string nombreCliente);
+        DataTable BuscarDireccionesEntregaClientePorNombre(string nombreCliente);
         public string GenerarFactura(
             List<DetalleFacturaModel> detalle,
             string serie,

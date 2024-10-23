@@ -102,7 +102,15 @@ namespace UI
         }
 
 
-
+        private void limpiarDatosCliente()
+        {
+            txtNIT.Clear();
+            txtNombreCliente.Clear();
+            txtDireccionFacturacion.Clear();
+            txtCorreo.Clear();
+            txtTelefono.Clear();
+            txtTelefonoReferencia.Clear();
+        }
 
         private void btnEditarVenta_Click(object sender, EventArgs e)
         {
@@ -158,6 +166,7 @@ namespace UI
 
         private void btnListarVentas_Click_1(object sender, EventArgs e)
         {
+            LimpiarFormularioYListarVentas();
             groupBoxAgregarProductos.Visible = false;
             groupBoxCrear.Visible = false;
             groupBoxAccionesExtra.Visible = false;
@@ -244,7 +253,7 @@ namespace UI
         {
             string nit = txtNIT.Text;
 
-            if (!string.IsNullOrEmpty(nit))
+            if (!string.IsNullOrEmpty(nit) && (nit != "CF"))
             {
                 DataTable clienteData = _serviceVenta.BuscarNit(nit);
 
@@ -261,6 +270,7 @@ namespace UI
                     CargarDireccionesEntrega(idcliente);
 
                     txtNombreCliente.Enabled = false;
+                    checkNuevaDirección.Checked = false;
                     txtDireccionFacturacion.Enabled = false;
                     txtCorreo.Enabled = false;
                     txtTelefono.Enabled = false;
@@ -268,8 +278,18 @@ namespace UI
                 else
                 {
                     MessageBox.Show("Cliente no encontrado.");
-                    //LimpiarCamposCliente();
+                    limpiarDatosCliente();
+                    checkNuevaDirección.Checked = true;
                 }
+            }
+            else if (txtNIT.Text == "")
+            {
+                limpiarDatosCliente();
+                txtNombreCliente.Enabled = true;
+                txtDireccionFacturacion.Enabled = true;
+                checkNuevaDirección.Checked = true;
+                txtCorreo.Enabled = true;
+                txtTelefono.Enabled = true;
             }
         }
 
@@ -318,10 +338,11 @@ namespace UI
                 dataGridViewPagos.Rows.Add(tipoPagoId, tipoPagoTexto, montoPago.ToString(), porcentaje);
 
                 // Recalcular montos y porcentajes totales
-                CalcularSumaPagos();
+                //CalcularSumaPagos();
 
                 // Llamar a la función para recalcular y guardar los porcentajes
                 CalcularYGuardarPorcentajes();
+                CalcularSumaPagos();
             }
             else
             {
@@ -444,58 +465,150 @@ namespace UI
                             Cantidad = Convert.ToInt32(row.Cells["cantidad"].Value)
                         };
                         detalles.Add(detalle);
-                        MessageBox.Show($"ID: {detalle.IdMueble}\nCantidad: {detalle.Cantidad}", "Detalle Agregado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        //MessageBox.Show($"ID: {detalle.IdMueble}\nCantidad: {detalle.Cantidad}", "Detalle Agregado", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                 }
 
                 //MessageBox.Show($"Total de detalles agregados: {detalles.Count}", "Detalles", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                ClienteModel cliente = new ClienteModel
+                if ((txtNIT.Text != "CF") || (txtNIT.Text != ""))
                 {
-                    IdCliente = idcliente,
-                    NombreCliente = txtNombreCliente.Text,
-                    DireccionFacturacion = txtDireccionFacturacion.Text,
-                    Telefono = txtTelefono.Text,
-                    Correo = txtCorreo.Text,
-                    NIT = txtNIT.Text
-                };
+                    ClienteModel cliente = new ClienteModel
+                    {
+                        IdCliente = idcliente,
+                        NombreCliente = txtNombreCliente.Text,
+                        DireccionFacturacion = txtDireccionFacturacion.Text,
+                        Telefono = txtTelefono.Text,
+                        Correo = txtCorreo.Text,
+                        NIT = txtNIT.Text
+                    };
 
-                /*MessageBox.Show($"Cliente:\nID: {cliente.IdCliente}\nNombre: {cliente.NombreCliente}\nDirección: {cliente.DireccionFacturacion}\nTeléfono: {cliente.Telefono}\nCorreo: {cliente.Correo}\nNIT: {cliente.NIT}",
-                "Información del Cliente", MessageBoxButtons.OK, MessageBoxIcon.Information);*/
+                    /*MessageBox.Show($"Cliente:\nID: {cliente.IdCliente}\nNombre: {cliente.NombreCliente}\nDirección: {cliente.DireccionFacturacion}\nTeléfono: {cliente.Telefono}\nCorreo: {cliente.Correo}\nNIT: {cliente.NIT}",
+                    "Información del Cliente", MessageBoxButtons.OK, MessageBoxIcon.Information);*/
 
-                DateTime fechaEntrega = dateTimePicker1.Value.Date;
+                    DateTime fechaEntrega = dateTimePicker1.Value.Date;
 
-                DireccionEntregaModel direccionEntrega = new DireccionEntregaModel
+                    DireccionEntregaModel direccionEntrega;
+                    if (!checkNuevaDirección.Checked)
+                    {
+                        direccionEntrega = new DireccionEntregaModel
+                        {
+                            IdDireccionEntrega = Convert.ToInt32(comboBoxDireccionesEntrega.SelectedValue),
+                            Direccion = "",
+                            DescripcionEntrega = txtDescripcion.Text,
+                            TelefonoReferencia = txtTelefonoReferencia.Text,
+                            FechaEntrega = fechaEntrega,
+                            HoraEntrega = calcularHora()
+                        };
+                    }else
+                    {
+                        direccionEntrega = new DireccionEntregaModel
+                        {
+                            IdDireccionEntrega = null,
+                            Direccion = txtNuevaDirección.Text,
+                            DescripcionEntrega = txtDescripcion.Text,
+                            TelefonoReferencia = txtTelefonoReferencia.Text,
+                            FechaEntrega = fechaEntrega,
+                            HoraEntrega = calcularHora()
+                        };
+                    }
+                    
+
+                    /*MessageBox.Show($"Dirección de Entrega:\nID: {direccionEntrega.IdDireccionEntrega}\nDescripción: {direccionEntrega.DescripcionEntrega}\nTeléfono Referencia: {direccionEntrega.TelefonoReferencia}\nFecha Entrega: {direccionEntrega.FechaEntrega}\nHora Entrega: {direccionEntrega.HoraEntrega}",
+                    "Información de Dirección de Entrega", MessageBoxButtons.OK, MessageBoxIcon.Information);*/
+
+                    PagoModel pagos = AsignarPagosDesdeLista(listaPagosPorcentaje);
+                    /*MessageBox.Show($"Pago 1: Tipo {pagos.IdTipoPago1} - Porcentaje {pagos.PorcentajePago1}%\n" +
+                    $"Pago 2: Tipo {pagos.IdTipoPago2?.ToString() ?? "N/A"} - Porcentaje {pagos.PorcentajePago2?.ToString() ?? "N/A"}%\n" +
+                    $"Pago 3: Tipo {pagos.IdTipoPago3?.ToString() ?? "N/A"} - Porcentaje {pagos.PorcentajePago3?.ToString() ?? "N/A"}%",
+                    "Información de Pagos",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);*/
+
+
+                    string serieFactura = comboBoxSerieFactura.Text;
+                    //MessageBox.Show("Serie Factura: " + serieFactura, "Serie Factura", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    int idUsuario = 1;
+
+                    string resultado = _serviceVenta.GenerarFactura(detalles, serieFactura, cliente, direccionEntrega, pagos, idUsuario);
+
+                    MessageBox.Show(resultado, "Resultado de la Factura", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    if (resultado.Equals("Se ha guardado correctamente la factura"))
+                    {
+                        LimpiarFormularioYListarVentas();
+                    }
+                }
+                else
                 {
-                    IdDireccionEntrega = Convert.ToInt32(comboBoxDireccionesEntrega.SelectedValue),
-                    Direccion = "",
-                    DescripcionEntrega = txtDescripcion.Text,
-                    TelefonoReferencia = txtTelefonoReferencia.Text,
-                    FechaEntrega = fechaEntrega,
-                    HoraEntrega = calcularHora()
-                };
+                    ClienteModel cliente = new ClienteModel
+                    {
+                        IdCliente = null,
+                        NombreCliente = txtNombreCliente.Text,
+                        DireccionFacturacion = txtDireccionFacturacion.Text,
+                        Telefono = txtTelefono.Text,
+                        Correo = txtCorreo.Text,
+                        NIT = txtNIT.Text
+                    };
 
-                /*MessageBox.Show($"Dirección de Entrega:\nID: {direccionEntrega.IdDireccionEntrega}\nDescripción: {direccionEntrega.DescripcionEntrega}\nTeléfono Referencia: {direccionEntrega.TelefonoReferencia}\nFecha Entrega: {direccionEntrega.FechaEntrega}\nHora Entrega: {direccionEntrega.HoraEntrega}",
-                "Información de Dirección de Entrega", MessageBoxButtons.OK, MessageBoxIcon.Information);*/
+                    /*MessageBox.Show($"Cliente:\nID: {cliente.IdCliente}\nNombre: {cliente.NombreCliente}\nDirección: {cliente.DireccionFacturacion}\nTeléfono: {cliente.Telefono}\nCorreo: {cliente.Correo}\nNIT: {cliente.NIT}",
+                    "Información del Cliente", MessageBoxButtons.OK, MessageBoxIcon.Information);*/
 
-                PagoModel pagos = AsignarPagosDesdeLista(listaPagosPorcentaje);
-                /*MessageBox.Show($"Pago 1: Tipo {pagos.IdTipoPago1} - Porcentaje {pagos.PorcentajePago1}%\n" +
-                $"Pago 2: Tipo {pagos.IdTipoPago2?.ToString() ?? "N/A"} - Porcentaje {pagos.PorcentajePago2?.ToString() ?? "N/A"}%\n" +
-                $"Pago 3: Tipo {pagos.IdTipoPago3?.ToString() ?? "N/A"} - Porcentaje {pagos.PorcentajePago3?.ToString() ?? "N/A"}%",
-                "Información de Pagos",
-                MessageBoxButtons.OK,
-                MessageBoxIcon.Information);*/
+                    DateTime fechaEntrega = dateTimePicker1.Value.Date;
+
+                    DireccionEntregaModel direccionEntrega;
+                    if (!checkNuevaDirección.Checked)
+                    {
+                        direccionEntrega = new DireccionEntregaModel
+                        {
+                            IdDireccionEntrega = Convert.ToInt32(comboBoxDireccionesEntrega.SelectedValue),
+                            Direccion = "",
+                            DescripcionEntrega = txtDescripcion.Text,
+                            TelefonoReferencia = txtTelefonoReferencia.Text,
+                            FechaEntrega = fechaEntrega,
+                            HoraEntrega = calcularHora()
+                        };
+                    }
+                    else
+                    {
+                        direccionEntrega = new DireccionEntregaModel
+                        {
+                            IdDireccionEntrega = null,
+                            Direccion = txtNuevaDirección.Text,
+                            DescripcionEntrega = txtDescripcion.Text,
+                            TelefonoReferencia = txtTelefonoReferencia.Text,
+                            FechaEntrega = fechaEntrega,
+                            HoraEntrega = calcularHora()
+                        };
+                    }
+
+                    /*MessageBox.Show($"Dirección de Entrega:\nID: {direccionEntrega.IdDireccionEntrega}\nDescripción: {direccionEntrega.DescripcionEntrega}\nTeléfono Referencia: {direccionEntrega.TelefonoReferencia}\nFecha Entrega: {direccionEntrega.FechaEntrega}\nHora Entrega: {direccionEntrega.HoraEntrega}",
+                    "Información de Dirección de Entrega", MessageBoxButtons.OK, MessageBoxIcon.Information);*/
+
+                    PagoModel pagos = AsignarPagosDesdeLista(listaPagosPorcentaje);
+                    /*MessageBox.Show($"Pago 1: Tipo {pagos.IdTipoPago1} - Porcentaje {pagos.PorcentajePago1}%\n" +
+                    $"Pago 2: Tipo {pagos.IdTipoPago2?.ToString() ?? "N/A"} - Porcentaje {pagos.PorcentajePago2?.ToString() ?? "N/A"}%\n" +
+                    $"Pago 3: Tipo {pagos.IdTipoPago3?.ToString() ?? "N/A"} - Porcentaje {pagos.PorcentajePago3?.ToString() ?? "N/A"}%",
+                    "Información de Pagos",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);*/
 
 
-                string serieFactura = comboBoxSerieFactura.Text;
-                //MessageBox.Show("Serie Factura: " + serieFactura, "Serie Factura", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    string serieFactura = comboBoxSerieFactura.Text;
+                    //MessageBox.Show("Serie Factura: " + serieFactura, "Serie Factura", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                int idUsuario = 1;
+                    int idUsuario = 1;
 
-                string resultado = _serviceVenta.GenerarFactura(detalles, serieFactura, cliente, direccionEntrega, pagos, idUsuario);
+                    string resultado = _serviceVenta.GenerarFactura(detalles, serieFactura, cliente, direccionEntrega, pagos, idUsuario);
 
-                MessageBox.Show(resultado, "Resultado de la Factura", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show(resultado, "Resultado de la Factura", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
+                    if (resultado.Equals("Se ha guardado correctamente la factura"))
+                    {
+                        LimpiarFormularioYListarVentas();
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -520,6 +633,8 @@ namespace UI
             txtCorreo.Clear();
             txtTelefono.Clear();
             txtMontoPagar.Clear();
+            txtTelefonoReferencia.Clear();
+            txtDescripcion.Clear();
 
             dataGridViewDetalle.Rows.Clear();
             dataGridViewPagos.Rows.Clear();
@@ -527,10 +642,13 @@ namespace UI
             comboBoxTipoPago.SelectedIndex = -1;
             comboBoxDireccionesEntrega.SelectedIndex = -1;
             comboBoxSerieFactura.SelectedIndex = -1;
+            comboBoxHora.SelectedIndex = -1;
+            comboBoxMinutos.SelectedIndex = -1;
 
             lblTotal.Text = "0.00";
             lblPendientePago.Text = "0.00";
             TotalVenta = 0;
+            idcliente = 0;
 
             groupBoxCrear.Visible = false;
             groupBoxAgregarProductos.Visible = false;
@@ -540,5 +658,50 @@ namespace UI
             ListarVentas();
         }
 
+        private void txtNombreCliente_Leave(object sender, EventArgs e)
+        {
+            string nombreCliente = txtNombreCliente.Text;
+
+            if (!string.IsNullOrEmpty(nombreCliente))
+            {
+                DataTable clienteData = _serviceVenta.BuscarClientePorNombre(nombreCliente);
+
+                if (clienteData.Rows.Count > 0)
+                {
+
+                    DataTable direccionesEntrega = _serviceVenta.BuscarDireccionesEntregaClientePorNombre(nombreCliente);
+
+                    DataRow row = clienteData.Rows[0];
+                    idcliente = Convert.ToInt32(row["id_Cliente"]);
+                    txtNombreCliente.Text = row["Nombre_Cliente"].ToString();
+                    txtDireccionFacturacion.Text = row["DireccionFacturacion"].ToString();
+                    txtCorreo.Text = row["Correo"].ToString();
+                    txtTelefono.Text = row["Telefono"].ToString();
+                    txtNIT.Text = row["NIT"].ToString();
+
+                    comboBoxDireccionesEntrega.DataSource = direccionesEntrega;
+                    comboBoxDireccionesEntrega.DisplayMember = "Direccion";
+                    comboBoxDireccionesEntrega.ValueMember = "ID";
+
+                    checkNuevaDirección.Checked = false;
+
+                    txtNIT.Enabled = false;
+                    checkNuevaDirección.Checked = false;
+                    txtDireccionFacturacion.Enabled = false;
+                    txtCorreo.Enabled = false;
+                    txtTelefono.Enabled = false;
+                }
+                else
+                {
+                    checkNuevaDirección.Checked = true;
+                }
+            }
+            else
+            {
+                checkNuevaDirección.Checked = true;
+                limpiarDatosCliente();
+
+            } 
+        }
     }
 }
