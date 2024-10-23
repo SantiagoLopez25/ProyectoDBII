@@ -35,12 +35,23 @@ WHERE Estado = 1
 ORDER BY Nombre_TipoPago ASC
 GO
 
+
+
 -- Procedimiento para buscar Cliente por Nit
 CREATE PROC BuscarClientePorNit
 @nit varchar (8)
 AS BEGIN
 SELECT * FROM Cliente
 WHERE  NIT LIKE @nit;
+END;
+GO
+
+--Procedimiento para buscar Cliente por Nombre
+CREATE PROC BuscarClientePorNombre
+@nombre_cliente varchar (175)
+AS BEGIN
+SELECT * FROM CLIENTE
+WHERE Nombre_Cliente LIKE @nombre_cliente;
 END;
 GO
 
