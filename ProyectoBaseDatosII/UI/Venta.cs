@@ -10,10 +10,6 @@ using System.Windows.Automation.Text;
 using System.Windows.Forms;
 using BLL.Venta;
 
-using DAL.Venta;
-using static BLL.Venta.Modelos;
-
-
 
 namespace UI
 {
@@ -23,13 +19,8 @@ namespace UI
         private int id_Mueble, cantidad_Mueble;
         private float precioVenta, TotalVenta;
         private string nombre_mueble;
-
-        private List<PagoPorcentaje> listaPagosPorcentaje = new List<PagoPorcentaje>();
-
-        private int idcliente;
-
         private int idFactura;
-
+        private int id_Cliente;
         //Dictionary<int, string, int, float> detalle;
 
 
@@ -49,16 +40,6 @@ namespace UI
             comboBoxTipoPago.ValueMember = "id_TipoPago"; // El valor asociado (id)
         }
 
-
-        private void CargarDireccionesEntrega(int id_Cliente)
-        {
-            DataTable direccionesEntrega = _serviceVenta.BuscarDireccionesEntregaCliente(id_Cliente);
-
-            comboBoxDireccionesEntrega.DataSource = direccionesEntrega;
-            comboBoxDireccionesEntrega.DisplayMember = "Direccion";
-            comboBoxDireccionesEntrega.ValueMember = "ID";
-        }
-
         private void CargarTotal()
         {
             TotalVenta = 0;
@@ -67,14 +48,13 @@ namespace UI
             {
                 if (row.Cells["Total"].Value != null)
                 {
-
+                    // Suma el valor de la celda "Total", asegurándose de que sea un número
                     TotalVenta += float.Parse(row.Cells["Total"].Value.ToString());
                 }
             }
 
-
-            lblTotal.Text = TotalVenta.ToString("C2");
-
+            // Asigna la suma total al Label
+            lblTotal.Text = TotalVenta.ToString("C2"); // Formato moneda con 2 decimales
         }
 
         private void ListarMuebles()
@@ -87,24 +67,12 @@ namespace UI
             dataGridViewVentas.DataSource = _serviceVenta.ListarVentas();
         }
 
-
-        private void ListarSeriesFactura()
-        {
-            DataTable seriesFacturas = _serviceVenta.ListarSeriesFacturas();
-            comboBoxSerieFactura.DataSource = seriesFacturas;
-            comboBoxSerieFactura.DisplayMember = "id_Serie";
-            comboBoxSerieFactura.ValueMember = "id_Serie";
-        }
-
-
         private void Venta_Load(object sender, EventArgs e)
         {
             groupBoxListar.Visible = true;
             groupBoxCrear.Visible = false;
             groupBoxAccionesExtra.Visible = false;
-
-            LimpiarFormularioYListarVentas();
-
+            ClearData();
             ListarVentas();
         }
 
@@ -114,24 +82,42 @@ namespace UI
             groupBoxCrear.Visible = true;
             groupBoxAccionesExtra.Visible = false;
 
-
+            /*
+             _serviceVenta.AgregarVenta(
+                txtVenta.Text,
+                txtDireccion.Text,
+                txtTelefono.Text,
+                txtTelExtra.Text,
+                txtCorreo.Text,
+                Boolean.Parse(lblEstado.Text)
+                );
+            MessageBox.Show("Insertado correctamente");
+            ClearData();
+            btnEditarVenta.Enabled = true;
+            btnEliminarVenta.Enabled = true;
+            ListarVentaes();
+            */
         }
 
 
-        private void limpiarDatosCliente()
+        void ClearData()
         {
-            txtNIT.Clear();
-            txtNombreCliente.Clear();
-            txtDireccionFacturacion.Clear();
-            txtCorreo.Clear();
-            txtTelefono.Clear();
-            txtTelefonoReferencia.Clear();
-
+            /* txtVenta.Clear();
+             txtDireccion.Clear();
+             txtTelefono.Clear();
+             txtTelExtra.Clear();
+             txtCorreo.Clear();
+             lblId.Text = "";
+             lblEstado.Text = "true";
+             groupEditar.Hide();
+             groupCrear.Show();
+             btnMostrarCrear.Enabled = true;
+             btnEditarVenta.Enabled = false;
+             btnEliminarVenta.Enabled = false;*/
         }
 
         private void btnEditarVenta_Click(object sender, EventArgs e)
         {
-
             if (dataGridViewVentas.SelectedRows.Count > 0)
             {
                 /*groupCrear.Hide();
@@ -152,12 +138,10 @@ namespace UI
             }
             else
                 MessageBox.Show("Debe seleccionar un registro a editar");
-
         }
 
         private void dataGridViewVentaes_SelectionChanged(object sender, EventArgs e)
         {
-
 
             if (dataGridViewVentas.SelectedRows.Count > 0)
             {
@@ -184,18 +168,35 @@ namespace UI
                 txtTelExtraEditar.Text = (selectedRow.Cells[4].Value).ToString();
                 txtCorreoEditar.Text = (selectedRow.Cells[5].Value).ToString();
                 lblEstado.Text = (selectedRow.Cells[6].Value).ToString();*/
-
             }
             else
             {
                 groupBoxAccionesExtra.Visible = false;
-
+                /*lblEstado.Text = "true";
+                groupEditar.Hide();
+                groupCrear.Show();
+                btnMostrarCrear.Enabled = true;
+                btnEditarVenta.Enabled = false;
+                btnEliminarVenta.Enabled = false;*/
             }
         }
 
         private void btnEliminarVenta_Click(object sender, EventArgs e)
         {
-
+            if (dataGridViewVentas.SelectedRows.Count > 0)
+            {
+                /*groupCrear.Hide();
+                groupEditar.Show();
+                btnMostrarCrear.Enabled = false;
+                _serviceVenta.EliminarVenta(
+                Convert.ToInt32(dataGridViewVentaes.CurrentRow.Cells[0].Value)
+                );
+                MessageBox.Show("Eliminado correctamente");
+                ListarVentaes();
+                ClearData();*/
+            }
+            else
+                MessageBox.Show("Debe seleccionar un registro a eliminar");
         }
 
         private void btnListarVentas_Click(object sender, EventArgs e)
@@ -232,9 +233,6 @@ namespace UI
 
         private void btnListarVentas_Click_1(object sender, EventArgs e)
         {
-
-            LimpiarFormularioYListarVentas();
-
             groupBoxAgregarProductos.Visible = false;
             groupBoxCrear.Visible = false;
             groupBoxAccionesExtra.Visible = false;
@@ -248,9 +246,6 @@ namespace UI
             groupBoxAccionesExtra.Visible = false;
             groupBoxListar.Visible = false;
             CargarTiposPago();
-
-            ListarSeriesFactura();
-
         }
 
         private void btnMostrarAgrProductos_Click(object sender, EventArgs e)
@@ -274,7 +269,6 @@ namespace UI
             btnAgregarMueble.Enabled = true;
             btnEliminarMueble.Enabled = false;
         }
-
 
         private void btnAgregarMueble_Click(object sender, EventArgs e)
         {
@@ -312,9 +306,6 @@ namespace UI
 
         private void btnCancelarVenta2_Click(object sender, EventArgs e)
         {
-
-            LimpiarFormularioYListarVentas();
-
             groupBoxAgregarProductos.Visible = false;
             groupBoxCrear.Visible = false;
             groupBoxAccionesExtra.Visible = false;
@@ -325,28 +316,20 @@ namespace UI
         {
             string nit = txtNIT.Text;
 
-
-            if (!string.IsNullOrEmpty(nit) && (nit != "CF"))
+            if (!string.IsNullOrEmpty(nit))
             {
                 DataTable clienteData = _serviceVenta.BuscarNit(nit);
-
 
                 if (clienteData.Rows.Count > 0)
                 {
                     DataRow row = clienteData.Rows[0];
-                    idcliente = Convert.ToInt32(row["id_Cliente"]);
-
+                    id_Cliente = Convert.ToInt32(row["id_Cliente"]);
                     txtNombreCliente.Text = row["Nombre_Cliente"].ToString();
                     txtDireccionFacturacion.Text = row["DireccionFacturacion"].ToString();
                     txtCorreo.Text = row["Correo"].ToString();
                     txtTelefono.Text = row["Telefono"].ToString();
 
-
-                    CargarDireccionesEntrega(idcliente);
-
                     txtNombreCliente.Enabled = false;
-                    checkNuevaDirección.Checked = false;
-
                     txtDireccionFacturacion.Enabled = false;
                     txtCorreo.Enabled = false;
                     txtTelefono.Enabled = false;
@@ -354,26 +337,15 @@ namespace UI
                 else
                 {
                     MessageBox.Show("Cliente no encontrado.");
-
-                    limpiarDatosCliente();
-                    checkNuevaDirección.Checked = true;
+                    //LimpiarCamposCliente();
                 }
             }
-            else if (txtNIT.Text == "")
-            {
-                limpiarDatosCliente();
-                txtNombreCliente.Enabled = true;
-                txtDireccionFacturacion.Enabled = true;
-                checkNuevaDirección.Checked = true;
-                txtCorreo.Enabled = true;
-                txtTelefono.Enabled = true;
-            }
-
         }
 
         private void dataGridViewDetalle_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
             CargarTotal();
+
 
         }
 
@@ -386,6 +358,7 @@ namespace UI
         {
             CargarTotal();
         }
+
 
         private void btnAgregarTipoPago_Click(object sender, EventArgs e)
         {
@@ -789,6 +762,7 @@ namespace UI
             }
         }
 
+
         private void btnImprimir_Click(object sender, EventArgs e)
         {
             DataSet dataSet;
@@ -817,7 +791,6 @@ namespace UI
         private void dataGridViewVentas_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
            
-
         }
     }
 }
