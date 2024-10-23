@@ -35,5 +35,10 @@ namespace BLL.Venta
         {
             return _ventaDAL.ListarTiposPago();
         }
+
+        public DataSet DatosImprimir(int idFactura)
+        {
+            return _ventaDAL.DatosImprimir(idFactura);
+        }
     }
 }

@@ -19,7 +19,7 @@ namespace UI
         private int id_Mueble, cantidad_Mueble;
         private float precioVenta, TotalVenta;
         private string nombre_mueble;
-
+        private int idFactura;
         private int id_Cliente;
         //Dictionary<int, string, int, float> detalle;
 
@@ -142,9 +142,19 @@ namespace UI
 
         private void dataGridViewVentaes_SelectionChanged(object sender, EventArgs e)
         {
+
             if (dataGridViewVentas.SelectedRows.Count > 0)
             {
                 groupBoxAccionesExtra.Visible = true;
+
+                DataGridViewRow filaSeleccionada = dataGridViewVentas.SelectedRows[0];
+
+                 idFactura = Convert.ToInt32(filaSeleccionada.Cells[0].Value);
+
+               
+                
+              
+
                 /*groupCrear.Hide();
                 groupEditar.Show();
                 btnMostrarCrear.Enabled = false;
@@ -335,6 +345,8 @@ namespace UI
         private void dataGridViewDetalle_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
             CargarTotal();
+
+
         }
 
         private void dataGridViewDetalle_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
@@ -345,6 +357,36 @@ namespace UI
         private void dataGridViewDetalle_RowsRemoved(object sender, DataGridViewRowsRemovedEventArgs e)
         {
             CargarTotal();
+        }
+
+        private void btnImprimir_Click(object sender, EventArgs e)
+        {
+            DataSet dataSet;
+
+            
+
+            dataSet = _serviceVenta.DatosImprimir(idFactura);
+
+            dataSet.WriteXml("C:\\Users\\marco\\Downloads\\prueba.xml");
+
+            DataTable encabezado = dataSet.Tables[0];
+
+            string carpeta = @"..\..\..\..\..\facturas\";
+           
+           
+            string noFactura = encabezado.Rows[0]["id_Factura"].ToString();
+           
+            string nombreArchivo = carpeta+ "facutraNo"+noFactura  + ".PDF";
+
+            GenerarPDF pdf = new GenerarPDF();
+            pdf.ImprimirFacturaPDF(dataSet, nombreArchivo);
+
+
+        }
+
+        private void dataGridViewVentas_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+           
         }
     }
 }

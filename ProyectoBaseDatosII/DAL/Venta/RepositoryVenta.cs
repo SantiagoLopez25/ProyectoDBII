@@ -39,6 +39,55 @@ namespace DAL.Venta
             return tablaMuebles;
         }
 
+        public DataSet DatosImprimir(int idFactura)
+        {
+            DataSet dataSetFactura = new DataSet();
+
+            using (var connection = _conexion.GetConnection())
+            {
+                connection.Open();
+
+                using (var command = new SqlCommand("datosFactura", connection))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.Add("@idFactura", SqlDbType.Int).Value = idFactura;
+
+                    using (var reader = command.ExecuteReader())
+                    {
+                       
+                        DataTable encabezadoFactura = new DataTable();
+                        encabezadoFactura.Load(reader);
+                        dataSetFactura.Tables.Add(encabezadoFactura);
+
+                        DataTable detalleFactura = new DataTable();
+                        detalleFactura.Load(reader);
+                        dataSetFactura.Tables.Add(detalleFactura);
+                        DataTable pagoFactura = new DataTable();
+                        pagoFactura.Load(reader);
+                        dataSetFactura.Tables.Add(pagoFactura);
+
+                        //if (reader.NextResult())
+                        //{
+
+                        //    DataTable pagoFactura = new DataTable();
+                        //    pagoFactura.Load(reader);
+                        //    dataSetFactura.Tables.Add(pagoFactura);
+                        //}
+
+
+                        /* if (reader.NextResult())
+                         {
+
+                         }*/
+
+
+                    }
+                }
+            }
+
+            return dataSetFactura;
+        }
+
         public DataTable ListarVentas()
         {
             DataTable tablaVentas = new DataTable();
