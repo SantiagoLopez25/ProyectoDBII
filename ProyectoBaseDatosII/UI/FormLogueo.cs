@@ -13,6 +13,7 @@ namespace UI
 {
     public partial class Login : Form
     {
+        public  int id_Usuario;
         private LoginService loginService;
         public Login()
         {
@@ -43,6 +44,7 @@ namespace UI
                     Menu menu = new Menu();
                     menu.setPrivileges(respuesta, textBoxUsuario.Text);
                     menu.ShowDialog();
+                    id_Usuario = 1;
                     this.Hide();
                 }
                 else if (respuesta == "Vendedor")
@@ -50,6 +52,7 @@ namespace UI
                     Menu menu = new Menu();
                     menu.setPrivileges(respuesta, textBoxUsuario.Text);
                     menu.ShowDialog();
+                    id_Usuario = 4;
                     this.Hide();
                 }
                 else if (respuesta == "Bodeguero")
@@ -57,6 +60,7 @@ namespace UI
                     Menu menu = new Menu();
                     menu.setPrivileges(respuesta, textBoxUsuario.Text);
                     menu.ShowDialog();
+                    id_Usuario = 2;
                     this.Hide();
                 }
                 else if (respuesta == "Gerente")
@@ -64,6 +68,7 @@ namespace UI
                     Menu menu = new Menu();
                     menu.setPrivileges(respuesta, textBoxUsuario.Text);
                     menu.ShowDialog();
+                    id_Usuario = 5;
                     this.Hide();
                 }
 

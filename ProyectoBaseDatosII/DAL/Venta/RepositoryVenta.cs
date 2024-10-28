@@ -284,9 +284,9 @@ namespace DAL.Venta
                         command.Parameters.AddWithValue("@idTTipoPago1", idTipoPago1);
                         command.Parameters.AddWithValue("@idTTipoPago2", idTipoPago2 ?? (object)DBNull.Value);
                         command.Parameters.AddWithValue("@idTipoPago3", idTipoPago3 ?? (object)DBNull.Value);
-                        command.Parameters.AddWithValue("@porcentajePago1", porcentajePago1 ?? (object)DBNull.Value);
-                        command.Parameters.AddWithValue("@porcentajePago2", porcentajePago2 ?? (object)DBNull.Value);
-                        command.Parameters.AddWithValue("@porcentajePago3", porcentajePago3 ?? (object)DBNull.Value);
+                        command.Parameters.AddWithValue("@cantidad1", porcentajePago1 ?? (object)DBNull.Value);
+                        command.Parameters.AddWithValue("@cantidad2", porcentajePago2 ?? (object)DBNull.Value);
+                        command.Parameters.AddWithValue("@cantidad3", porcentajePago3 ?? (object)DBNull.Value);
                         command.Parameters.AddWithValue("@id_Usuario", idUsuario);
 
                         var resultadoParam = new SqlParameter("@resultado", SqlDbType.VarChar, 200);

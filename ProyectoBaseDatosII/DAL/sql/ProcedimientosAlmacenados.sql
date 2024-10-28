@@ -45,6 +45,23 @@ WHERE  NIT LIKE @nit;
 END;
 GO
 
+--Procedimiento para buscar Direcciones de entrega por id_Cliente
+CREATE PROC BuscarDireccionesEntregaCliente
+@id_cliente int
+AS BEGIN
+SELECT 
+	DireccionEntrega.id_DirecciónEntrega as 'ID',
+	DireccionEntrega.Direccion
+FROM DireccionEntrega
+	INNER JOIN Cliente on DireccionEntrega.id_Cliente = Cliente.id_Cliente
+WHERE 
+	DireccionEntrega.id_Cliente = @id_cliente
+GROUP BY 
+	DireccionEntrega.id_DirecciónEntrega,
+	DireccionEntrega.Direccion
+HAVING COUNT(*) > 0;
+END;
+GO
 
 --Procedimiento para buscar Cliente por Nombre
 CREATE PROC BuscarClientePorNombre
@@ -452,7 +469,7 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-ALTER procedure [dbo].[GenerarFactura]
+CREATE procedure [dbo].[GenerarFactura]
 @detalle udt_DetalleFactura READONLY, 
 @serie varchar(150),
 @id_cliente int = 0,

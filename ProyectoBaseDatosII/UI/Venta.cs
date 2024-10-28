@@ -29,10 +29,14 @@ namespace UI
         private int idcliente;
 
         private int idFactura;
+        private int id_Usuario;
 
         //Dictionary<int, string, int, float> detalle;
 
-
+        public void setIdUsuario(int id)
+        {
+            this.id_Usuario = id;
+        }
         public Venta()
         {
             InitializeComponent();
@@ -121,11 +125,22 @@ namespace UI
         private void limpiarDatosCliente()
         {
             txtNIT.Clear();
+            txtNIT.Enabled = true;
+
             txtNombreCliente.Clear();
+            txtNombreCliente.Enabled = true;
+
             txtDireccionFacturacion.Clear();
+            txtDireccionFacturacion.Enabled = true;
+
             txtCorreo.Clear();
+            txtCorreo.Enabled = true;
+
             txtTelefono.Clear();
+            txtTelefono.Enabled = true;
+
             txtTelefonoReferencia.Clear();
+            txtTelefonoReferencia.Enabled = true;
 
         }
 
@@ -148,7 +163,7 @@ namespace UI
                 );*/
                 MessageBox.Show("Editado correctamente");
                 //ListarVentaes();
-                ClearData();
+                //ClearData();
             }
             else
                 MessageBox.Show("Debe seleccionar un registro a editar");
@@ -165,11 +180,11 @@ namespace UI
 
                 DataGridViewRow filaSeleccionada = dataGridViewVentas.SelectedRows[0];
 
-                 idFactura = Convert.ToInt32(filaSeleccionada.Cells[0].Value);
+                idFactura = Convert.ToInt32(filaSeleccionada.Cells[0].Value);
 
-               
-                
-              
+
+
+
 
                 /*groupCrear.Hide();
                 groupEditar.Show();
@@ -325,8 +340,7 @@ namespace UI
         {
             string nit = txtNIT.Text;
 
-
-            if (!string.IsNullOrEmpty(nit) && (nit != "CF"))
+            if (!string.IsNullOrEmpty(nit))
             {
                 DataTable clienteData = _serviceVenta.BuscarNit(nit);
 
@@ -335,32 +349,24 @@ namespace UI
                 {
                     DataRow row = clienteData.Rows[0];
                     idcliente = Convert.ToInt32(row["id_Cliente"]);
-
                     txtNombreCliente.Text = row["Nombre_Cliente"].ToString();
                     txtDireccionFacturacion.Text = row["DireccionFacturacion"].ToString();
                     txtCorreo.Text = row["Correo"].ToString();
                     txtTelefono.Text = row["Telefono"].ToString();
 
-
                     CargarDireccionesEntrega(idcliente);
 
                     txtNombreCliente.Enabled = false;
                     checkNuevaDirección.Checked = false;
-
                     txtDireccionFacturacion.Enabled = false;
                     txtCorreo.Enabled = false;
                     txtTelefono.Enabled = false;
+                    checkNitExistente.Checked = true;
                 }
-                else
-                {
-                    MessageBox.Show("Cliente no encontrado.");
-
-                    limpiarDatosCliente();
-                    checkNuevaDirección.Checked = true;
-                }
-            }
-            else if (txtNIT.Text == "")
+            }else if ((txtNIT.Text == "") || (checkNitExistente.Checked == false))
             {
+                MessageBox.Show("Cliente no encontrado.");
+                checkNuevaDirección.Checked = true;
                 limpiarDatosCliente();
                 txtNombreCliente.Enabled = true;
                 txtDireccionFacturacion.Enabled = true;
@@ -399,7 +405,7 @@ namespace UI
                     MessageBox.Show("Solo puedes agregar hasta 3 pagos en total para esta venta.");
                     return;
                 }
-                else if (float.Parse(lblPendientePago.Text) >= float.Parse(lblTotal.Text))
+                else if (CalcularSumaPagos() >= TotalVenta)
                 {
                     MessageBox.Show("No se puede pagar más del total de la venta");
                     return;
@@ -413,7 +419,7 @@ namespace UI
                 decimal montoPago = monto; // Guardar el monto actual
 
                 // Agregar el nuevo tipo de pago y su porcentaje a la lista
-                listaPagosPorcentaje.Add(new PagoPorcentaje(tipoPagoId, porcentaje));
+                listaPagosPorcentaje.Add(new PagoPorcentaje(tipoPagoId, (float)montoPago));
 
                 // Actualizar el PagoModel
                 PagoModel pagoModel = AsignarPagosDesdeLista(listaPagosPorcentaje);
@@ -459,7 +465,7 @@ namespace UI
                     int idTipoPago = Convert.ToInt32(row.Cells["idTipoPago"].Value);
                     float montoPago = float.Parse(row.Cells["montoTipoPago"].Value.ToString());
                     float porcentaje = (montoPago / TotalVenta) * 100;
-                    listaPagosPorcentaje.Add(new PagoPorcentaje(idTipoPago, porcentaje));
+                    listaPagosPorcentaje.Add(new PagoPorcentaje(idTipoPago, montoPago));
                 }
             }
         }
@@ -538,7 +544,7 @@ namespace UI
             try
             {
                 List<DetalleFacturaModel> detalles = new List<DetalleFacturaModel>();
-
+                ClienteModel cliente;
                 foreach (DataGridViewRow row in dataGridViewDetalle.Rows)
                 {
                     if (row.Cells["ID"].Value != null && row.Cells["cantidad"].Value != null)
@@ -547,7 +553,7 @@ namespace UI
                         {
                             Cantidad = Convert.ToInt32(row.Cells["cantidad"].Value),
                             IdMueble = Convert.ToInt32(row.Cells["ID"].Value)
-                           
+
                         };
                         detalles.Add(detalle);
                         //MessageBox.Show($"ID: {detalle.IdMueble}\nCantidad: {detalle.Cantidad}", "Detalle Agregado", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -558,15 +564,31 @@ namespace UI
 
                 if ((txtNIT.Text != "CF") || (txtNIT.Text != ""))
                 {
-                    ClienteModel cliente = new ClienteModel
+                    
+                    if (checkNitExistente.Checked == false)
                     {
-                        IdCliente = idcliente,
-                        NombreCliente = txtNombreCliente.Text,
-                        DireccionFacturacion = txtDireccionFacturacion.Text,
-                        Telefono = txtTelefono.Text,
-                        Correo = txtCorreo.Text,
-                        NIT = txtNIT.Text
-                    };
+                        cliente = new ClienteModel
+                        {
+                            IdCliente = null,
+                            NombreCliente = txtNombreCliente.Text,
+                            DireccionFacturacion = txtDireccionFacturacion.Text,
+                            Telefono = txtTelefono.Text,
+                            Correo = txtCorreo.Text,
+                            NIT = txtNIT.Text
+                        };
+                    }
+                    else
+                    {
+                        cliente = new ClienteModel
+                        {
+                            IdCliente = idcliente,
+                            NombreCliente = txtNombreCliente.Text,
+                            DireccionFacturacion = txtDireccionFacturacion.Text,
+                            Telefono = txtTelefono.Text,
+                            Correo = txtCorreo.Text,
+                            NIT = txtNIT.Text
+                        };
+                    }
 
                     /*MessageBox.Show($"Cliente:\nID: {cliente.IdCliente}\nNombre: {cliente.NombreCliente}\nDirección: {cliente.DireccionFacturacion}\nTeléfono: {cliente.Telefono}\nCorreo: {cliente.Correo}\nNIT: {cliente.NIT}",
                     "Información del Cliente", MessageBoxButtons.OK, MessageBoxIcon.Information);*/
@@ -585,7 +607,8 @@ namespace UI
                             FechaEntrega = fechaEntrega,
                             HoraEntrega = calcularHora()
                         };
-                    }else
+                    }
+                    else
                     {
                         direccionEntrega = new DireccionEntregaModel
                         {
@@ -597,7 +620,7 @@ namespace UI
                             HoraEntrega = calcularHora()
                         };
                     }
-                    
+
 
                     /*MessageBox.Show($"Dirección de Entrega:\nID: {direccionEntrega.IdDireccionEntrega}\nDescripción: {direccionEntrega.DescripcionEntrega}\nTeléfono Referencia: {direccionEntrega.TelefonoReferencia}\nFecha Entrega: {direccionEntrega.FechaEntrega}\nHora Entrega: {direccionEntrega.HoraEntrega}",
                     "Información de Dirección de Entrega", MessageBoxButtons.OK, MessageBoxIcon.Information);*/
@@ -614,7 +637,8 @@ namespace UI
                     string serieFactura = comboBoxSerieFactura.Text;
                     //MessageBox.Show("Serie Factura: " + serieFactura, "Serie Factura", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                    int idUsuario = 1;
+                    int idUsuario = 4;
+                    //MessageBox.Show("IdUsuario: " + idUsuario);
 
                     string resultado = _serviceVenta.GenerarFactura(detalles, serieFactura, cliente, direccionEntrega, pagos, idUsuario);
 
@@ -627,7 +651,7 @@ namespace UI
                 }
                 else
                 {
-                    ClienteModel cliente = new ClienteModel
+                    cliente = new ClienteModel
                     {
                         IdCliente = 0,
                         NombreCliente = txtNombreCliente.Text,
@@ -683,8 +707,8 @@ namespace UI
                     string serieFactura = comboBoxSerieFactura.Text;
                     //MessageBox.Show("Serie Factura: " + serieFactura, "Serie Factura", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                    int idUsuario = 1;
-
+                    int idUsuario = 4;
+                    //MessageBox.Show("IdUsuario: "+idUsuario);
                     string resultado = _serviceVenta.GenerarFactura(detalles, serieFactura, cliente, direccionEntrega, pagos, idUsuario);
 
                     MessageBox.Show(resultado, "Resultado de la Factura", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -713,16 +737,31 @@ namespace UI
         private void LimpiarFormularioYListarVentas()
         {
             txtNIT.Clear();
+            txtNIT.Enabled = true;
+
             txtNombreCliente.Clear();
+            txtNombreCliente.Enabled = true;
+
             txtDireccionFacturacion.Clear();
+            txtDireccionFacturacion.Enabled = true;
+
             txtCorreo.Clear();
+            txtCorreo.Enabled = true;
+
             txtTelefono.Clear();
+            txtTelefono.Enabled = true;
+
             txtMontoPagar.Clear();
+            txtMontoPagar.Enabled = true;
+
             txtTelefonoReferencia.Clear();
+            txtTelefonoReferencia.Enabled = true;
+
             txtDescripcion.Clear();
+            txtDescripcion.Enabled = true;
 
             dataGridViewDetalle.Rows.Clear();
-            dataGridViewPagos.Rows.Clear();
+            dataGridViewDetalle.Rows.Clear();
 
             comboBoxTipoPago.SelectedIndex = -1;
             comboBoxDireccionesEntrega.SelectedIndex = -1;
@@ -747,7 +786,7 @@ namespace UI
         {
             string nombreCliente = txtNombreCliente.Text;
 
-            if (!string.IsNullOrEmpty(nombreCliente))
+            if (!string.IsNullOrEmpty(nombreCliente) && (txtNIT.Text == ""))
             {
                 DataTable clienteData = _serviceVenta.BuscarClientePorNombre(nombreCliente);
 
@@ -781,42 +820,39 @@ namespace UI
                     checkNuevaDirección.Checked = true;
                 }
             }
-            else
+            else if(checkNitExistente.Checked == false) 
             {
                 checkNuevaDirección.Checked = true;
-                limpiarDatosCliente();
+                //limpiarDatosCliente();
 
-            } 
+            }
+        }
 
-        private void btnImprimir_Click(object sender, EventArgs e)
+
+
+        private void btnImprimir_Click_1(object sender, EventArgs e)
         {
             DataSet dataSet;
 
-            
+
 
             dataSet = _serviceVenta.DatosImprimir(idFactura);
 
-            dataSet.WriteXml("C:\\Users\\marco\\Downloads\\prueba.xml");
+            // dataSet.WriteXml("C:\\Users\\marco\\Downloads\\prueba.xml");
 
             DataTable encabezado = dataSet.Tables[0];
 
             string carpeta = @"..\..\..\..\..\facturas\";
-           
-           
+
+
             string noFactura = encabezado.Rows[0]["id_Factura"].ToString();
-           
-            string nombreArchivo = carpeta+ "facutraNo"+noFactura  + ".PDF";
+
+            string nombreArchivo = carpeta + "facutraNo" + noFactura + ".PDF";
 
             GenerarPDF pdf = new GenerarPDF();
             pdf.ImprimirFacturaPDF(dataSet, nombreArchivo);
 
-
-        }
-
-        private void dataGridViewVentas_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-           
-
+            MessageBox.Show("PDF de la factura generado");
         }
     }
 }

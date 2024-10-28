@@ -105,6 +105,7 @@ namespace UI
             Nombre = new DataGridViewTextBoxColumn();
             Cantidad = new DataGridViewTextBoxColumn();
             Total = new DataGridViewTextBoxColumn();
+            checkNitExistente = new CheckBox();
             panelCreate.SuspendLayout();
             groupBoxAccionesExtra.SuspendLayout();
             groupBoxCrear.SuspendLayout();
@@ -241,9 +242,11 @@ namespace UI
             btnImprimir.Text = "Imprimir";
             btnImprimir.TextAlign = ContentAlignment.MiddleRight;
             btnImprimir.UseVisualStyleBackColor = true;
+            btnImprimir.Click += btnImprimir_Click_1;
             // 
             // groupBoxCrear
             // 
+            groupBoxCrear.Controls.Add(checkNitExistente);
             groupBoxCrear.Controls.Add(label16);
             groupBoxCrear.Controls.Add(comboBoxSerieFactura);
             groupBoxCrear.Controls.Add(lblPendientePago);
@@ -430,7 +433,7 @@ namespace UI
             dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = Color.FromArgb(32, 30, 45);
             dataGridViewCellStyle3.Font = new Font("Microsoft Sans Serif", 6F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle3.ForeColor = Color.White;
+            dataGridViewCellStyle3.ForeColor = Color.Transparent;
             dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
             dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
@@ -1068,6 +1071,17 @@ namespace UI
             Total.ReadOnly = true;
             Total.Width = 75;
             // 
+            // checkNitExistente
+            // 
+            checkNitExistente.AutoSize = true;
+            checkNitExistente.ForeColor = Color.White;
+            checkNitExistente.Location = new Point(416, 34);
+            checkNitExistente.Name = "checkNitExistente";
+            checkNitExistente.Size = new Size(57, 24);
+            checkNitExistente.TabIndex = 60;
+            checkNitExistente.Text = "NIT";
+            checkNitExistente.UseVisualStyleBackColor = true;
+            // 
             // Venta
             // 
             AutoScaleDimensions = new SizeF(10F, 20F);
@@ -1168,5 +1182,6 @@ namespace UI
         private Label label17;
         private Label label16;
         private ComboBox comboBoxSerieFactura;
+        private CheckBox checkNitExistente;
     }
 }

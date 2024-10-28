@@ -34,6 +34,7 @@ namespace UI
             string nombreCliente = datosEncabezado["Nombre_Cliente"].ToString();
             string direccionCliente = datosEncabezado["DireccionFacturacion"].ToString();
             string usuario = datosEncabezado["Nombre"].ToString();
+            string nit = datosEncabezado["Nit"].ToString();
             string montoTotal = datosEncabezado["montoTotal"].ToString();
             string totalSinDescuento = datosEncabezado["totalSinDescuento"].ToString();
 
@@ -49,6 +50,7 @@ namespace UI
             documento.Add(new Paragraph("Cliente: " + nombreCliente, fuenteNormal));
             documento.Add(new Paragraph("Dirección: " + direccionCliente, fuenteNormal));
             documento.Add(new Paragraph("Atendido por: " + usuario, fuenteNormal));
+            documento.Add(new Paragraph("Nit: " + nit, fuenteNormal));
             documento.Add(Chunk.NEWLINE);
 
             

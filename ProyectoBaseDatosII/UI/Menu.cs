@@ -1,3 +1,4 @@
+using iTextSharp.text;
 using System.Security.Cryptography;
 
 namespace UI
@@ -21,7 +22,8 @@ namespace UI
 
             if (privilegio == "Administrador")
             {
-
+                Venta venta = new Venta();
+                venta.setIdUsuario(1);
             }
             else if (privilegio == "Bodeguero")
             {
@@ -38,6 +40,9 @@ namespace UI
                 buttonReportes.Visible = false;
                 button1.Visible = false;
                 btnEmpleados.Visible = false;
+                Venta venta = new Venta();
+                venta.setIdUsuario(4);
+
 
             }
 
