@@ -44,6 +44,7 @@ namespace UI
             btnEditar = new FontAwesome.Sharp.IconButton();
             btnImprimir = new FontAwesome.Sharp.IconButton();
             groupBoxCrear = new GroupBox();
+            checkNitExistente = new CheckBox();
             label16 = new Label();
             comboBoxSerieFactura = new ComboBox();
             lblPendientePago = new Label();
@@ -105,7 +106,6 @@ namespace UI
             Nombre = new DataGridViewTextBoxColumn();
             Cantidad = new DataGridViewTextBoxColumn();
             Total = new DataGridViewTextBoxColumn();
-            checkNitExistente = new CheckBox();
             panelCreate.SuspendLayout();
             groupBoxAccionesExtra.SuspendLayout();
             groupBoxCrear.SuspendLayout();
@@ -122,7 +122,7 @@ namespace UI
             txtNIT.Font = new Font("Microsoft Sans Serif", 9F);
             txtNIT.Location = new Point(196, 33);
             txtNIT.Name = "txtNIT";
-            txtNIT.Size = new Size(214, 24);
+            txtNIT.Size = new Size(214, 28);
             txtNIT.TabIndex = 0;
             txtNIT.Leave += txtNIT_Leave;
             // 
@@ -135,7 +135,7 @@ namespace UI
             label1.ForeColor = Color.Gainsboro;
             label1.Location = new Point(136, 35);
             label1.Name = "label1";
-            label1.Size = new Size(40, 20);
+            label1.Size = new Size(50, 25);
             label1.TabIndex = 1;
             label1.Text = "NIT:";
             // 
@@ -212,6 +212,7 @@ namespace UI
             btnEliminar.Text = "Eliminar";
             btnEliminar.TextAlign = ContentAlignment.MiddleRight;
             btnEliminar.UseVisualStyleBackColor = true;
+            btnEliminar.Click += btnEliminar_Click;
             // 
             // btnEditar
             // 
@@ -300,6 +301,17 @@ namespace UI
             groupBoxCrear.TabStop = false;
             groupBoxCrear.Visible = false;
             // 
+            // checkNitExistente
+            // 
+            checkNitExistente.AutoSize = true;
+            checkNitExistente.ForeColor = Color.White;
+            checkNitExistente.Location = new Point(416, 34);
+            checkNitExistente.Name = "checkNitExistente";
+            checkNitExistente.Size = new Size(70, 29);
+            checkNitExistente.TabIndex = 60;
+            checkNitExistente.Text = "NIT";
+            checkNitExistente.UseVisualStyleBackColor = true;
+            // 
             // label16
             // 
             label16.AutoSize = true;
@@ -309,7 +321,7 @@ namespace UI
             label16.ForeColor = Color.Gainsboro;
             label16.Location = new Point(352, 188);
             label16.Name = "label16";
-            label16.Size = new Size(115, 20);
+            label16.Size = new Size(135, 25);
             label16.TabIndex = 59;
             label16.Text = "Serie Factura:";
             // 
@@ -319,7 +331,7 @@ namespace UI
             comboBoxSerieFactura.Items.AddRange(new object[] { "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18" });
             comboBoxSerieFactura.Location = new Point(473, 185);
             comboBoxSerieFactura.Name = "comboBoxSerieFactura";
-            comboBoxSerieFactura.Size = new Size(116, 28);
+            comboBoxSerieFactura.Size = new Size(116, 33);
             comboBoxSerieFactura.TabIndex = 58;
             // 
             // lblPendientePago
@@ -331,7 +343,7 @@ namespace UI
             lblPendientePago.ForeColor = Color.Gainsboro;
             lblPendientePago.Location = new Point(450, 474);
             lblPendientePago.Name = "lblPendientePago";
-            lblPendientePago.Size = new Size(72, 20);
+            lblPendientePago.Size = new Size(86, 25);
             lblPendientePago.TabIndex = 57;
             lblPendientePago.Text = "cantidad";
             // 
@@ -344,7 +356,7 @@ namespace UI
             label17.ForeColor = Color.Gainsboro;
             label17.Location = new Point(337, 474);
             label17.Name = "label17";
-            label17.Size = new Size(86, 20);
+            label17.Size = new Size(104, 25);
             label17.TabIndex = 56;
             label17.Text = "PAGADO:";
             // 
@@ -460,7 +472,7 @@ namespace UI
             idTipoPago.MinimumWidth = 6;
             idTipoPago.Name = "idTipoPago";
             idTipoPago.ReadOnly = true;
-            idTipoPago.Width = 49;
+            idTipoPago.Width = 58;
             // 
             // nombreTipoPago
             // 
@@ -468,6 +480,7 @@ namespace UI
             nombreTipoPago.MinimumWidth = 6;
             nombreTipoPago.Name = "nombreTipoPago";
             nombreTipoPago.ReadOnly = true;
+            nombreTipoPago.Width = 112;
             // 
             // montoTipoPago
             // 
@@ -475,7 +488,7 @@ namespace UI
             montoTipoPago.MinimumWidth = 6;
             montoTipoPago.Name = "montoTipoPago";
             montoTipoPago.ReadOnly = true;
-            montoTipoPago.Width = 73;
+            montoTipoPago.Width = 87;
             // 
             // label20
             // 
@@ -486,7 +499,7 @@ namespace UI
             label20.ForeColor = Color.Gainsboro;
             label20.Location = new Point(47, 379);
             label20.Name = "label20";
-            label20.Size = new Size(52, 20);
+            label20.Size = new Size(65, 25);
             label20.TabIndex = 50;
             label20.Text = "TIPO:";
             // 
@@ -499,7 +512,7 @@ namespace UI
             label19.ForeColor = Color.Gainsboro;
             label19.Location = new Point(23, 330);
             label19.Name = "label19";
-            label19.Size = new Size(76, 20);
+            label19.Size = new Size(94, 25);
             label19.TabIndex = 49;
             label19.Text = "MONTO:";
             // 
@@ -508,7 +521,7 @@ namespace UI
             txtMontoPagar.Font = new Font("Microsoft Sans Serif", 9F);
             txtMontoPagar.Location = new Point(105, 328);
             txtMontoPagar.Name = "txtMontoPagar";
-            txtMontoPagar.Size = new Size(148, 24);
+            txtMontoPagar.Size = new Size(148, 28);
             txtMontoPagar.TabIndex = 48;
             // 
             // comboBoxTipoPago
@@ -516,7 +529,7 @@ namespace UI
             comboBoxTipoPago.FormattingEnabled = true;
             comboBoxTipoPago.Location = new Point(105, 371);
             comboBoxTipoPago.Name = "comboBoxTipoPago";
-            comboBoxTipoPago.Size = new Size(148, 28);
+            comboBoxTipoPago.Size = new Size(148, 33);
             comboBoxTipoPago.TabIndex = 47;
             // 
             // label18
@@ -528,7 +541,7 @@ namespace UI
             label18.ForeColor = Color.Gainsboro;
             label18.Location = new Point(196, 244);
             label18.Name = "label18";
-            label18.Size = new Size(162, 20);
+            label18.Size = new Size(203, 25);
             label18.TabIndex = 46;
             label18.Text = "FORMAS DE PAGO";
             // 
@@ -541,7 +554,7 @@ namespace UI
             lblDescuento.ForeColor = Color.Gainsboro;
             lblDescuento.Location = new Point(452, 503);
             lblDescuento.Name = "lblDescuento";
-            lblDescuento.Size = new Size(0, 20);
+            lblDescuento.Size = new Size(0, 25);
             lblDescuento.TabIndex = 45;
             // 
             // lblTotal
@@ -553,7 +566,7 @@ namespace UI
             lblTotal.ForeColor = Color.Gainsboro;
             lblTotal.Location = new Point(450, 443);
             lblTotal.Name = "lblTotal";
-            lblTotal.Size = new Size(72, 20);
+            lblTotal.Size = new Size(86, 25);
             lblTotal.TabIndex = 44;
             lblTotal.Text = "cantidad";
             // 
@@ -566,7 +579,7 @@ namespace UI
             label15.ForeColor = Color.Gainsboro;
             label15.Location = new Point(327, 503);
             label15.Name = "label15";
-            label15.Size = new Size(119, 20);
+            label15.Size = new Size(144, 25);
             label15.TabIndex = 43;
             label15.Text = "DESCUENTO:";
             // 
@@ -579,7 +592,7 @@ namespace UI
             label14.ForeColor = Color.Gainsboro;
             label14.Location = new Point(299, 443);
             label14.Name = "label14";
-            label14.Size = new Size(147, 20);
+            label14.Size = new Size(178, 25);
             label14.TabIndex = 42;
             label14.Text = "TOTAL A PAGAR:";
             // 
@@ -592,7 +605,7 @@ namespace UI
             label13.ForeColor = Color.Gainsboro;
             label13.Location = new Point(967, 334);
             label13.Name = "label13";
-            label13.Size = new Size(45, 20);
+            label13.Size = new Size(53, 25);
             label13.TabIndex = 41;
             label13.Text = "mins";
             // 
@@ -605,7 +618,7 @@ namespace UI
             label12.ForeColor = Color.Gainsboro;
             label12.Location = new Point(853, 334);
             label12.Name = "label12";
-            label12.Size = new Size(33, 20);
+            label12.Size = new Size(39, 25);
             label12.TabIndex = 40;
             label12.Text = "hrs";
             // 
@@ -615,7 +628,7 @@ namespace UI
             comboBoxMinutos.Items.AddRange(new object[] { "5", "10", "15", "20", "25", "30", "35", "40", "45", "50", "55" });
             comboBoxMinutos.Location = new Point(892, 323);
             comboBoxMinutos.Name = "comboBoxMinutos";
-            comboBoxMinutos.Size = new Size(69, 28);
+            comboBoxMinutos.Size = new Size(69, 33);
             comboBoxMinutos.TabIndex = 39;
             // 
             // comboBoxHora
@@ -624,7 +637,7 @@ namespace UI
             comboBoxHora.Items.AddRange(new object[] { "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18" });
             comboBoxHora.Location = new Point(778, 323);
             comboBoxHora.Name = "comboBoxHora";
-            comboBoxHora.Size = new Size(69, 28);
+            comboBoxHora.Size = new Size(69, 33);
             comboBoxHora.TabIndex = 38;
             // 
             // label11
@@ -636,7 +649,7 @@ namespace UI
             label11.ForeColor = Color.Gainsboro;
             label11.Location = new Point(658, 326);
             label11.Name = "label11";
-            label11.Size = new Size(114, 20);
+            label11.Size = new Size(133, 25);
             label11.TabIndex = 37;
             label11.Text = "Hora Entrega:";
             // 
@@ -645,7 +658,7 @@ namespace UI
             dateTimePicker1.Format = DateTimePickerFormat.Custom;
             dateTimePicker1.Location = new Point(778, 286);
             dateTimePicker1.Name = "dateTimePicker1";
-            dateTimePicker1.Size = new Size(306, 26);
+            dateTimePicker1.Size = new Size(306, 30);
             dateTimePicker1.TabIndex = 36;
             // 
             // label9
@@ -657,7 +670,7 @@ namespace UI
             label9.ForeColor = Color.Gainsboro;
             label9.Location = new Point(649, 291);
             label9.Name = "label9";
-            label9.Size = new Size(123, 20);
+            label9.Size = new Size(146, 25);
             label9.TabIndex = 35;
             label9.Text = "Fecha Entrega:";
             // 
@@ -691,7 +704,7 @@ namespace UI
             label8.ForeColor = Color.Gainsboro;
             label8.Location = new Point(605, 118);
             label8.Name = "label8";
-            label8.Size = new Size(167, 20);
+            label8.Size = new Size(193, 25);
             label8.TabIndex = 32;
             label8.Text = "Descripción Entrega:";
             // 
@@ -704,7 +717,7 @@ namespace UI
             label7.ForeColor = Color.Gainsboro;
             label7.Location = new Point(10, 188);
             label7.Name = "label7";
-            label7.Size = new Size(187, 20);
+            label7.Size = new Size(220, 25);
             label7.TabIndex = 30;
             label7.Text = "Teléfono de Referencia:";
             // 
@@ -713,7 +726,7 @@ namespace UI
             txtTelefonoReferencia.Font = new Font("Microsoft Sans Serif", 9F);
             txtTelefonoReferencia.Location = new Point(196, 188);
             txtTelefonoReferencia.Name = "txtTelefonoReferencia";
-            txtTelefonoReferencia.Size = new Size(126, 24);
+            txtTelefonoReferencia.Size = new Size(126, 28);
             txtTelefonoReferencia.TabIndex = 29;
             // 
             // label5
@@ -725,7 +738,7 @@ namespace UI
             label5.ForeColor = Color.Gainsboro;
             label5.Location = new Point(112, 154);
             label5.Name = "label5";
-            label5.Size = new Size(78, 20);
+            label5.Size = new Size(95, 25);
             label5.TabIndex = 28;
             label5.Text = "Teléfono:";
             // 
@@ -734,7 +747,7 @@ namespace UI
             txtTelefono.Font = new Font("Microsoft Sans Serif", 9F);
             txtTelefono.Location = new Point(196, 152);
             txtTelefono.Name = "txtTelefono";
-            txtTelefono.Size = new Size(126, 24);
+            txtTelefono.Size = new Size(126, 28);
             txtTelefono.TabIndex = 27;
             // 
             // checkNuevaDirección
@@ -743,7 +756,7 @@ namespace UI
             checkNuevaDirección.ForeColor = Color.White;
             checkNuevaDirección.Location = new Point(1014, 71);
             checkNuevaDirección.Name = "checkNuevaDirección";
-            checkNuevaDirección.Size = new Size(155, 24);
+            checkNuevaDirección.Size = new Size(181, 29);
             checkNuevaDirección.TabIndex = 25;
             checkNuevaDirección.Text = "Nueva Dirección";
             checkNuevaDirección.UseVisualStyleBackColor = true;
@@ -754,7 +767,7 @@ namespace UI
             txtNombreCliente.Font = new Font("Microsoft Sans Serif", 9F);
             txtNombreCliente.Location = new Point(196, 73);
             txtNombreCliente.Name = "txtNombreCliente";
-            txtNombreCliente.Size = new Size(214, 24);
+            txtNombreCliente.Size = new Size(214, 28);
             txtNombreCliente.TabIndex = 8;
             txtNombreCliente.Leave += txtNombreCliente_Leave;
             // 
@@ -767,7 +780,7 @@ namespace UI
             label6.ForeColor = Color.Gainsboro;
             label6.Location = new Point(115, 115);
             label6.Name = "label6";
-            label6.Size = new Size(65, 20);
+            label6.Size = new Size(78, 25);
             label6.TabIndex = 15;
             label6.Text = "Correo:";
             // 
@@ -780,7 +793,7 @@ namespace UI
             label2.ForeColor = Color.Gainsboro;
             label2.Location = new Point(115, 75);
             label2.Name = "label2";
-            label2.Size = new Size(73, 20);
+            label2.Size = new Size(87, 25);
             label2.TabIndex = 9;
             label2.Text = "Nombre:";
             // 
@@ -789,7 +802,7 @@ namespace UI
             txtCorreo.Font = new Font("Microsoft Sans Serif", 9F);
             txtCorreo.Location = new Point(196, 113);
             txtCorreo.Name = "txtCorreo";
-            txtCorreo.Size = new Size(214, 24);
+            txtCorreo.Size = new Size(214, 28);
             txtCorreo.TabIndex = 14;
             // 
             // txtDireccionFacturacion
@@ -797,7 +810,7 @@ namespace UI
             txtDireccionFacturacion.Font = new Font("Microsoft Sans Serif", 9F);
             txtDireccionFacturacion.Location = new Point(778, 29);
             txtDireccionFacturacion.Name = "txtDireccionFacturacion";
-            txtDireccionFacturacion.Size = new Size(214, 24);
+            txtDireccionFacturacion.Size = new Size(214, 28);
             txtDireccionFacturacion.TabIndex = 10;
             // 
             // label3
@@ -809,7 +822,7 @@ namespace UI
             label3.ForeColor = Color.Gainsboro;
             label3.Location = new Point(623, 70);
             label3.Name = "label3";
-            label3.Size = new Size(149, 20);
+            label3.Size = new Size(172, 25);
             label3.TabIndex = 13;
             label3.Text = "Dirección Entrega:";
             // 
@@ -822,7 +835,7 @@ namespace UI
             label4.ForeColor = Color.Gainsboro;
             label4.Location = new Point(593, 29);
             label4.Name = "label4";
-            label4.Size = new Size(179, 20);
+            label4.Size = new Size(206, 25);
             label4.TabIndex = 11;
             label4.Text = "Dirección Facturación:";
             // 
@@ -831,7 +844,7 @@ namespace UI
             comboBoxDireccionesEntrega.FormattingEnabled = true;
             comboBoxDireccionesEntrega.Location = new Point(778, 66);
             comboBoxDireccionesEntrega.Name = "comboBoxDireccionesEntrega";
-            comboBoxDireccionesEntrega.Size = new Size(214, 28);
+            comboBoxDireccionesEntrega.Size = new Size(214, 33);
             comboBoxDireccionesEntrega.TabIndex = 24;
             // 
             // txtNuevaDirección
@@ -839,7 +852,7 @@ namespace UI
             txtNuevaDirección.Font = new Font("Microsoft Sans Serif", 9F);
             txtNuevaDirección.Location = new Point(778, 70);
             txtNuevaDirección.Name = "txtNuevaDirección";
-            txtNuevaDirección.Size = new Size(214, 24);
+            txtNuevaDirección.Size = new Size(214, 28);
             txtNuevaDirección.TabIndex = 26;
             txtNuevaDirección.Visible = false;
             // 
@@ -977,7 +990,7 @@ namespace UI
             txtCantidad.Font = new Font("Microsoft Sans Serif", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtCantidad.Location = new Point(660, 193);
             txtCantidad.Name = "txtCantidad";
-            txtCantidad.Size = new Size(39, 28);
+            txtCantidad.Size = new Size(39, 32);
             txtCantidad.TabIndex = 43;
             txtCantidad.Text = "1";
             // 
@@ -990,7 +1003,7 @@ namespace UI
             label22.ForeColor = Color.Gainsboro;
             label22.Location = new Point(565, 198);
             label22.Name = "label22";
-            label22.Size = new Size(89, 20);
+            label22.Size = new Size(113, 25);
             label22.TabIndex = 42;
             label22.Text = "Cantidad:";
             // 
@@ -1016,7 +1029,7 @@ namespace UI
             label10.ForeColor = Color.Gainsboro;
             label10.Location = new Point(512, 35);
             label10.Name = "label10";
-            label10.Size = new Size(221, 20);
+            label10.Size = new Size(272, 25);
             label10.TabIndex = 35;
             label10.Text = "AGREGAR PRODUCTOS";
             // 
@@ -1045,7 +1058,7 @@ namespace UI
             ID.MinimumWidth = 6;
             ID.Name = "ID";
             ID.ReadOnly = true;
-            ID.Width = 55;
+            ID.Width = 67;
             // 
             // Nombre
             // 
@@ -1053,7 +1066,7 @@ namespace UI
             Nombre.MinimumWidth = 6;
             Nombre.Name = "Nombre";
             Nombre.ReadOnly = true;
-            Nombre.Width = 97;
+            Nombre.Width = 117;
             // 
             // Cantidad
             // 
@@ -1061,7 +1074,7 @@ namespace UI
             Cantidad.MinimumWidth = 6;
             Cantidad.Name = "Cantidad";
             Cantidad.ReadOnly = true;
-            Cantidad.Width = 104;
+            Cantidad.Width = 127;
             // 
             // Total
             // 
@@ -1069,22 +1082,11 @@ namespace UI
             Total.MinimumWidth = 6;
             Total.Name = "Total";
             Total.ReadOnly = true;
-            Total.Width = 75;
-            // 
-            // checkNitExistente
-            // 
-            checkNitExistente.AutoSize = true;
-            checkNitExistente.ForeColor = Color.White;
-            checkNitExistente.Location = new Point(416, 34);
-            checkNitExistente.Name = "checkNitExistente";
-            checkNitExistente.Size = new Size(57, 24);
-            checkNitExistente.TabIndex = 60;
-            checkNitExistente.Text = "NIT";
-            checkNitExistente.UseVisualStyleBackColor = true;
+            Total.Width = 92;
             // 
             // Venta
             // 
-            AutoScaleDimensions = new SizeF(10F, 20F);
+            AutoScaleDimensions = new SizeF(12F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1257, 622);
             Controls.Add(panelCreate);
