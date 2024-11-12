@@ -363,7 +363,8 @@ namespace UI
                     txtTelefono.Enabled = false;
                     checkNitExistente.Checked = true;
                 }
-            }else if ((txtNIT.Text == "") || (checkNitExistente.Checked == false))
+            }
+            else if ((txtNIT.Text == "") || (checkNitExistente.Checked == false))
             {
                 MessageBox.Show("Cliente no encontrado.");
                 checkNuevaDirección.Checked = true;
@@ -564,7 +565,7 @@ namespace UI
 
                 if ((txtNIT.Text != "CF") || (txtNIT.Text != ""))
                 {
-                    
+
                     if (checkNitExistente.Checked == false)
                     {
                         cliente = new ClienteModel
@@ -820,7 +821,7 @@ namespace UI
                     checkNuevaDirección.Checked = true;
                 }
             }
-            else if(checkNitExistente.Checked == false) 
+            else if (checkNitExistente.Checked == false)
             {
                 checkNuevaDirección.Checked = true;
                 //limpiarDatosCliente();
@@ -853,6 +854,31 @@ namespace UI
             pdf.ImprimirFacturaPDF(dataSet, nombreArchivo);
 
             MessageBox.Show("PDF de la factura generado");
+        }
+
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+
+            DialogResult result = MessageBox.Show(
+                "¿Está seguro de anular esta factura?",               
+                "Confirmación",                     
+                MessageBoxButtons.OKCancel,         
+                MessageBoxIcon.Question             
+            );
+
+            
+            if (result == DialogResult.OK)
+            {
+                _serviceVenta.AnularFactura(idFactura);
+
+                LimpiarFormularioYListarVentas();
+
+                groupBoxAgregarProductos.Visible = false;
+                groupBoxCrear.Visible = false;
+                groupBoxAccionesExtra.Visible = false;
+                groupBoxListar.Visible = true;
+            }
+           
         }
     }
 }

@@ -111,5 +111,10 @@ namespace BLL.Venta
             return _ventaDAL.DatosImprimir(idFactura);
 
         }
+
+        public void AnularFactura(int idFactura)
+        {
+            _ventaDAL.AnularFactura(idFactura);
+        }
     }
 }

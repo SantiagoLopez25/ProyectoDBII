@@ -32,5 +32,7 @@ namespace BLL.Venta
 
         DataSet DatosImprimir(int idFactura);
 
+        void AnularFactura(int idFactura);
+
     }
 }
