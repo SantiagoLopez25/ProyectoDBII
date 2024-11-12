@@ -859,6 +859,7 @@ namespace UI
         private void btnEliminar_Click(object sender, EventArgs e)
         {
 
+
             DialogResult result = MessageBox.Show(
                 "¿Está seguro de anular esta factura?",               
                 "Confirmación",                     
@@ -879,6 +880,7 @@ namespace UI
                 groupBoxListar.Visible = true;
             }
            
+
         }
     }
 }
