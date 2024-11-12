@@ -43,8 +43,9 @@ as
 
 BEGIN
 select top(10) Muebles.Nombre, sum(cantidadMuebles*PrecioVenta) as 'Total generado' from muebles inner join DetalleFactura on Muebles.id_mueble = DetalleFactura.id_mueble
-inner join Factura on Factura.id_Factura = DetalleFactura.id_DetalleFactura
-where fechaFactura > @fehcaInicio and fechaFactura < @fechaFinal
+inner join Factura on Factura.id_Factura = DetalleFactura.id_Factura
+where fechaFactura >= @fehcaInicio and fechaFactura <= @fechaFinal
+and Factura.Estado = 1
 group by Nombre
 order by 'Total generado' desc
 
@@ -73,7 +74,8 @@ as
 
 BEGIN
 select Nombre_TipoPago as 'Metodo', SUM(cantidad)as 'Total' from TipoPago inner join Pago on Pago.id_TipoPago = TipoPago.id_TipoPago
-inner join Factura on Factura.id_Factura = Pago.id_Factura where fechaFactura > @fehcaInicio and fechaFactura < @fechaFinal
+inner join Factura on Factura.id_Factura = Pago.id_Factura where fechaFactura >= @fehcaInicio and fechaFactura <= @fechaFinal
+and Factura.Estado = 1
 group by Nombre_TipoPago order by 'Total' desc
 
 END
@@ -83,23 +85,24 @@ END
 
 USE [VentaMuebles]
 GO
-/****** Object:  StoredProcedure [dbo].[estadoProductos]    Script Date: 10/11/2024 17:28:37 ******/
+/****** Object:  StoredProcedure [dbo].[estadoProductos]    Script Date: 12/11/2024 08:30:50 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-ALTER procedure [dbo].[estadoProductos] 
+CREATE  procedure [dbo].[estadoProductos] 
 
 as 
 
 BEGIN
 
-select *from EstadoPedido_Entrega
 
 
-select Muebles.Nombre from Muebles inner join DetalleFactura on Muebles.id_mueble = DetalleFactura.id_mueble
+select Muebles.Nombre, Nombre_EstadoPedido as 'Estado' from Muebles inner join DetalleFactura on Muebles.id_mueble = DetalleFactura.id_mueble
 inner join Factura on Factura.id_Factura = DetalleFactura.id_DetalleFactura
-inner join Entrega on Entrega.id_Entrega = Factura.id_Domicilio where entrega.id_EstadoPedido = 1 or Entrega.id_EstadoPedido = 4
+inner join Entrega on Entrega.id_Entrega = Factura.id_Domicilio 
+inner join EstadoPedido_Entrega on Entrega.id_EstadoPedido = EstadoPedido_Entrega.id_EstadoPedido
+where entrega.id_EstadoPedido = 1 or Entrega.id_EstadoPedido = 4
 
 select Muebles.Nombre, fechaEntrega from Muebles inner join DetalleFactura on Muebles.id_mueble = DetalleFactura.id_mueble
 inner join Factura on Factura.id_Factura = DetalleFactura.id_DetalleFactura
@@ -116,7 +119,14 @@ END
 
 -- Procedimiento almacenado que anula una factura
 
-create procedure anularFactura(
+USE [VentaMuebles]
+GO
+/****** Object:  StoredProcedure [dbo].[anularFactura]    Script Date: 12/11/2024 07:46:42 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE procedure [dbo].[anularFactura](
 	@idFactura int = 1
 )
 
@@ -138,6 +148,12 @@ BEGIN
 
 	UPDATE Factura set Estado = 0, montoTotal = 0, totalSinDescuento = 0 
 	where id_Factura = @idFactura
+	
+
+	select @idEntrega = id_entrega from Entrega inner join 
+	Factura on Factura.id_Domicilio = Entrega.id_Entrega where Factura.id_Factura = @idFactura
+	
+
 
 	
 	UPDATE Entrega set id_EstadoPedido = 3 where id_Entrega = @idEntrega
@@ -208,6 +224,8 @@ BEGIN
 	
 
 END
+
+
 
 
 
