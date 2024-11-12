@@ -90,6 +90,33 @@ namespace DAL.Venta
             return dataSetFactura;
         }
 
+        public void AnularFactura(int idFacutra)
+        {
+            using (var connection = _conexion.GetConnection())
+            {
+                connection.Open();
+                try
+                {
+                    using (var command = new SqlCommand("anularFactura", connection))
+                    {
+                        command.CommandType = CommandType.StoredProcedure;
+                        command.Parameters.AddWithValue("@idFactura", idFacutra);
+
+                        command.ExecuteNonQuery();
+                     
+                    }
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception($"Ocurrió un error al anular la factura \nError: {ex.Message}");
+                }
+
+                //return 
+            }
+           
+        }
+    
+
         public DataTable ListarVentas()
         {
             DataTable tablaVentas = new DataTable();

@@ -859,6 +859,28 @@ namespace UI
         private void btnEliminar_Click(object sender, EventArgs e)
         {
 
+
+            DialogResult result = MessageBox.Show(
+                "¿Está seguro de anular esta factura?",               
+                "Confirmación",                     
+                MessageBoxButtons.OKCancel,         
+                MessageBoxIcon.Question             
+            );
+
+            
+            if (result == DialogResult.OK)
+            {
+                _serviceVenta.AnularFactura(idFactura);
+
+                LimpiarFormularioYListarVentas();
+
+                groupBoxAgregarProductos.Visible = false;
+                groupBoxCrear.Visible = false;
+                groupBoxAccionesExtra.Visible = false;
+                groupBoxListar.Visible = true;
+            }
+           
+
         }
     }
 }
