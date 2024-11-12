@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data;
 using Microsoft.Data.SqlClient;
+using Dapper;
 
 namespace DAL.Venta
 {
@@ -307,6 +308,6 @@ namespace DAL.Venta
         }
 
 
-
+        
     }
 }

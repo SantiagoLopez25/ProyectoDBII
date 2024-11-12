@@ -225,9 +225,40 @@ namespace UI
 
         private void buttonReporte1_Click(object sender, EventArgs e)
         {
+
+            openChildForm(new Reporte1());
+            this.Text = "Reporte 1";
+            hideSubMenu();
+
+        }
+
+        private void buttonReporte2_Click(object sender, EventArgs e)
+        {
+            openChildForm(new Reporte2());
+            this.Text = "Reporte 2";
             hideSubMenu();
         }
 
+        private void button4_Click(object sender, EventArgs e)
+        {
+            openChildForm(new Reporte3());
+            this.Text = "Reporte 3";
+            hideSubMenu();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            openChildForm(new Reporte4());
+            this.Text = "Reporte 4";
+            hideSubMenu();
+        }
+
+        private void button2_Click_1(object sender, EventArgs e)
+        {
+            openChildForm(new Reporte5());
+            this.Text = "Reporte 5";
+            hideSubMenu();
+        }
 
 
 
@@ -271,5 +302,7 @@ namespace UI
             this.Text = "Empleados";
             openChildForm(new Empleado());
         }
+
+        
     }
 }

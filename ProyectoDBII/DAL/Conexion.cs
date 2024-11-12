@@ -17,7 +17,7 @@ namespace DAL
         static string server = "localhost"; //No cambiar
         static string database = "VentaMuebles";
         static string user = "sa";
-        static string password = "database";
+        static string password = "1234";
 
 
         public Conexion()
