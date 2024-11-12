@@ -106,6 +106,7 @@ INNER JOIN Cliente on Factura.id_Cliente = Cliente.id_Cliente
 INNER JOIN Usuario on Factura.id_Usuario = Usuario.id_Usuario
 INNER JOIN Entrega on Factura.id_Domicilio = Entrega.id_Entrega
 INNER JOIN DireccionEntrega on Entrega.id_DirecciónEntrega = DireccionEntrega.id_DirecciónEntrega
+where factura.Estado = 1
 
 ORDER BY 
 	Factura.fechaFactura DESC
