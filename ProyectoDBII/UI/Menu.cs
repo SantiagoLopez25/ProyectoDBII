@@ -143,7 +143,8 @@ namespace UI
 
         private void btnPedidosProveedor_Click(object sender, EventArgs e)
         {
-            //ABRIR FORM DE PEDIDOS DE PROVEEDOR
+            openChildForm(new Compra());
+            this.Text = "Compras";
             hideSubMenu();
         }
 

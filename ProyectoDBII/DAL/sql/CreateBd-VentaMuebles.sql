@@ -358,8 +358,6 @@ CREATE TABLE Pago (
 GO
 
 
-
-
 ALTER TABLE    Categoria  ADD  DEFAULT ((1)) FOR  Estado 
 GO
 ALTER TABLE    Cliente  ADD  DEFAULT ((1)) FOR  Estado 
@@ -494,3 +492,4 @@ REFERENCES    Empleado  ( id_Empleado )
 GO
 ALTER TABLE    Usuario  CHECK CONSTRAINT  Relationship15 
 GO
+
