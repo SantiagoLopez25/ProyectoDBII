@@ -149,7 +149,7 @@ insert into TipoPago (Nombre_TipoPago, Estado)
 values ('Efectivo', 1), ('Tarjeta de crédito', 1), ('Tarjeta de Débito', 1), ('Apple Pay', 1), 
 ('Google Pay',1), ('PayPal', 1)
 
-insert into EstadoPedido_Proveedor(Nombre_EstadoPedido)
+insert into EstadoPedido_Proveedor(Nombre_EstadoPedido,Estado)
 values ('En Proceso',1), ('Recibido Completo',1), ('Cancelado',1)
 
 
