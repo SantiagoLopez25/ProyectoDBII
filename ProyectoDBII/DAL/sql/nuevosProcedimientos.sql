@@ -9,7 +9,7 @@ SET QUOTED_IDENTIFIER ON
 GO
 CREATE PROCEDURE [dbo].[RegistrarCompra]
     @Descripcion VARCHAR(200),
-    @FechaPedido DATE,
+    @FechaPedido DATE = NULL,
     @FechaRecibido DATE = NULL,
     @CantidadPedido INT,
     @CantidadRecibido INT = NULL,
@@ -23,13 +23,12 @@ CREATE PROCEDURE [dbo].[RegistrarCompra]
 AS
 BEGIN
     DECLARE @id_Pedido INT;
-
     SET NOCOUNT ON;
     BEGIN TRAN compra
     BEGIN TRY
 
         INSERT INTO Pedido (Descripcion, FechaPedido, FechaRecibido, CantidadPedido, CantidadRecibido, TotalPagar, Estado, id_EstadoPedido, id_TipoPago, id_Proveedor)
-        VALUES (@Descripcion, @FechaPedido, @FechaRecibido, @CantidadPedido, @CantidadRecibido, @TotalPagar, @Estado, @id_EstadoPedido, @id_TipoPago, @id_Proveedor);
+        VALUES (@Descripcion, GETDATE(), @FechaRecibido, @CantidadPedido, @CantidadRecibido, @TotalPagar, @Estado, @id_EstadoPedido, @id_TipoPago, @id_Proveedor);
 
         SET @id_Pedido = SCOPE_IDENTITY();
 

@@ -72,6 +72,7 @@ WHERE Nombre_Cliente LIKE @nombre_cliente;
 END;
 GO
 
+
 --Procedimiento para buscar Direcciones de entrega por id_Cliente
 CREATE PROC BuscarDireccionesEntregaClientePorNombre
     @nombre_cliente VARCHAR(200)
@@ -111,6 +112,8 @@ where factura.Estado = 1
 ORDER BY 
 	Factura.fechaFactura DESC
 GO
+
+
 
 -- Procedimiento para listar Compras
 CREATE PROC ListarCompras
@@ -346,7 +349,16 @@ AS BEGIN
 END;
 GO
 
-
+--Procedimiento para eliminar compra
+CREATE PROC EliminarCompra
+@id_Pedido int
+AS BEGIN
+    -- Cambiar el estado a 0 (falso) para ocultar la compra
+    UPDATE Pedido 
+    SET Estado = 0
+    WHERE id_Pedido = @id_Pedido
+END;
+GO
 	
 
 -- Procedimiento almacenado que permite crear un usuario, actualizarlo y deshabilitarlo
