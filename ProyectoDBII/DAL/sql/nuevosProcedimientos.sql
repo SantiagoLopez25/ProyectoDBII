@@ -1,3 +1,118 @@
+
+-- Procedimiento para crear compra con detalle incluido
+USE [VentaMuebles]
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[RegistrarCompra]
+    @Descripcion VARCHAR(200),
+    @FechaPedido DATE,
+    @FechaRecibido DATE = NULL,
+    @CantidadPedido INT,
+    @CantidadRecibido INT = NULL,
+    @TotalPagar DECIMAL(10, 2),
+    @Estado BIT,
+    @id_EstadoPedido INT,
+    @id_TipoPago INT,
+    @id_Proveedor INT,
+    @DetallePedido udt_DetallePedido READONLY,
+    @resultado VARCHAR(200) OUTPUT
+AS
+BEGIN
+    DECLARE @id_Pedido INT;
+
+    SET NOCOUNT ON;
+    BEGIN TRAN compra
+    BEGIN TRY
+
+        INSERT INTO Pedido (Descripcion, FechaPedido, FechaRecibido, CantidadPedido, CantidadRecibido, TotalPagar, Estado, id_EstadoPedido, id_TipoPago, id_Proveedor)
+        VALUES (@Descripcion, @FechaPedido, @FechaRecibido, @CantidadPedido, @CantidadRecibido, @TotalPagar, @Estado, @id_EstadoPedido, @id_TipoPago, @id_Proveedor);
+
+        SET @id_Pedido = SCOPE_IDENTITY();
+
+        INSERT INTO DetallePedido (CantidadProducto, id_Pedido, id_mueble)
+        SELECT cantidad, @id_Pedido, id_mueble
+        FROM @DetallePedido;
+
+        -- Define el resultado según el estado
+        IF @CantidadRecibido < @CantidadPedido AND @Estado = 0
+        BEGIN
+            UPDATE Pedido
+            SET Estado = 1
+            WHERE id_Pedido = @id_Pedido;
+            SET @resultado = 'Compra registrada como pendiente';
+        END
+        ELSE
+        BEGIN
+            SET @resultado = 'Compra registrada correctamente';
+        END
+
+        COMMIT TRAN compra;
+    END TRY
+    BEGIN CATCH
+        ROLLBACK TRAN compra;
+        SET @resultado = 'Ocurrió un error: ' + ERROR_MESSAGE();
+    END CATCH
+END
+GO
+
+-- Procedimiento para actualizar compra e insertar stock
+USE [VentaMuebles]
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[ActualizarCompraYCrearStock]
+    @id_Pedido INT,
+    @CantidadRecibido INT,
+    @FechaIngreso DATE,
+    @resultado VARCHAR(200) OUTPUT
+AS
+BEGIN
+    SET NOCOUNT ON;
+    BEGIN TRAN actualizacion_compra
+    BEGIN TRY
+        DECLARE @CantidadPedido INT, @id_EstadoPedido INT;
+
+        SELECT @CantidadPedido = CantidadPedido, @id_EstadoPedido = id_EstadoPedido
+        FROM Pedido
+        WHERE id_Pedido = @id_Pedido;
+
+        UPDATE Pedido
+        SET CantidadRecibido = @CantidadRecibido
+        WHERE id_Pedido = @id_Pedido;
+
+        IF @CantidadRecibido >= @CantidadPedido
+        BEGIN
+            UPDATE Pedido
+            SET id_EstadoPedido = 2
+            WHERE id_Pedido = @id_Pedido;
+
+            INSERT INTO Stock (CantidadInicial, CantidadStock, FechaIngreso, Estado, id_mueble)
+            SELECT CantidadProducto, CantidadProducto, @FechaIngreso, 1, id_mueble
+            FROM DetallePedido
+            WHERE id_Pedido = @id_Pedido;
+
+            SET @resultado = 'Compra actualizada y stock creado';
+        END
+        ELSE
+        BEGIN
+            SET @resultado = 'Cantidad recibida actualizada, pero aún incompleta';
+        END
+
+        COMMIT TRAN actualizacion_compra;
+    END TRY
+    BEGIN CATCH
+        ROLLBACK TRAN actualizacion_compra;
+        SET @resultado = 'Ocurrió un error: ' + ERROR_MESSAGE();
+    END CATCH
+END
+GO
+
+
 -- Procedimiento para listar productos con existencia menor a la mínima
 
 USE [VentaMuebles]

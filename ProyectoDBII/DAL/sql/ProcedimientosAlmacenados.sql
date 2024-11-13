@@ -112,6 +112,31 @@ ORDER BY
 	Factura.fechaFactura DESC
 GO
 
+-- Procedimiento para listar Compras
+CREATE PROC ListarCompras
+AS
+Select
+	Pedido.id_Pedido as 'ID',
+	Pedido.Descripcion as 'Descripción',
+	Pedido.FechaPedido as 'Pedido',
+	Pedido.FechaRecibido as 'Recibido',
+	Pedido.CantidadPedido as 'CANT Pedido',
+	Pedido.CantidadRecibido as 'CANT Recibido',
+	Pedido.TotalPagar as 'Pagado',
+	EstadoPedido_Proveedor.Nombre_EstadoPedido as 'Estado',
+	TipoPago.Nombre_TipoPago as 'Pagado Con',
+	Proveedor.proveedor as 'Proveedor'
+
+from Pedido
+INNER JOIN EstadoPedido_Proveedor on Pedido.id_EstadoPedido = EstadoPedido_Proveedor.id_EstadoPedido
+INNER JOIN TipoPago on Pedido.id_TipoPago = TipoPago.id_TipoPago
+INNER JOIN Proveedor on Pedido.id_Proveedor = Proveedor.id_Proveedor
+where Pedido.Estado = 1
+
+ORDER BY 
+	Pedido.FechaPedido DESC
+GO
+
 -- Procedimiento para listar tipos de Proveedores
 CREATE PROC ListarProveedor
 AS

@@ -1,7 +1,11 @@
 USE VentaMuebles
 GO
 
-
+CREATE TYPE udt_DetallePedido AS TABLE
+(
+    cantidad INT NOT NULL,
+    id_mueble INT NOT NULL
+);
 CREATE TYPE udt_DetalleFactura AS TABLE
 (
     cantidad int NOT NULL,
