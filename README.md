@@ -1,0 +1,5 @@
+- [Admin] : 1234 - Administrador
+- [ValeriaV]: database - Bodeguero
+- [Jesus]: ye - Administrador
+- [Otto]: 'meso' - Vendedor
+- [juanjo]: meketrefe - Gerente
