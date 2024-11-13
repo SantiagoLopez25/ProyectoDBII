@@ -152,6 +152,10 @@ values ('Efectivo', 1), ('Tarjeta de crédito', 1), ('Tarjeta de Débito', 1), (
 insert into EstadoPedido_Proveedor(Nombre_EstadoPedido,Estado)
 values ('En Proceso',1), ('Recibido Completo',1), ('Cancelado',1)
 
-
+insert into Proveedor (proveedor,Direccion,Telefono,TelefonoExtra,Correo,Estado)
+values 
+('Muebles fiesta','18 Av 8-78 zona 1 Quetgo','12345678','87654321','mueblesFiesta@gmail.com',1),
+('Muebles Occidente','6 Calle 1-23 zona 3 Totonicapan','24681024','42018642','occMubles@gmail.com',1),
+('La bendicion Muebleria','7 Av 4-12 zona 7 San Marcos','21252426','26242521','laBendiMuebles@gmail.com',1)
 
 
