@@ -2,13 +2,14 @@
 -- Procedimiento para crear compra con detalle incluido
 USE [VentaMuebles]
 GO
+
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE PROCEDURE [dbo].[RegistrarCompra]
     @Descripcion VARCHAR(200),
-    @FechaPedido DATE,
+    @FechaPedido DATE = NULL,
     @FechaRecibido DATE = NULL,
     @CantidadPedido INT,
     @CantidadRecibido INT = NULL,
@@ -22,13 +23,12 @@ CREATE PROCEDURE [dbo].[RegistrarCompra]
 AS
 BEGIN
     DECLARE @id_Pedido INT;
-
     SET NOCOUNT ON;
     BEGIN TRAN compra
     BEGIN TRY
 
         INSERT INTO Pedido (Descripcion, FechaPedido, FechaRecibido, CantidadPedido, CantidadRecibido, TotalPagar, Estado, id_EstadoPedido, id_TipoPago, id_Proveedor)
-        VALUES (@Descripcion, @FechaPedido, @FechaRecibido, @CantidadPedido, @CantidadRecibido, @TotalPagar, @Estado, @id_EstadoPedido, @id_TipoPago, @id_Proveedor);
+        VALUES (@Descripcion, GETDATE(), @FechaRecibido, @CantidadPedido, @CantidadRecibido, @TotalPagar, @Estado, @id_EstadoPedido, @id_TipoPago, @id_Proveedor);
 
         SET @id_Pedido = SCOPE_IDENTITY();
 
@@ -56,11 +56,9 @@ BEGIN
         SET @resultado = 'Ocurrió un error: ' + ERROR_MESSAGE();
     END CATCH
 END
-GO
 
 -- Procedimiento para actualizar compra e insertar stock
-USE [VentaMuebles]
-GO
+
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -68,7 +66,7 @@ GO
 CREATE PROCEDURE [dbo].[ActualizarCompraYCrearStock]
     @id_Pedido INT,
     @CantidadRecibido INT,
-    @FechaIngreso DATE,
+    @FechaIngreso DATE = NULL,
     @resultado VARCHAR(200) OUTPUT
 AS
 BEGIN
@@ -92,7 +90,7 @@ BEGIN
             WHERE id_Pedido = @id_Pedido;
 
             INSERT INTO Stock (CantidadInicial, CantidadStock, FechaIngreso, Estado, id_mueble)
-            SELECT CantidadProducto, CantidadProducto, @FechaIngreso, 1, id_mueble
+            SELECT CantidadProducto, CantidadProducto, GETDATE(), 1, id_mueble
             FROM DetallePedido
             WHERE id_Pedido = @id_Pedido;
 
@@ -110,13 +108,11 @@ BEGIN
         SET @resultado = 'Ocurrió un error: ' + ERROR_MESSAGE();
     END CATCH
 END
-GO
 
 
 -- Procedimiento para listar productos con existencia menor a la mínima
 
-USE [VentaMuebles]
-GO
+
 /****** Object:  StoredProcedure [dbo].[reporteProductosExistencia]    Script Date: 10/11/2024 17:16:47 ******/
 SET ANSI_NULLS ON
 GO
@@ -141,8 +137,7 @@ END
 
 -- Procedimiento para listar los productos que más dinero generan entre 2 fechas
 
-USE [VentaMuebles]
-GO
+
 /****** Object:  StoredProcedure [dbo].[productosMasVendidosPorFecha]    Script Date: 10/11/2024 17:24:55 ******/
 SET ANSI_NULLS ON
 GO
@@ -172,8 +167,6 @@ END
 
 -- Procedimiento almacenado que muestra los métodos de pago que más generan entre 2 fechas
 
-USE [VentaMuebles]
-GO
 /****** Object:  StoredProcedure [dbo].[totalFactura]    Script Date: 10/11/2024 17:26:19 ******/
 SET ANSI_NULLS ON
 GO
@@ -198,8 +191,7 @@ END
 
 -- Procedimiento almacenado que muestra los productos que están pendientes de entrega y los que ya fueron entregados
 
-USE [VentaMuebles]
-GO
+
 /****** Object:  StoredProcedure [dbo].[estadoProductos]    Script Date: 12/11/2024 08:30:50 ******/
 SET ANSI_NULLS ON
 GO
@@ -234,8 +226,7 @@ END
 
 -- Procedimiento almacenado que anula una factura
 
-USE [VentaMuebles]
-GO
+
 /****** Object:  StoredProcedure [dbo].[anularFactura]    Script Date: 12/11/2024 07:46:42 ******/
 SET ANSI_NULLS ON
 GO

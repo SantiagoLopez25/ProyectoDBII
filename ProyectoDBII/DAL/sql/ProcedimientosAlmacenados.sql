@@ -2,6 +2,54 @@
 
 USE VentaMuebles
 GO
+
+-- Procedimiento para listar tipos de pago
+CREATE PROC ListarEstadoPedido
+AS
+SELECT 
+	id_EstadoPedido,
+	Nombre_EstadoPedido
+FROM EstadoPedido_Entrega
+WHERE Estado = 1
+ORDER BY Nombre_EstadoPedido ASC
+GO
+
+--Procedimiento para listar entregas
+CREATE PROCEDURE ListarEntregas
+AS 
+SELECT 
+		Factura.id_Factura as 'ID',
+		Factura.montoTotal as 'Total',
+		Cliente.Nombre_Cliente as 'Compró',
+		DireccionEntrega.Direccion as 'Entrega',
+        Entrega.DescripcionEntrega,
+        Entrega.TelefonoReferencia 'Tel. Referencia',
+        Entrega.fechaEntrega as 'Entrega',
+        Entrega.horaEntrega as 'Hora Entrega',
+		EstadoPedido_Entrega.Nombre_EstadoPedido as 'Estado',
+		Entrega.id_Entrega as 'ID_Entrega'
+    FROM Factura
+	INNER JOIN Entrega on Factura.id_Domicilio = Entrega.id_Entrega
+    INNER JOIN DireccionEntrega on Entrega.id_DirecciónEntrega = DireccionEntrega.id_DirecciónEntrega
+	INNER JOIN EstadoPedido_Entrega on Entrega.id_EstadoPedido = EstadoPedido_Entrega.id_EstadoPedido
+	INNER JOIN Cliente on Factura.id_Cliente = Cliente.id_Cliente
+	INNER JOIN Usuario on Factura.id_Usuario = Usuario.id_Usuario
+
+	WHERE Factura.Estado = 1 AND Entrega.Estado = 1
+	ORDER BY Entrega.fechaEntrega DESC;
+
+GO
+--Procedimiento para filtrar ventas por cliente o numero de factura
+CREATE PROCEDURE CompletarEntrega
+@id_Entrega int
+AS BEGIN
+	UPDATE Entrega SET
+	id_EstadoPedido=2
+	WHERE id_Entrega = @id_Entrega
+END;
+GO
+
+
 --Procedimiento para listar los muebles
 CREATE PROC ListarMuebles
 AS
@@ -72,6 +120,7 @@ WHERE Nombre_Cliente LIKE @nombre_cliente;
 END;
 GO
 
+
 --Procedimiento para buscar Direcciones de entrega por id_Cliente
 CREATE PROC BuscarDireccionesEntregaClientePorNombre
     @nombre_cliente VARCHAR(200)
@@ -106,11 +155,17 @@ INNER JOIN Cliente on Factura.id_Cliente = Cliente.id_Cliente
 INNER JOIN Usuario on Factura.id_Usuario = Usuario.id_Usuario
 INNER JOIN Entrega on Factura.id_Domicilio = Entrega.id_Entrega
 INNER JOIN DireccionEntrega on Entrega.id_DirecciónEntrega = DireccionEntrega.id_DirecciónEntrega
+INNER JOIN Cliente on Factura.id_Cliente = Cliente.id_Cliente
+INNER JOIN Usuario on Factura.id_Usuario = Usuario.id_Usuario
+INNER JOIN Entrega on Factura.id_Domicilio = Entrega.id_Entrega
+INNER JOIN DireccionEntrega on Entrega.id_DirecciónEntrega = DireccionEntrega.id_DirecciónEntrega
 where factura.Estado = 1
 
 ORDER BY 
 	Factura.fechaFactura DESC
 GO
+
+
 
 -- Procedimiento para listar Compras
 CREATE PROC ListarCompras
@@ -346,7 +401,16 @@ AS BEGIN
 END;
 GO
 
-
+--Procedimiento para eliminar compra
+CREATE PROC EliminarCompra
+@id_Pedido int
+AS BEGIN
+    -- Cambiar el estado a 0 (falso) para ocultar la compra
+    UPDATE Pedido 
+    SET Estado = 0
+    WHERE id_Pedido = @id_Pedido
+END;
+GO
 	
 
 -- Procedimiento almacenado que permite crear un usuario, actualizarlo y deshabilitarlo
