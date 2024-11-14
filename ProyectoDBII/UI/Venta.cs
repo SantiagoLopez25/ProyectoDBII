@@ -29,13 +29,13 @@ namespace UI
         private int idcliente;
 
         private int idFactura;
-        private int id_Usuario;
+        private int idUsuario;
 
         //Dictionary<int, string, int, float> detalle;
 
         public void setIdUsuario(int id)
         {
-            this.id_Usuario = id;
+            idUsuario = id;
         }
         public Venta()
         {
@@ -638,10 +638,10 @@ namespace UI
                     string serieFactura = comboBoxSerieFactura.Text;
                     //MessageBox.Show("Serie Factura: " + serieFactura, "Serie Factura", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                    int idUsuario = 4;
+                    int id_Usuario = idUsuario;
                     //MessageBox.Show("IdUsuario: " + idUsuario);
 
-                    string resultado = _serviceVenta.GenerarFactura(detalles, serieFactura, cliente, direccionEntrega, pagos, idUsuario);
+                    string resultado = _serviceVenta.GenerarFactura(detalles, serieFactura, cliente, direccionEntrega, pagos, id_Usuario);
 
                     MessageBox.Show(resultado, "Resultado de la Factura", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
@@ -861,13 +861,13 @@ namespace UI
 
 
             DialogResult result = MessageBox.Show(
-                "¿Está seguro de anular esta factura?",               
-                "Confirmación",                     
-                MessageBoxButtons.OKCancel,         
-                MessageBoxIcon.Question             
+                "¿Está seguro de anular esta factura?",
+                "Confirmación",
+                MessageBoxButtons.OKCancel,
+                MessageBoxIcon.Question
             );
 
-            
+
             if (result == DialogResult.OK)
             {
                 _serviceVenta.AnularFactura(idFactura);
@@ -879,8 +879,13 @@ namespace UI
                 groupBoxAccionesExtra.Visible = false;
                 groupBoxListar.Visible = true;
             }
-           
 
+
+        }
+
+        private void btnEditar_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(idUsuario.ToString());
         }
     }
 }

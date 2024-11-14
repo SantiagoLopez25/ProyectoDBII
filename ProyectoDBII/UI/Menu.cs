@@ -6,6 +6,7 @@ namespace UI
     public partial class Menu : Form
     {
         private string privilegio;
+        private int idUsuario;
 
         public Menu()
         {
@@ -14,16 +15,17 @@ namespace UI
             customizeDesign();
         }
 
-        public void setPrivileges(string privilegio, string usuario)
+        public void setPrivileges(string privilegio, string usuario, int idUsuario)
         {
             labelUsuario.Text = usuario + " - " + privilegio;
             this.privilegio = privilegio;
             this.Text = privilegio;
+            this.idUsuario = idUsuario;
 
             if (privilegio == "Administrador")
             {
                 Venta venta = new Venta();
-                venta.setIdUsuario(1);
+                //venta.setIdUsuario(idUsuario);
             }
             else if (privilegio == "Bodeguero")
             {
@@ -40,8 +42,8 @@ namespace UI
                 buttonReportes.Visible = false;
                 button1.Visible = false;
                 btnEmpleados.Visible = false;
-                Venta venta = new Venta();
-                venta.setIdUsuario(4);
+                //Venta venta = new Venta();
+               // venta.setIdUsuario(idUsuario);
 
 
             }
@@ -113,7 +115,9 @@ namespace UI
 
         private void btnVentas_Click(object sender, EventArgs e)
         {
-            openChildForm(new Venta());
+            Venta venta = new Venta();
+            openChildForm(venta);
+            venta.setIdUsuario(idUsuario);
             this.Text = "Venta";
             hideSubMenu();
         }
