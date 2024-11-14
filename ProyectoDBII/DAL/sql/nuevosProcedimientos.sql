@@ -66,7 +66,7 @@ GO
 CREATE PROCEDURE [dbo].[ActualizarCompraYCrearStock]
     @id_Pedido INT,
     @CantidadRecibido INT,
-    @FechaIngreso DATE,
+    @FechaIngreso DATE = NULL,
     @resultado VARCHAR(200) OUTPUT
 AS
 BEGIN
@@ -90,7 +90,7 @@ BEGIN
             WHERE id_Pedido = @id_Pedido;
 
             INSERT INTO Stock (CantidadInicial, CantidadStock, FechaIngreso, Estado, id_mueble)
-            SELECT CantidadProducto, CantidadProducto, @FechaIngreso, 1, id_mueble
+            SELECT CantidadProducto, CantidadProducto, GETDATE(), 1, id_mueble
             FROM DetallePedido
             WHERE id_Pedido = @id_Pedido;
 
