@@ -1,4 +1,5 @@
 ﻿using Dapper;
+using Microsoft.Data.SqlClient;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -27,6 +28,31 @@ namespace DAL.Login
               
 
             }
+        }
+
+        public DataTable InicioSesion(string user, string password)
+        {
+            DataTable resultado = new DataTable();
+
+            using (var connection = _conexion.GetConnection())
+            {
+                connection.Open();
+
+                using (var command = new SqlCommand("login", connection))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.Add("@usuario", SqlDbType.VarChar).Value = user;
+
+                    command.Parameters.Add("@contrasennia", SqlDbType.VarChar).Value = password;
+
+                    using (var reader = command.ExecuteReader())
+                    {
+                        resultado.Load(reader);
+                    }
+                }
+            }
+
+            return resultado;
         }
 
     }

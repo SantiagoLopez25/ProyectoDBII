@@ -37,12 +37,15 @@ namespace UI
 
             else
             {
+                DataTable tabla = loginService.InicioDeSesion(user, password);
+                string respuesta =  tabla.Rows[0]["Rol"].ToString();
+                int idUsuario = Convert.ToInt32(tabla.Rows[0]["IdUsuario"].ToString());
                 
-                string respuesta = loginService.inicioSesion(user, password);
+
                 if (respuesta == "Administrador")
                 {
                     Menu menu = new Menu();
-                    menu.setPrivileges(respuesta, textBoxUsuario.Text);
+                    menu.setPrivileges(respuesta, textBoxUsuario.Text, idUsuario);
                     menu.ShowDialog();
                     id_Usuario = 1;
                     this.Hide();
@@ -50,7 +53,7 @@ namespace UI
                 else if (respuesta == "Vendedor")
                 {
                     Menu menu = new Menu();
-                    menu.setPrivileges(respuesta, textBoxUsuario.Text);
+                    menu.setPrivileges(respuesta, textBoxUsuario.Text, idUsuario);
                     menu.ShowDialog();
                     id_Usuario = 4;
                     this.Hide();
@@ -58,7 +61,7 @@ namespace UI
                 else if (respuesta == "Bodeguero")
                 {
                     Menu menu = new Menu();
-                    menu.setPrivileges(respuesta, textBoxUsuario.Text);
+                    menu.setPrivileges(respuesta, textBoxUsuario.Text, idUsuario);
                     menu.ShowDialog();
                     id_Usuario = 2;
                     this.Hide();
@@ -66,7 +69,7 @@ namespace UI
                 else if (respuesta == "Gerente")
                 {
                     Menu menu = new Menu();
-                    menu.setPrivileges(respuesta, textBoxUsuario.Text);
+                    menu.setPrivileges(respuesta, textBoxUsuario.Text, idUsuario);
                     menu.ShowDialog();
                     id_Usuario = 5;
                     this.Hide();
