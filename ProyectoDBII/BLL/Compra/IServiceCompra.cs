@@ -32,5 +32,7 @@ namespace BLL.Compra
            List<DetalleCompraModel> detalle
         );
 
+        public string ActualizarCompraYCrearStock(int idPedido, int cantidadRecibido, DateTime? fechaIngreso);
+
     }
 }

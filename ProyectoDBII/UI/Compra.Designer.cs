@@ -31,12 +31,14 @@ namespace UI
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             panelCreate = new Panel();
+            groupBoxActualizar = new GroupBox();
+            txtBoxCantidadRecibida = new TextBox();
+            label6 = new Label();
+            iconButton2 = new FontAwesome.Sharp.IconButton();
             btnMostrarAgregar = new FontAwesome.Sharp.IconButton();
             btnListarCompras = new FontAwesome.Sharp.IconButton();
             groupBoxAccionesExtra = new GroupBox();
             btnEliminar = new FontAwesome.Sharp.IconButton();
-            groupBoxListar = new Panel();
-            dataGridViewCompras = new DataGridView();
             groupBoxAgregarProductos = new GroupBox();
             label3 = new Label();
             comboBoxProveedores = new ComboBox();
@@ -60,23 +62,27 @@ namespace UI
             Nombre = new DataGridViewTextBoxColumn();
             Cantidad = new DataGridViewTextBoxColumn();
             Total = new DataGridViewTextBoxColumn();
+            groupBoxListar = new Panel();
+            dataGridViewCompras = new DataGridView();
             panelCreate.SuspendLayout();
+            groupBoxActualizar.SuspendLayout();
             groupBoxAccionesExtra.SuspendLayout();
-            groupBoxListar.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridViewCompras).BeginInit();
             groupBoxAgregarProductos.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridViewProductos).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridViewDetalle).BeginInit();
+            groupBoxListar.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridViewCompras).BeginInit();
             SuspendLayout();
             // 
             // panelCreate
             // 
             panelCreate.BackColor = Color.FromArgb(32, 30, 45);
+            panelCreate.Controls.Add(groupBoxActualizar);
             panelCreate.Controls.Add(btnMostrarAgregar);
             panelCreate.Controls.Add(btnListarCompras);
             panelCreate.Controls.Add(groupBoxAccionesExtra);
-            panelCreate.Controls.Add(groupBoxListar);
             panelCreate.Controls.Add(groupBoxAgregarProductos);
+            panelCreate.Controls.Add(groupBoxListar);
             panelCreate.Dock = DockStyle.Fill;
             panelCreate.Location = new Point(0, 0);
             panelCreate.Margin = new Padding(0);
@@ -84,6 +90,55 @@ namespace UI
             panelCreate.Size = new Size(1414, 742);
             panelCreate.TabIndex = 2;
             panelCreate.Paint += panelCreate_Paint;
+            // 
+            // groupBoxActualizar
+            // 
+            groupBoxActualizar.Controls.Add(txtBoxCantidadRecibida);
+            groupBoxActualizar.Controls.Add(label6);
+            groupBoxActualizar.Controls.Add(iconButton2);
+            groupBoxActualizar.Location = new Point(238, 12);
+            groupBoxActualizar.Name = "groupBoxActualizar";
+            groupBoxActualizar.Size = new Size(399, 59);
+            groupBoxActualizar.TabIndex = 28;
+            groupBoxActualizar.TabStop = false;
+            // 
+            // txtBoxCantidadRecibida
+            // 
+            txtBoxCantidadRecibida.Font = new Font("Microsoft Sans Serif", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtBoxCantidadRecibida.Location = new Point(182, 17);
+            txtBoxCantidadRecibida.Name = "txtBoxCantidadRecibida";
+            txtBoxCantidadRecibida.Size = new Size(63, 28);
+            txtBoxCantidadRecibida.TabIndex = 64;
+            txtBoxCantidadRecibida.Text = "1";
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.BackColor = Color.FromArgb(32, 30, 45);
+            label6.FlatStyle = FlatStyle.Flat;
+            label6.Font = new Font("Microsoft Sans Serif", 10F);
+            label6.ForeColor = Color.Gainsboro;
+            label6.Location = new Point(6, 22);
+            label6.Name = "label6";
+            label6.Size = new Size(150, 20);
+            label6.TabIndex = 63;
+            label6.Text = "Cantidad Recibida:";
+            // 
+            // iconButton2
+            // 
+            iconButton2.IconChar = FontAwesome.Sharp.IconChar.Edit;
+            iconButton2.IconColor = Color.Black;
+            iconButton2.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            iconButton2.IconSize = 30;
+            iconButton2.ImageAlign = ContentAlignment.MiddleLeft;
+            iconButton2.Location = new Point(273, 16);
+            iconButton2.Name = "iconButton2";
+            iconButton2.Size = new Size(120, 33);
+            iconButton2.TabIndex = 27;
+            iconButton2.Text = "Actualizar";
+            iconButton2.TextAlign = ContentAlignment.MiddleRight;
+            iconButton2.UseVisualStyleBackColor = true;
+            iconButton2.Click += iconButton2_Click;
             // 
             // btnMostrarAgregar
             // 
@@ -120,7 +175,7 @@ namespace UI
             // groupBoxAccionesExtra
             // 
             groupBoxAccionesExtra.Controls.Add(btnEliminar);
-            groupBoxAccionesExtra.Location = new Point(527, 8);
+            groupBoxAccionesExtra.Location = new Point(685, 12);
             groupBoxAccionesExtra.Name = "groupBoxAccionesExtra";
             groupBoxAccionesExtra.Size = new Size(156, 59);
             groupBoxAccionesExtra.TabIndex = 22;
@@ -141,36 +196,6 @@ namespace UI
             btnEliminar.TextAlign = ContentAlignment.MiddleRight;
             btnEliminar.UseVisualStyleBackColor = true;
             btnEliminar.Click += btnEliminar_Click_1;
-            // 
-            // groupBoxListar
-            // 
-            groupBoxListar.Controls.Add(dataGridViewCompras);
-            groupBoxListar.Location = new Point(15, 74);
-            groupBoxListar.Name = "groupBoxListar";
-            groupBoxListar.Size = new Size(1390, 645);
-            groupBoxListar.TabIndex = 20;
-            // 
-            // dataGridViewCompras
-            // 
-            dataGridViewCompras.AllowUserToAddRows = false;
-            dataGridViewCompras.AllowUserToDeleteRows = false;
-            dataGridViewCompras.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
-            dataGridViewCompras.BackgroundColor = Color.FromArgb(32, 30, 45);
-            dataGridViewCompras.BorderStyle = BorderStyle.None;
-            dataGridViewCompras.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-            dataGridViewCompras.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridViewCompras.ColumnHeadersHeight = 29;
-            dataGridViewCompras.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridViewCompras.EnableHeadersVisualStyles = false;
-            dataGridViewCompras.Location = new Point(12, 10);
-            dataGridViewCompras.Margin = new Padding(12, 10, 12, 10);
-            dataGridViewCompras.Name = "dataGridViewCompras";
-            dataGridViewCompras.ReadOnly = true;
-            dataGridViewCompras.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCompras.RowHeadersWidth = 51;
-            dataGridViewCompras.Size = new Size(1206, 513);
-            dataGridViewCompras.TabIndex = 3;
-            dataGridViewCompras.SelectionChanged += dataGridViewCompras_SelectionChanged_1;
             // 
             // groupBoxAgregarProductos
             // 
@@ -209,9 +234,9 @@ namespace UI
             label3.ForeColor = Color.Gainsboro;
             label3.Location = new Point(82, 418);
             label3.Name = "label3";
-            label3.Size = new Size(116, 20);
+            label3.Size = new Size(100, 20);
             label3.TabIndex = 68;
-            label3.Text = "Descripción:";
+            label3.Text = "Proveedor:";
             // 
             // comboBoxProveedores
             // 
@@ -485,6 +510,36 @@ namespace UI
             Total.ReadOnly = true;
             Total.Width = 75;
             // 
+            // groupBoxListar
+            // 
+            groupBoxListar.Controls.Add(dataGridViewCompras);
+            groupBoxListar.Location = new Point(15, 74);
+            groupBoxListar.Name = "groupBoxListar";
+            groupBoxListar.Size = new Size(1390, 645);
+            groupBoxListar.TabIndex = 20;
+            // 
+            // dataGridViewCompras
+            // 
+            dataGridViewCompras.AllowUserToAddRows = false;
+            dataGridViewCompras.AllowUserToDeleteRows = false;
+            dataGridViewCompras.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            dataGridViewCompras.BackgroundColor = Color.FromArgb(32, 30, 45);
+            dataGridViewCompras.BorderStyle = BorderStyle.None;
+            dataGridViewCompras.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dataGridViewCompras.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dataGridViewCompras.ColumnHeadersHeight = 29;
+            dataGridViewCompras.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            dataGridViewCompras.EnableHeadersVisualStyles = false;
+            dataGridViewCompras.Location = new Point(12, 10);
+            dataGridViewCompras.Margin = new Padding(12, 10, 12, 10);
+            dataGridViewCompras.Name = "dataGridViewCompras";
+            dataGridViewCompras.ReadOnly = true;
+            dataGridViewCompras.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCompras.RowHeadersWidth = 51;
+            dataGridViewCompras.Size = new Size(1206, 513);
+            dataGridViewCompras.TabIndex = 3;
+            dataGridViewCompras.SelectionChanged += dataGridViewCompras_SelectionChanged_1;
+            // 
             // Compra
             // 
             AutoScaleDimensions = new SizeF(10F, 20F);
@@ -496,13 +551,15 @@ namespace UI
             Text = "Compra";
             Load += Compra_Load;
             panelCreate.ResumeLayout(false);
+            groupBoxActualizar.ResumeLayout(false);
+            groupBoxActualizar.PerformLayout();
             groupBoxAccionesExtra.ResumeLayout(false);
-            groupBoxListar.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)dataGridViewCompras).EndInit();
             groupBoxAgregarProductos.ResumeLayout(false);
             groupBoxAgregarProductos.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridViewProductos).EndInit();
             ((System.ComponentModel.ISupportInitialize)dataGridViewDetalle).EndInit();
+            groupBoxListar.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dataGridViewCompras).EndInit();
             ResumeLayout(false);
         }
 
@@ -540,5 +597,9 @@ namespace UI
         private Label label4;
         private Label label3;
         private ComboBox comboBoxProveedores;
+        private GroupBox groupBoxActualizar;
+        private FontAwesome.Sharp.IconButton iconButton2;
+        private TextBox txtBoxCantidadRecibida;
+        private Label label6;
     }
 }

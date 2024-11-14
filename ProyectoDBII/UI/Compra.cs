@@ -23,7 +23,7 @@ namespace UI
         private int id_Mueble, cantidad_Mueble;
         private float precioVenta, TotalCompra;
         private string nombre_mueble;
-
+        private string estado_Compra;
         private int cantidadPedida;
 
         private int idCompra;
@@ -159,7 +159,7 @@ namespace UI
                 DataGridViewRow selectedRow = dataGridViewProductos.SelectedRows[0];
                 id_Mueble = Convert.ToInt32((selectedRow.Cells[0].Value).ToString());
                 nombre_mueble = selectedRow.Cells[1].Value.ToString();
-                precioVenta = float.Parse(selectedRow.Cells[4].Value.ToString());
+                precioVenta = float.Parse(selectedRow.Cells[2].Value.ToString());
                 cantidad_Mueble = Convert.ToInt32(txtCantidad.Text);
                 cantidadPedida += cantidad_Mueble;
                 float total = cantidad_Mueble * precioVenta;
@@ -251,7 +251,7 @@ namespace UI
         {
             groupBoxListar.Visible = true;
             groupBoxAccionesExtra.Visible = false;
-
+            groupBoxActualizar.Visible = false;
             LimpiarFormularioYListarCompras();
 
             ListarCompras();
@@ -353,10 +353,12 @@ namespace UI
             if (dataGridViewCompras.SelectedRows.Count > 0)
             {
                 groupBoxAccionesExtra.Visible = true;
+                groupBoxActualizar.Visible = true;
 
                 DataGridViewRow filaSeleccionada = dataGridViewCompras.SelectedRows[0];
 
                 idCompra = Convert.ToInt32(filaSeleccionada.Cells[0].Value);
+                estado_Compra = filaSeleccionada.Cells[7].Value.ToString();
 
             }
             else
@@ -364,6 +366,29 @@ namespace UI
                 groupBoxAccionesExtra.Visible = false;
 
             }
+        }
+
+        private void iconButton2_Click(object sender, EventArgs e)
+        {
+            if (dataGridViewCompras.SelectedRows.Count > 0)
+            {
+                if (!estado_Compra.Equals("Recibido Completo")){
+                    string resultado = _serviceCompra.ActualizarCompraYCrearStock(idCompra, Convert.ToInt32(txtBoxCantidadRecibida.Text), null);
+
+                    MessageBox.Show(resultado, "Resultado de la actualización", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    if (resultado.Equals("Cantidad recibida actualizada, pero aún incompleta") || resultado.Equals("Compra actualizada y stock creado"))
+                    {
+                        LimpiarFormularioYListarCompras();
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Esta compra ya está completada");
+                }
+            }
+            else
+                MessageBox.Show("Debe seleccionar un registro a editar");
         }
     }
 }

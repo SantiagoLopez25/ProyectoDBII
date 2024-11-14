@@ -88,7 +88,7 @@ namespace DAL.Compra
             {
                 connection.Open();
 
-                using (var command = new SqlCommand("ExistenciasMuebles", connection))
+                using (var command = new SqlCommand("ListarMuebles", connection))
                 {
                     command.CommandType = CommandType.StoredProcedure;
 
@@ -178,6 +178,39 @@ namespace DAL.Compra
             catch (Exception ex) {
                 resultado = "ERROR: " + ex.Message;
             }
+            return resultado;
+        }
+
+        public string ActualizarCompraYCrearStock(int idPedido, int cantidadRecibido, DateTime? fechaIngreso)
+        {
+            string resultado = string.Empty;
+            try
+            {
+                using (var connection = _conexion.GetConnection())
+                {
+                    connection.Open();
+                    using (var command = new SqlCommand("ActualizarCompraYCrearStock", connection))
+                    {
+                        command.CommandType = CommandType.StoredProcedure;
+
+                        // Parámetros de entrada
+                        command.Parameters.AddWithValue("@id_Pedido", idPedido);
+                        command.Parameters.AddWithValue("@CantidadRecibido", cantidadRecibido);
+                        command.Parameters.AddWithValue("@FechaIngreso", fechaIngreso ?? (object)DBNull.Value);
+
+                        var resultadoParam = new SqlParameter("@resultado", SqlDbType.VarChar, 200);
+                        resultadoParam.Direction = ParameterDirection.Output;
+                        command.Parameters.Add(resultadoParam);
+
+                        command.ExecuteNonQuery();
+                        resultado = resultadoParam.Value.ToString();
+                    }
+                }
+            }catch(Exception ex)
+            {
+                resultado = "ERROR: " + ex.Message;
+            }
+
             return resultado;
         }
     }

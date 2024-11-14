@@ -56,6 +56,20 @@ namespace BLL.Compra
             }
         }
 
+        public string ActualizarCompraYCrearStock(int idPedido, int cantidadRecibido, DateTime? fechaIngreso)
+        {
+            // Validación o lógica adicional (opcional)
+            if (cantidadRecibido <= 0)
+            {
+                return "La cantidad recibida debe ser mayor que cero.";
+            }
+
+            // Llama al método de la capa DAL
+            string resultado = _compraDAL.ActualizarCompraYCrearStock(idPedido, cantidadRecibido, fechaIngreso);
+
+            return resultado;
+        }
+
         // Método para generar una orden de compra
         public string GenerarCompra(
            string descripcion,
