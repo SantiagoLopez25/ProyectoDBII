@@ -35,7 +35,7 @@ SELECT
 	INNER JOIN Cliente on Factura.id_Cliente = Cliente.id_Cliente
 	INNER JOIN Usuario on Factura.id_Usuario = Usuario.id_Usuario
 
-	WHERE Factura.Estado = 1 AND Entrega.Estado = 1
+	WHERE Factura.Estado = 1 AND Entrega.Estado = 1 AND EstadoPedido_Entrega.Nombre_EstadoPedido <> 'Entregado'
 	ORDER BY Entrega.fechaEntrega DESC;
 
 GO
