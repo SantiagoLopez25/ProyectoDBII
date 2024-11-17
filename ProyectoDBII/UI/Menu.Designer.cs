@@ -100,7 +100,7 @@
             panelGestion.Controls.Add(btnEmpleados);
             panelGestion.Controls.Add(buttonPermisos);
             panelGestion.Dock = DockStyle.Top;
-            panelGestion.Location = new Point(0, 1032);
+            panelGestion.Location = new Point(0, 1061);
             panelGestion.Name = "panelGestion";
             panelGestion.Size = new Size(204, 120);
             panelGestion.TabIndex = 10;
@@ -159,7 +159,7 @@
             buttonGestion.FlatAppearance.BorderSize = 0;
             buttonGestion.FlatStyle = FlatStyle.Flat;
             buttonGestion.ForeColor = Color.Gainsboro;
-            buttonGestion.Location = new Point(0, 987);
+            buttonGestion.Location = new Point(0, 1016);
             buttonGestion.Name = "buttonGestion";
             buttonGestion.Padding = new Padding(10, 0, 0, 0);
             buttonGestion.Size = new Size(204, 45);
@@ -178,7 +178,7 @@
             panelReportes.Controls.Add(buttonReporte2);
             panelReportes.Controls.Add(buttonReporte1);
             panelReportes.Dock = DockStyle.Top;
-            panelReportes.Location = new Point(0, 771);
+            panelReportes.Location = new Point(0, 800);
             panelReportes.Name = "panelReportes";
             panelReportes.Size = new Size(204, 216);
             panelReportes.TabIndex = 8;
@@ -269,7 +269,7 @@
             buttonReportes.FlatAppearance.BorderSize = 0;
             buttonReportes.FlatStyle = FlatStyle.Flat;
             buttonReportes.ForeColor = Color.Gainsboro;
-            buttonReportes.Location = new Point(0, 726);
+            buttonReportes.Location = new Point(0, 755);
             buttonReportes.Name = "buttonReportes";
             buttonReportes.Padding = new Padding(10, 0, 0, 0);
             buttonReportes.Size = new Size(204, 45);
@@ -287,7 +287,7 @@
             panelMueblesSubMenu.Controls.Add(btnMarca);
             panelMueblesSubMenu.Controls.Add(btnMuebles);
             panelMueblesSubMenu.Dock = DockStyle.Top;
-            panelMueblesSubMenu.Location = new Point(0, 555);
+            panelMueblesSubMenu.Location = new Point(0, 584);
             panelMueblesSubMenu.Name = "panelMueblesSubMenu";
             panelMueblesSubMenu.Size = new Size(204, 171);
             panelMueblesSubMenu.TabIndex = 6;
@@ -362,7 +362,7 @@
             btnMueblesDesplegable.FlatAppearance.BorderSize = 0;
             btnMueblesDesplegable.FlatStyle = FlatStyle.Flat;
             btnMueblesDesplegable.ForeColor = Color.Gainsboro;
-            btnMueblesDesplegable.Location = new Point(0, 510);
+            btnMueblesDesplegable.Location = new Point(0, 539);
             btnMueblesDesplegable.Name = "btnMueblesDesplegable";
             btnMueblesDesplegable.Padding = new Padding(10, 0, 0, 0);
             btnMueblesDesplegable.Size = new Size(204, 45);
@@ -381,7 +381,7 @@
             panelPedidosProveedorSubMenu.Dock = DockStyle.Top;
             panelPedidosProveedorSubMenu.Location = new Point(0, 376);
             panelPedidosProveedorSubMenu.Name = "panelPedidosProveedorSubMenu";
-            panelPedidosProveedorSubMenu.Size = new Size(204, 134);
+            panelPedidosProveedorSubMenu.Size = new Size(204, 163);
             panelPedidosProveedorSubMenu.TabIndex = 4;
             // 
             // btnEstadoPedido
@@ -393,9 +393,9 @@
             btnEstadoPedido.Location = new Point(0, 80);
             btnEstadoPedido.Name = "btnEstadoPedido";
             btnEstadoPedido.Padding = new Padding(35, 0, 0, 0);
-            btnEstadoPedido.Size = new Size(204, 40);
+            btnEstadoPedido.Size = new Size(204, 80);
             btnEstadoPedido.TabIndex = 2;
-            btnEstadoPedido.Text = "Estado Pedido";
+            btnEstadoPedido.Text = "Actualizar Inventario";
             btnEstadoPedido.TextAlign = ContentAlignment.MiddleLeft;
             btnEstadoPedido.UseVisualStyleBackColor = true;
             btnEstadoPedido.Click += btnEstadoPedido_Click;

@@ -31,8 +31,11 @@ namespace UI
             {
                 btnVentasDesplegable.Visible = false;
                 buttonPermisos.Visible = false;
-                button1.Visible = false;
+                btnMueblesDesplegable.Visible=false;
                 btnEmpleados.Visible = false;
+                buttonReportes.Visible = false;
+                btnPedidosProveedor.Visible = false;
+                btnProveedores.Visible = false;
 
 
             }
@@ -54,6 +57,7 @@ namespace UI
                 btnMueblesDesplegable.Visible = false;
                 btnVentasDesplegable.Visible = false;
                 btnEmpleados.Visible = false;
+                btnEstadoPedido.Visible = false;
             }
 
 
@@ -163,7 +167,10 @@ namespace UI
         private void btnEstadoPedido_Click(object sender, EventArgs e)
         {
             //ABRIR FORM DE ESTADO DE PEDIDO 
+            openChildForm(new ActualizarInventario());
+            this.Text = "Actualizar Inventario";
             hideSubMenu();
+            
         }
         #endregion
         #region Muebles
